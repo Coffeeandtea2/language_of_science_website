@@ -1,0 +1,34 @@
+## Трансформационные упражнения
+
+```{r, include=FALSE}
+library(checkdown)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Сколько муравьев прибежало в комнату?
+
+```{r, results='asis'}
+check_question(answer = "2", 
+               options = c("2", "4", "6", "8"),
+               right = "Верно",
+               wrong = "Нам кажется, что ответ другой")
+```
+
+Сколько муравьев прибежало в комнату?
+
+```{r, results='asis'}
+check_question(answer = "2", 
+               options = c("2", "4", "6", "8"),
+               right = "Верно",
+               wrong = "Нам кажется, что ответ другой")
+```
+
+Сколько муравьев прибежало в комнату?
+
+```{r, results='asis'}
+check_question(answer = "2", 
+               options = c("2", "4", "6", "8"),
+               right = "Верно",
+               wrong = "Нам кажется, что ответ другой")
+```
+

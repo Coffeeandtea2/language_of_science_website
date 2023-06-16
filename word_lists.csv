@@ -1,0 +1,33 @@
+wl_type,lemma,example,type
+noun,развитие,влиять на развитие,object
+noun,развитие,вклад в развитие,object
+noun,развитие,инвестиции в развитие ,object
+noun,развитие,cоциально-экономическое развитие ,identification
+noun,развитие,региональное развитие ,identification
+noun,развитие,социальное развитие ,identification
+noun,развитие,инновационное развитие ,identification
+noun,развитие,развитие регионов,genitive
+noun,развитие,развитие человеческого потенциала ,genitive
+noun,развитие,развитие экономики ,genitive
+noun,развитие,развитие малого предпринимательства  ,genitive
+noun,fake,влиять на развитие,object
+noun,fake,вклад в развитие,object
+noun,fake,инвестиции в развитие ,object
+noun,fake,cоциально-экономическое развитие ,identification
+noun,fake,региональное развитие ,identification
+noun,fake,социальное развитие ,identification
+noun,fake,инновационное развитие ,identification
+noun,fake,развитие регионов,genitive
+noun,fake,развитие человеческого потенциала ,genitive
+noun,fake,развитие экономики ,genitive
+noun,fake,развитие малого предпринимательства  ,genitive
+bigram,процентная ставка,безрисковая процентная ставка,identification
+bigram,процентная ставка,реальная процентная ставка,identification
+bigram,процентная ставка,номинальная процентная ставка,identification
+bigram,процентная ставка,годовая процентная ставка,identification
+bigram,процентная ставка,процентная ставка равна,subject
+bigram,процентная ставка,процентная ставка составляет,subject
+trigram,на душу населения,В расчете на душу населения,example
+trigram,на душу населения,ВВП на душу населения,example
+trigram,на душу населения,ВРП на душу населения,example
+trigram,на душу населения,Доход на душу населения,example

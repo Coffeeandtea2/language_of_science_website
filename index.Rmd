@@ -1,0 +1,187 @@
+---
+title: "Язык экономики"
+output: flexdashboard::flex_dashboard
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(glue)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Списки слов 
+=======================================================================
+
+Column {.tabset}
+-------------------------------------
+
+### Существительные
+
+```{r}
+read_csv("word_lists.csv") |> 
+  filter(wl_type == "noun") ->
+  noun
+
+noun |> 
+  group_by(lemma, type) |> 
+  summarize(examples = str_c(example, collapse = "<br>")) |> 
+  mutate(examples = case_when(type == "genitive" ~ str_c("<b>Определение (чего?)</b><br>", examples),
+                              type == "identification" ~ str_c("<b>Определение (Какое?)</b><br>", examples),
+                              type == "object" ~ str_c("<b>Объект (что?)</b><br>", examples))) |> 
+  group_by(lemma) |> 
+  summarise(tooltip = str_c(examples, collapse = "<br>")) |> 
+  ungroup() |> 
+  arrange(lemma) |>
+  mutate(lemma = glue('<a href="#" data-tooltip data-tooltip-message="{tooltip}">{lemma}</a>')) |> 
+  select(lemma) |> 
+  DT::datatable(filter = 'top', 
+                escape = FALSE,
+                rownames = FALSE,
+                options = list(pageLength = 150, 
+                               dom = 'tp'))
+```
+
+### Прилагательные
+
+```{r}
+read_csv("word_lists.csv") |> 
+  filter(wl_type == "adjective") |> 
+  distinct(lemma) |> 
+  DT::datatable(filter = 'top', 
+                escape = FALSE,
+                rownames = FALSE,
+                options = list(pageLength = 150, 
+                               dom = 'tp'))
+```
+
+### Глаголы
+
+```{r}
+read_csv("word_lists.csv") |> 
+  filter(wl_type == "verb") |> 
+  distinct(lemma) |> 
+  DT::datatable(filter = 'top', 
+                escape = FALSE,
+                rownames = FALSE,
+                options = list(pageLength = 150, 
+                               dom = 'tp'))
+```
+
+### Наречия
+
+```{r}
+read_csv("word_lists.csv") |> 
+  filter(wl_type == "adverb") |> 
+  distinct(lemma) |> 
+  DT::datatable(filter = 'top', 
+                escape = FALSE,
+                rownames = FALSE,
+                options = list(pageLength = 150, 
+                               dom = 'tp'))
+```
+
+### Биграммы
+
+```{r}
+read_csv("word_lists.csv") |> 
+  filter(wl_type == "bigram") |> 
+  distinct(lemma) |> 
+  DT::datatable(filter = 'top', 
+                escape = FALSE,
+                rownames = FALSE,
+                options = list(pageLength = 150, 
+                               dom = 'tp'))
+```
+
+### Триграммы
+
+```{r}
+read_csv("word_lists.csv") |> 
+  filter(wl_type == "trigram") |> 
+  distinct(lemma) |> 
+  DT::datatable(filter = 'top', 
+                escape = FALSE,
+                rownames = FALSE,
+                options = list(pageLength = 150, 
+                               dom = 'tp'))
+```
+
+### Четырехграммы
+
+```{r}
+read_csv("word_lists.csv") |> 
+  filter(wl_type == "fourgram") |> 
+  distinct(lemma) |> 
+  DT::datatable(filter = 'top', 
+                escape = FALSE,
+                rownames = FALSE,
+                options = list(pageLength = 150, 
+                               dom = 'tp'))
+```
+
+
+Упражнения
+=======================================================================
+
+Row
+-----------------------------------------------------------------------
+
+### (1/15)
+
+```{r}
+valueBox("Трансформационные упражнения", icon = "fa-bath",
+         href = "ex_transformation.html")
+```
+
+### (3/25)
+
+```{r}
+valueBox("Склонение по падежам", icon = "fa-handshake-o")
+```
+
+### (7/10)
+
+```{r}
+valueBox("Конъюгация глаголов", icon = "fa-bed")
+```
+
+### (6/18)
+
+```{r}
+valueBox("Глагольное управление", icon = "fa-bell")
+```
+Row
+-----------------------------------------------------------------------
+
+### (0/11)
+
+```{r}
+valueBox("Актив-пассив", icon = "fa-car")
+```
+
+### (3/20)
+
+```{r}
+valueBox("Слово «который»", icon = "fa-cloud")
+```
+
+### (11/14)
+
+```{r}
+valueBox("На выбор частей речи", icon = "fa-camera")
+```
+
+### (12/15)
+
+```{r}
+valueBox("Причастия", icon = "fa-blind")
+```
+
+
+О проекте
+=======================================================================
+
+В проекте учавствуют ... Проект финансируется...
