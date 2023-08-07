@@ -1,4 +1,4 @@
-setwd("/home/agricolamz/work/other_projects/language_of_science_website_2")
+setwd("/home/agricolamz/work/other_projects/language_of_science_website")
 library(tidyverse)
 library(glue)
 library(rvest)
@@ -17,23 +17,23 @@ file.remove(c(to_remove, list.files(".", pattern = ".html")))
 
 # extract paradigms -------------------------------------------------------
 
-# read_xlsx("data/word_profiles.xlsx") |> 
-#   filter(!is.na(lemma)) |> 
-#   distinct(lemma) |> 
-#   pull(lemma) |> 
+# read_xlsx("data/word_profiles.xlsx") |>
+#   filter(!is.na(lemma)) |>
+#   distinct(lemma) |>
+#   pull(lemma) |>
 #   walk(function(i){
-#     read_html(glue("https://ru.wiktionary.org/wiki/{i}")) |> 
-#       html_element(".morfotable") |> 
-#       write_lines(glue("data/{i}.html"))    
-#     
-#     read_lines(glue("data/{i}.html")) |> 
-#       str_remove("float:right; ") |> 
-#       str_remove('width="210" ') |> 
-#       str_remove('<a href.*?>') |> 
-#       str_remove('</a>') |> 
+#     read_html(glue("https://ru.wiktionary.org/wiki/{i}")) |>
+#       html_element(".morfotable") |>
+#       write_lines(glue("data/{i}.html"))
+# 
+#     read_lines(glue("data/{i}.html")) |>
+#       str_remove("float:right; ") |>
+#       str_remove('width="210" ') |>
+#       str_remove_all('<a href.*?>') |>
+#       str_remove_all('</a>') |>
 #       append("<details>", after = 0) |>
 #       append("<summary>парадигма</summary>", after = 1) |>
-#       append("</details>") |> 
+#       append("</details>") |>
 #       write_lines(glue("data/{i}.html"))
 #   })
 
@@ -85,4 +85,4 @@ DT::datatable(result,
 
 # render site -------------------------------------------------------------
 
-quarto::
+
