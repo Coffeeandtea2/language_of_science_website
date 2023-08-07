@@ -4,17 +4,6 @@ library(glue)
 library(rvest)
 library(readxl)
 
-# cleaning ----------------------------------------------------------------
-
-files <- list.files(".", pattern = "qmd") 
-
-to_remove <- files[!files %in% c("index.qmd", 
-                                 "word_lists.qmd",
-                                 "tasks.qmd")]
-
-file.remove(c(to_remove, list.files(".", pattern = ".html")))
-
-
 # extract paradigms -------------------------------------------------------
 
 # read_xlsx("data/word_profiles.xlsx") |>
@@ -28,7 +17,6 @@ file.remove(c(to_remove, list.files(".", pattern = ".html")))
 # 
 #     read_lines(glue("data/{i}.html")) |>
 #       str_remove("float:right; ") |>
-#       str_remove('width="210" ') |>
 #       str_remove_all('<a href.*?>') |>
 #       str_remove_all('</a>') |>
 #       append("<details>", after = 0) |>
@@ -36,6 +24,15 @@ file.remove(c(to_remove, list.files(".", pattern = ".html")))
 #       append("</details>") |>
 #       write_lines(glue("data/{i}.html"))
 #   })
+# cleaning ----------------------------------------------------------------
+
+files <- list.files(".", pattern = "qmd") 
+
+to_remove <- files[!files %in% c("index.qmd", 
+                                 "word_lists.qmd",
+                                 "tasks.qmd")]
+
+file.remove(c(to_remove, list.files(".", pattern = ".html")))
 
 # generate word profiles --------------------------------------------------
 
@@ -85,4 +82,5 @@ DT::datatable(result,
 
 # render site -------------------------------------------------------------
 
+quarto::quarto_render()
 
