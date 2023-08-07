@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: docs
+  
+website:
+  title: "Язык экономики"
+  navbar:
+    left:
+      - href: index.qmd
+        text: главная
+      - href: word_lists.qmd
+        text: списки слов
+      - href: tasks.qmd
+        text: упражнения
+execute: 
+  echo: false
+  message: false
+  warning: false
+        
+format:
+  html:
+    theme: cosmo
+    embed-resources: true
+    page-layout: full

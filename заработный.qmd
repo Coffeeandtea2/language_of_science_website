@@ -1,0 +1,31 @@
+---
+title: заработный
+---
+
+```{r, child='data/заработный.html'}
+```
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+readxl::read_xlsx('data/word_profiles.xlsx') |> 
+  filter(lemma == 'заработный') |> 
+  select(phrase_for_site, example) |> 
+  rename(выражение = phrase_for_site, 
+         пример = example) ->
+  result
+
+if(sum(is.na(result$пример)) == nrow(result)){
+  result |> 
+    select(выражение) ->
+    result
+}
+
+DT::datatable(result, 
+              filter = 'top', 
+              escape = FALSE, 
+              rownames = FALSE,
+              options = list(pageLength = 15, dom = 'tp'))
+```
+
