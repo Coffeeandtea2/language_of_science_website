@@ -8,6 +8,7 @@ editor_options:
 ```{r, include=FALSE}
 library(flexdashboard)
 library(tidyverse)
+library(readxl)
 library(glue)
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -21,107 +22,68 @@ Column {.tabset}
 ### Существительные
 
 ```{r}
-read_csv("word_lists.csv") |> 
-  filter(wl_type == "noun") ->
-  noun
-
-noun |> 
-  group_by(lemma, type) |> 
-  summarize(examples = str_c(example, collapse = "<br>")) |> 
-  mutate(examples = case_when(type == "genitive" ~ str_c("<b>Определение (чего?)</b><br>", examples),
-                              type == "identification" ~ str_c("<b>Определение (Какое?)</b><br>", examples),
-                              type == "object" ~ str_c("<b>Объект (что?)</b><br>", examples))) |> 
-  group_by(lemma) |> 
-  summarise(tooltip = str_c(examples, collapse = "<br>")) |> 
+read_xlsx("word_profiles.xlsx") |> 
+  filter(wl_type == "NOUN") |> 
+  group_by(lemma_for_site, phrase_for_site) |> 
+  summarize(examples = str_c(example, collapse = "\n")) |> 
   ungroup() |> 
-  arrange(lemma) |>
-  mutate(lemma = glue('<a href="#" data-tooltip data-tooltip-message="{tooltip}">{lemma}</a>')) |> 
-  select(lemma) |> 
+  arrange(lemma_for_site) |> 
+  mutate(phrase_for_site = ifelse(is.na(examples),
+                                  phrase_for_site,
+                                  glue('<a href="#" data-toggle="tooltip" data-html="true" data-placement="right" title="{examples}">{phrase_for_site}</a>'))) |> 
+  select(lemma_for_site, phrase_for_site) |> 
+  rename(лемма = lemma_for_site, 
+         выражение = phrase_for_site) |> 
   DT::datatable(filter = 'top', 
                 escape = FALSE,
                 rownames = FALSE,
-                options = list(pageLength = 150, 
+                options = list(pageLength = 15, 
                                dom = 'tp'))
 ```
 
 ### Прилагательные
 
 ```{r}
-read_csv("word_lists.csv") |> 
-  filter(wl_type == "adjective") |> 
-  distinct(lemma) |> 
+read_xlsx("word_profiles.xlsx") |> 
+  filter(wl_type == "ADJ") |> 
+  group_by(lemma_for_site, phrase_for_site) |> 
+  summarize(examples = str_c(example, collapse = "\n")) |> 
+  ungroup() |> 
+  arrange(lemma_for_site) |> 
+  mutate(phrase_for_site = ifelse(is.na(examples),
+                                  phrase_for_site,
+                                  glue('<a href="#" data-toggle="tooltip" data-html="true" data-placement="right" title="{examples}">{phrase_for_site}</a>'))) |> 
+  select(lemma_for_site, phrase_for_site) |> 
+  rename(лемма = lemma_for_site, 
+         выражение = phrase_for_site) |> 
   DT::datatable(filter = 'top', 
                 escape = FALSE,
                 rownames = FALSE,
-                options = list(pageLength = 150, 
+                options = list(pageLength = 15, 
                                dom = 'tp'))
 ```
 
 ### Глаголы
 
 ```{r}
-read_csv("word_lists.csv") |> 
-  filter(wl_type == "verb") |> 
-  distinct(lemma) |> 
+read_xlsx("word_profiles.xlsx") |> 
+  filter(wl_type == "VERB") |> 
+  group_by(lemma_for_site, phrase_for_site) |> 
+  summarize(examples = str_c(example, collapse = "\n")) |> 
+  ungroup() |> 
+  arrange(lemma_for_site) |> 
+  mutate(phrase_for_site = ifelse(is.na(examples),
+                                  phrase_for_site,
+                                  glue('<a href="#" data-toggle="tooltip" data-html="true" data-placement="right" title="{examples}">{phrase_for_site}</a>'))) |> 
+  select(lemma_for_site, phrase_for_site) |> 
+  rename(лемма = lemma_for_site, 
+         выражение = phrase_for_site) |> 
   DT::datatable(filter = 'top', 
                 escape = FALSE,
                 rownames = FALSE,
-                options = list(pageLength = 150, 
+                options = list(pageLength = 15, 
                                dom = 'tp'))
 ```
-
-### Наречия
-
-```{r}
-read_csv("word_lists.csv") |> 
-  filter(wl_type == "adverb") |> 
-  distinct(lemma) |> 
-  DT::datatable(filter = 'top', 
-                escape = FALSE,
-                rownames = FALSE,
-                options = list(pageLength = 150, 
-                               dom = 'tp'))
-```
-
-### Биграммы
-
-```{r}
-read_csv("word_lists.csv") |> 
-  filter(wl_type == "bigram") |> 
-  distinct(lemma) |> 
-  DT::datatable(filter = 'top', 
-                escape = FALSE,
-                rownames = FALSE,
-                options = list(pageLength = 150, 
-                               dom = 'tp'))
-```
-
-### Триграммы
-
-```{r}
-read_csv("word_lists.csv") |> 
-  filter(wl_type == "trigram") |> 
-  distinct(lemma) |> 
-  DT::datatable(filter = 'top', 
-                escape = FALSE,
-                rownames = FALSE,
-                options = list(pageLength = 150, 
-                               dom = 'tp'))
-```
-
-### Четырехграммы
-
-```{r}
-read_csv("word_lists.csv") |> 
-  filter(wl_type == "fourgram") |> 
-  distinct(lemma) |> 
-  DT::datatable(filter = 'top', 
-                escape = FALSE,
-                rownames = FALSE,
-                options = list(pageLength = 150, 
-                               dom = 'tp'))
-```
-
 
 Упражнения
 =======================================================================
@@ -185,3 +147,10 @@ valueBox("Причастия", icon = "fa-blind")
 =======================================================================
 
 В проекте учавствуют ... Проект финансируется...
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+
