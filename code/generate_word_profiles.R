@@ -77,7 +77,9 @@ file.remove(c(to_remove, list.files(".", pattern = ".html")))
 
 # generate word profiles --------------------------------------------------
 
-readxl::read_xlsx("data/word_profiles.xlsx") |> 
+w_profiles <- readxl::read_xlsx("data/word_profiles.xlsx") 
+
+w_profiles |> 
   filter(!is.na(lemma)) |> 
   distinct(lemma) |> 
   pull(lemma) |> 
@@ -116,7 +118,10 @@ DT::datatable(result,
 
 "))
     ymlthis::yml_empty() |> 
-      ymlthis::yml_title(i) |> 
+      ymlthis::yml_title(w_profiles |> 
+                           filter(lemma == i) |> 
+                           distinct(lemma_for_site) |> 
+                           pull(lemma_for_site)) |> 
       ymlthis::use_rmarkdown(path = str_c(i, ".qmd"), 
                              open_doc = FALSE, 
                              quiet = TRUE,
