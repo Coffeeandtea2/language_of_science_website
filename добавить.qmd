@@ -1,0 +1,34 @@
+---
+title: добавлять - добавить
+---
+
+```{r, child='data/добавить.html'}
+```
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+readxl::read_xlsx('data/word_profiles.xlsx') |> 
+  filter(lemma == 'добавить') |> 
+  mutate(example = ifelse(is.na(example), '', example)) |> 
+  select(phrase_for_site, example) |> 
+  group_by(phrase_for_site) |> 
+  summarize(example = str_c(example, collapse = '<br>')) |> 
+  rename(выражение = phrase_for_site, 
+         пример = example) ->
+  result
+
+if(sum(is.na(result$пример)) == nrow(result)){
+  result |> 
+    select(выражение) ->
+    result
+}
+
+DT::datatable(result, 
+              filter = 'top', 
+              escape = FALSE, 
+              rownames = FALSE,
+              options = list(pageLength = 15, dom = 'tp'))
+```
+

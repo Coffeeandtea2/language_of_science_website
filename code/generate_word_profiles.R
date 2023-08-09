@@ -11,7 +11,7 @@ read_xlsx("data/word_profiles.xlsx") |>
   distinct(lemma_for_site) |> 
   mutate(lemma_for_site = str_split(lemma_for_site, " - ")) |> 
   unnest_longer(lemma_for_site) |> 
-  mutate(lemma_for_site = str_remove_all(lemma_for_site, "[\\(\\)]")) |> 
+  mutate(lemma_for_site = str_remove_all(lemma_for_site, "\\(.*?\\)")) |> 
   pull(lemma_for_site) |> 
   walk(function(i){
     read_html(glue("https://ru.wiktionary.org/wiki/{i}")) |>
@@ -56,9 +56,6 @@ walk(merge_paradigms$lemma, function(i){
     str_remove_all("</details>") |> 
     append(v2_modified) ->
     result
-  
-  str_c("data/", c(v1, v2), ".html") |> 
-    file.remove()
   
   write_lines(result, str_c("data/", i, ".html"))
   
