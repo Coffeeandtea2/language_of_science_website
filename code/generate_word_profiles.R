@@ -72,12 +72,18 @@ to_remove <- files[!files %in% c("index.qmd",
 
 file.remove(c(to_remove, list.files(".", pattern = ".html")))
 
+rm(files, to_remove)
+
 # generate word profiles --------------------------------------------------
 
-w_profiles <- readxl::read_xlsx("data/word_profiles.xlsx") 
+readxl::read_xlsx("data/word_profiles.xlsx") |> 
+  filter(!is.na(lemma_for_site)) |> 
+  mutate(lemma = str_extract(lemma_for_site, "^.*?(?=( -))"),
+         lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
+         lemma = str_remove_all(lemma, "[\\(\\)]")) ->
+  w_profiles 
 
 w_profiles |> 
-  filter(!is.na(lemma)) |> 
   distinct(lemma) |> 
   pull(lemma) |> 
   walk(function(i){

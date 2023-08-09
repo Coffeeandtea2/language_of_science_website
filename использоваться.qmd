@@ -1,8 +1,8 @@
 ---
-title: показывать - показать
+title: использовать(ся)
 ---
 
-```{r, child='data/показать.html'}
+```{r, child='data/использоваться.html'}
 ```
 
 ```{r}
@@ -10,7 +10,7 @@ title: показывать - показать
 
 library(tidyverse)
 readxl::read_xlsx('data/word_profiles.xlsx') |> 
-  filter(lemma == 'показать') |> 
+  filter(lemma == 'использоваться') |> 
   mutate(example = ifelse(is.na(example), '', example)) |> 
   select(phrase_for_site, example) |> 
   group_by(phrase_for_site) |> 

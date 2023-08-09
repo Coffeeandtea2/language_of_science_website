@@ -1,8 +1,8 @@
 ---
-title: приводить - привести
+title: добавлять - добавить
 ---
 
-```{r, child='data/привести.html'}
+```{r, child='data/добавлять.html'}
 ```
 
 ```{r}
@@ -10,7 +10,7 @@ title: приводить - привести
 
 library(tidyverse)
 readxl::read_xlsx('data/word_profiles.xlsx') |> 
-  filter(lemma == 'привести') |> 
+  filter(lemma == 'добавлять') |> 
   mutate(example = ifelse(is.na(example), '', example)) |> 
   select(phrase_for_site, example) |> 
   group_by(phrase_for_site) |> 
