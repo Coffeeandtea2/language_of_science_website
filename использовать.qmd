@@ -1,8 +1,8 @@
 ---
-title: использовать(ся)
+title: использовать - использоваться
 ---
 
-```{r, child='data/использоваться.html'}
+```{r, child='data/использовать.html'}
 ```
 
 ```{r}
@@ -10,8 +10,11 @@ title: использовать(ся)
 
 library(tidyverse)
 readxl::read_xlsx('data/word_profiles.xlsx') |> 
-  filter(lemma == 'использоваться') |> 
-  mutate(example = ifelse(is.na(example), '', example)) |> 
+  mutate(lemma = str_extract(lemma_for_site, '^.*?(?=( -))'),
+         lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
+         lemma = str_remove_all(lemma, '\\(.*?\\)')) |> 
+  filter(lemma == 'использовать') |> 
+  mutate(example = ifelse(is.na(example), '', str_c('• ', example))) |> 
   select(phrase_for_site, example) |> 
   group_by(phrase_for_site) |> 
   summarize(example = str_c(example, collapse = '<br>')) |> 

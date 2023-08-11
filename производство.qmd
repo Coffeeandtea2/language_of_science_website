@@ -10,8 +10,11 @@ title: производство
 
 library(tidyverse)
 readxl::read_xlsx('data/word_profiles.xlsx') |> 
+  mutate(lemma = str_extract(lemma_for_site, '^.*?(?=( -))'),
+         lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
+         lemma = str_remove_all(lemma, '\\(.*?\\)')) |> 
   filter(lemma == 'производство') |> 
-  mutate(example = ifelse(is.na(example), '', example)) |> 
+  mutate(example = ifelse(is.na(example), '', str_c('• ', example))) |> 
   select(phrase_for_site, example) |> 
   group_by(phrase_for_site) |> 
   summarize(example = str_c(example, collapse = '<br>')) |> 

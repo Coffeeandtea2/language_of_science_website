@@ -34,7 +34,7 @@ read_xlsx("data/word_profiles.xlsx") |>
   filter(str_detect(lemma_for_site, "-")) |>
   mutate(lemma = str_extract(lemma_for_site, "^.*?(?=( -))"),
          lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
-         lemma = str_remove_all(lemma, "[\\(\\)]")) |> 
+         lemma = str_remove_all(lemma, "\\(.*?\\)")) |> 
   distinct(lemma, lemma_for_site) |> 
   mutate(lemma_for_site = str_split(lemma_for_site, " - ")) |> 
   unnest_longer(lemma_for_site) |> 
@@ -42,7 +42,7 @@ read_xlsx("data/word_profiles.xlsx") |>
   reframe(n = 1:n(),
           n = str_c("variant_", n),
           lemma_for_site = lemma_for_site) |> 
-  mutate(lemma_for_site = str_remove_all(lemma_for_site, "[\\(\\)]")) |> 
+  mutate(lemma_for_site = str_remove_all(lemma_for_site, "\\(.*?\\)")) |> 
   pivot_wider(names_from = n, values_from = lemma_for_site) ->
   merge_paradigms
 
@@ -83,12 +83,12 @@ readxl::read_xlsx("data/word_profiles.xlsx") |>
   filter(!is.na(lemma_for_site)) |> 
   mutate(lemma = str_extract(lemma_for_site, "^.*?(?=( -))"),
          lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
-         lemma = str_remove_all(lemma, "[\\(\\)]")) ->
+         lemma = str_remove_all(lemma, "\\(.*?\\)")) ->
   w_profiles 
 
 w_profiles |> 
   distinct(lemma) |> 
-  pull(lemma) |> 
+  pull(lemma) |>
   walk(function(i){
     options(ymlthis.rmd_body = glue::glue("
 
@@ -100,8 +100,11 @@ w_profiles |>
 
 library(tidyverse)
 readxl::read_xlsx('data/word_profiles.xlsx') |> 
+  mutate(lemma = str_extract(lemma_for_site, '^.*?(?=( -))'),
+         lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
+         lemma = str_remove_all(lemma, '\\\\(.*?\\\\)')) |> 
   filter(lemma == '{i}') |> 
-  mutate(example = ifelse(is.na(example), '', example)) |> 
+  mutate(example = ifelse(is.na(example), '', str_c('• ', example))) |> 
   select(phrase_for_site, example) |> 
   group_by(phrase_for_site) |> 
   summarize(example = str_c(example, collapse = '<br>')) |> 

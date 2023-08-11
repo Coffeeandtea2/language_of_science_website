@@ -4,7 +4,10 @@
 library(tidyverse)
 library(htmltools)
 readxl::read_xlsx("data/word_profiles.xlsx") |> 
-  filter(!is.na(lemma)) ->
+  filter(!is.na(lemma)) |> 
+  mutate(lemma = str_extract(lemma_for_site, "^.*?(?=( -))"),
+         lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
+         lemma = str_remove_all(lemma, "\\(.*?\\)")) ->
   df
 ```
 
