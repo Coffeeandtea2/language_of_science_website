@@ -2,6 +2,10 @@
 title: социальный
 ---
 
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/социальный)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=социальный)
+
+
 ```{r, child='data/социальный.html'}
 ```
 

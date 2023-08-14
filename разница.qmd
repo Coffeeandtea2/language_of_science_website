@@ -2,6 +2,10 @@
 title: разница
 ---
 
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/разница)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=разница)
+
+
 ```{r, child='data/разница.html'}
 ```
 

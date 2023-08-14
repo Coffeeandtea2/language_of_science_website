@@ -2,6 +2,10 @@
 title: денежный
 ---
 
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/денежный)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=денежный)
+
+
 ```{r, child='data/денежный.html'}
 ```
 

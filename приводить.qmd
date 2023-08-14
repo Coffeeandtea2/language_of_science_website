@@ -1,6 +1,10 @@
 ---
-title: приводить - привести
+title: приводить
 ---
+
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/приводить)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=приводить)
+
 
 ```{r, child='data/приводить.html'}
 ```

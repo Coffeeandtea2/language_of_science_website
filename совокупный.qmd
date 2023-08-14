@@ -2,6 +2,10 @@
 title: совокупный
 ---
 
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/совокупный)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=совокупный)
+
+
 ```{r, child='data/совокупный.html'}
 ```
 

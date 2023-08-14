@@ -2,6 +2,10 @@
 title: заработный
 ---
 
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/заработный)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=заработный)
+
+
 ```{r, child='data/заработный.html'}
 ```
 

@@ -2,6 +2,10 @@
 title: налоговый
 ---
 
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/налоговый)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=налоговый)
+
+
 ```{r, child='data/налоговый.html'}
 ```
 

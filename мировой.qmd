@@ -2,6 +2,10 @@
 title: мировой
 ---
 
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/мировой)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=мировой)
+
+
 ```{r, child='data/мировой.html'}
 ```
 

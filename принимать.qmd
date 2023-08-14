@@ -1,6 +1,10 @@
 ---
-title: принимать - принять
+title: принимать
 ---
+
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/принимать)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=принимать)
+
 
 ```{r, child='data/принимать.html'}
 ```

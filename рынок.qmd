@@ -2,6 +2,10 @@
 title: рынок
 ---
 
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/рынок)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=рынок)
+
+
 ```{r, child='data/рынок.html'}
 ```
 

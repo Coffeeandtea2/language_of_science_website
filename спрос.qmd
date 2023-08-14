@@ -2,6 +2,10 @@
 title: спрос
 ---
 
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/спрос)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=спрос)
+
+
 ```{r, child='data/спрос.html'}
 ```
 

@@ -2,6 +2,10 @@
 title: национальный
 ---
 
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/национальный)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=национальный)
+
+
 ```{r, child='data/национальный.html'}
 ```
 

@@ -1,6 +1,10 @@
 ---
-title: использовать - использоваться
+title: использовать
 ---
+
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/использовать)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=использовать)
+
 
 ```{r, child='data/использовать.html'}
 ```

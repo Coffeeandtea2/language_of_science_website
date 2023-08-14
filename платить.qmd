@@ -1,6 +1,10 @@
 ---
-title: платить - заплатить
+title: платить
 ---
+
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/платить)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=платить)
+
 
 ```{r, child='data/платить.html'}
 ```

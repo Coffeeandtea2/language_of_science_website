@@ -1,6 +1,10 @@
 ---
-title: заключать(ся) - заключить(ся)
+title: заключать
 ---
+
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/заключать)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=заключать)
+
 
 ```{r, child='data/заключать.html'}
 ```

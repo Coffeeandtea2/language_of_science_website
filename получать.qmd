@@ -1,6 +1,10 @@
 ---
-title: получать - получить
+title: получать
 ---
+
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/получать)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=получать)
+
 
 ```{r, child='data/получать.html'}
 ```

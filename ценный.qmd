@@ -2,6 +2,10 @@
 title: ценный
 ---
 
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/ценный)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=ценный)
+
+
 ```{r, child='data/ценный.html'}
 ```
 

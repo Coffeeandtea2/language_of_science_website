@@ -2,6 +2,10 @@
 title: тренд
 ---
 
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/тренд)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=тренд)
+
+
 ```{r, child='data/тренд.html'}
 ```
 

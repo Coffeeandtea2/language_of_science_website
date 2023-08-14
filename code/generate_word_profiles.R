@@ -64,7 +64,6 @@ walk(merge_paradigms$lemma, function(i){
   
 })
 
-
 # cleaning ----------------------------------------------------------------
 
 files <- list.files(".", pattern = "qmd") 
@@ -91,6 +90,10 @@ w_profiles |>
   pull(lemma) |>
   walk(function(i){
     options(ymlthis.rmd_body = glue::glue("
+
+[![](images/wiktionary.png){{height=7mm}}](https://ru.wiktionary.org/wiki/{i})
+[![](images/ruscorpora.png){{height=7mm}}](https://ruscorpora.ru/word/main?req={i})
+
 
 ```{{r, child='data/{i}.html'}}
 ```
@@ -126,11 +129,9 @@ DT::datatable(result,
 ```
 
 "))
+    
     ymlthis::yml_empty() |> 
-      ymlthis::yml_title(w_profiles |> 
-                           filter(lemma == i) |> 
-                           distinct(lemma_for_site) |> 
-                           pull(lemma_for_site)) |> 
+      ymlthis::yml_title(i) |> 
       ymlthis::use_rmarkdown(path = str_c(i, ".qmd"), 
                              open_doc = FALSE, 
                              quiet = TRUE,
@@ -141,4 +142,3 @@ DT::datatable(result,
 # render site -------------------------------------------------------------
 
 quarto::quarto_render()
-
