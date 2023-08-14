@@ -1,7 +1,10 @@
 project:
   type: website
   output-dir: docs
-  
+  render:
+    - "*.qmd"
+    - "!tasks/"
+    
 website:
   title: "Язык экономики"
   navbar:
