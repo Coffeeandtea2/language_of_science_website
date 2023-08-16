@@ -181,5 +181,14 @@
   },
   "tasks/пункт.qmd": {
     "пункт.html": "edf9ad29"
+  },
+  "declension.qmd": {
+    "declension.html": "79ddb864"
+  },
+  "government.qmd": {
+    "government.html": "b16f2252"
+  },
+  "about.qmd": {
+    "about.html": "ffd7b714"
   }
 }

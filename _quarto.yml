@@ -15,6 +15,9 @@ website:
         text: списки слов
       - href: tasks.qmd
         text: упражнения
+      - href: about.qmd
+        text: о проекте
+  
 execute: 
   echo: false
   message: false

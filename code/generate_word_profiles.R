@@ -119,6 +119,69 @@ check_question(answer = '{answer}',
 })
 
 
+readxl::read_xlsx("data/tasks.xlsx") |> 
+  filter(!is.na(answer)) ->
+  tasks_dataset
+
+library(udpipe)
+ru <- udpipe_load_model("/home/agricolamz/work/databases/spoken_corpora/russian-syntagrus-ud-2.5-191206.udpipe")
+
+tasks_dataset |> 
+  distinct(stimulus) |> 
+  pull(stimulus) |> 
+  udpipe(ru) |> 
+  select(sentence, upos) |> 
+  rename(stimulus = sentence) |> 
+  left_join(tasks_dataset) ->
+  tasks_dataset
+
+tasks_dataset |> 
+  filter(upos %in% c("ADJ", "NOUN")) |> 
+  slice_sample(prop = 1) ->
+  generate_declension_tasks
+
+map2(generate_declension_tasks$task, 
+     generate_declension_tasks$answer,
+     function(task, answer) {
+       
+       glue("
+
+(@) {task}
+
+```{{r}}
+#| results: asis
+checkdown::check_question(answer = '{answer}', 
+                          right = 'все верно!', 
+                          wrong = 'к сожалению нет, попробуйте еще раз...')
+```
+
+") }) |> 
+  write_lines("declension.qmd")
+
+tasks_dataset |> 
+  filter(upos %in% c("VERB")) |> 
+  slice_sample(prop = 1) ->
+  generate_government_tasks
+
+map2(generate_government_tasks$task, 
+     generate_government_tasks$answer,
+     function(task, answer) {
+       
+       glue("
+
+(@) {task}
+
+```{{r}}
+#| results: asis
+checkdown::check_question(answer = '{answer}', 
+                          right = 'все верно!', 
+                          wrong = 'к сожалению нет, попробуйте еще раз...')
+```
+
+") }) |> 
+  write_lines("government.qmd")
+
+
 # cleaning ----------------------------------------------------------------
 
 files <- list.files(".", pattern = "qmd") 
