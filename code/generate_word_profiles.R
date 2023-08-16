@@ -188,7 +188,8 @@ files <- list.files(".", pattern = "qmd")
 
 to_remove <- files[!files %in% c("index.qmd", 
                                  "word_lists.qmd",
-                                 "tasks.qmd")]
+                                 "tasks.qmd",
+                                 "about.qmd")]
 
 file.remove(c(to_remove, list.files(".", pattern = ".html")))
 
