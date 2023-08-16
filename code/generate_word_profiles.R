@@ -181,6 +181,7 @@ checkdown::check_question(answer = '{answer}',
 ") }) |> 
   write_lines("government.qmd")
 
+rm(generate_declension_tasks, generate_government_tasks, generate_tasks, tasks_dataset, ru)
 
 # cleaning ----------------------------------------------------------------
 
@@ -189,7 +190,9 @@ files <- list.files(".", pattern = "qmd")
 to_remove <- files[!files %in% c("index.qmd", 
                                  "word_lists.qmd",
                                  "tasks.qmd",
-                                 "about.qmd")]
+                                 "about.qmd",
+                                 "declension.qmd",
+                                 "government.qmd")]
 
 file.remove(c(to_remove, list.files(".", pattern = ".html")))
 
@@ -268,6 +271,8 @@ DT::datatable(result,
                              include_body = FALSE,
                              body = NULL)
 })
+
+rm(w_profiles)
 
 # render site -------------------------------------------------------------
 
