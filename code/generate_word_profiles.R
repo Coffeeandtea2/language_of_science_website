@@ -7,12 +7,13 @@ library(readxl)
 # extract paradigms -------------------------------------------------------
 
 # read_xlsx("data/word_profiles.xlsx") |>
-#   filter(!is.na(lemma_for_site)) |>  
-#   distinct(lemma_for_site) |> 
-#   mutate(lemma_for_site = str_split(lemma_for_site, " - ")) |> 
-#   unnest_longer(lemma_for_site) |> 
-#   mutate(lemma_for_site = str_remove_all(lemma_for_site, "\\(.*?\\)")) |> 
+#   filter(!is.na(lemma_for_site)) |>
+#   distinct(lemma_for_site) |>
+#   mutate(lemma_for_site = str_split(lemma_for_site, " - ")) |>
+#   unnest_longer(lemma_for_site) |>
+#   mutate(lemma_for_site = str_remove_all(lemma_for_site, "\\(.*?\\)")) |>
 #   pull(lemma_for_site) |> 
+#   sort() |> 
 #   walk(function(i){
 #     read_html(glue("https://ru.wiktionary.org/wiki/{i}")) |>
 #       html_element(".morfotable") |>
@@ -27,44 +28,44 @@ library(readxl)
 #       append("</details>") |>
 #       write_lines(glue("data/{i}.html"))
 #   })
-# 
-# # merge 2 paradimes of verbs with different aspects
-# 
+
+# merge 2 paradimes of verbs with different aspects
+
 # read_xlsx("data/word_profiles.xlsx") |>
 #   filter(str_detect(lemma_for_site, "-")) |>
 #   mutate(lemma = str_extract(lemma_for_site, "^.*?(?=( -))"),
 #          lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
-#          lemma = str_remove_all(lemma, "\\(.*?\\)")) |> 
-#   distinct(lemma, lemma_for_site) |> 
-#   mutate(lemma_for_site = str_split(lemma_for_site, " - ")) |> 
-#   unnest_longer(lemma_for_site) |> 
-#   group_by(lemma) |> 
+#          lemma = str_remove_all(lemma, "\\(.*?\\)")) |>
+#   distinct(lemma, lemma_for_site) |>
+#   mutate(lemma_for_site = str_split(lemma_for_site, " - ")) |>
+#   unnest_longer(lemma_for_site) |>
+#   group_by(lemma) |>
 #   reframe(n = 1:n(),
 #           n = str_c("variant_", n),
-#           lemma_for_site = lemma_for_site) |> 
-#   mutate(lemma_for_site = str_remove_all(lemma_for_site, "\\(.*?\\)")) |> 
+#           lemma_for_site = lemma_for_site) |>
+#   mutate(lemma_for_site = str_remove_all(lemma_for_site, "\\(.*?\\)")) |>
 #   pivot_wider(names_from = n, values_from = lemma_for_site) ->
 #   merge_paradigms
 # 
 # walk(merge_paradigms$lemma, function(i){
 #   v1 <- merge_paradigms[merge_paradigms$lemma == i,]$variant_1
 #   v2 <- merge_paradigms[merge_paradigms$lemma == i,]$variant_2
-#   
-#   read_lines(str_c("data/", v2, ".html")) |> 
-#     str_remove_all("<details>") |> 
+# 
+#   read_lines(str_c("data/", v2, ".html")) |>
+#     str_remove_all("<details>") |>
 #     str_remove_all("<summary>парадигма</summary>") ->
 #     v2_modified
-#   
-#   read_lines(str_c("data/", v1, ".html")) |> 
-#     str_remove_all("</details>") |> 
+# 
+#   read_lines(str_c("data/", v1, ".html")) |>
+#     str_remove_all("</details>") |>
 #     append(v2_modified) ->
 #     result
-#   
+# 
 #   write_lines(result, str_c("data/", i, ".html"))
-#   
+# 
 # })
-
-
+# 
+# 
 # generate tasks ----------------------------------------------------------
 
 readxl::read_xlsx("data/word_profiles.xlsx") |> 

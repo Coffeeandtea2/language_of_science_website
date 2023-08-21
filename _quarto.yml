@@ -6,7 +6,7 @@ project:
     - "!tasks/"
     
 website:
-  title: "Язык экономики"
+  title: "Академический русский: экономика"
   navbar:
     left:
       - href: index.qmd

@@ -26,6 +26,13 @@ df |>
   arrange(lemma) ->
   nouns
 
+if(nrow(nouns) %% 3 == 2){
+  nouns |> 
+    bind_rows(tibble(lemma = "", 
+                     lemma_for_site = "")) ->
+    nouns
+}
+
 walk2(nouns$lemma, 
       nouns$lemma_for_site,
       function(lemma, lemma_for_site) {
@@ -47,10 +54,18 @@ df |>
   filter(wl_type == "ADJ") |> 
   distinct(lemma, lemma_for_site) |> 
   arrange(lemma) ->
-  nouns
+  adjs
 
-walk2(nouns$lemma, 
-      nouns$lemma_for_site,
+if(nrow(adjs) %% 3 == 2){
+  adjs |> 
+    bind_rows(tibble(lemma = "", 
+                     lemma_for_site = "")) ->
+    adjs
+}
+
+
+walk2(adjs$lemma, 
+      adjs$lemma_for_site,
       function(lemma, lemma_for_site) {
         htmltools::a(lemma_for_site, href = str_c(lemma, ".html")) |>
           htmltools::div(class = "col") |>
@@ -70,10 +85,17 @@ df |>
   filter(wl_type == "VERB") |> 
   distinct(lemma, lemma_for_site) |> 
   arrange(lemma) ->
-  nouns
+  verbs
 
-walk2(nouns$lemma, 
-      nouns$lemma_for_site,
+if(nrow(verbs) %% 3 == 2){
+  verbs |> 
+    bind_rows(tibble(lemma = "", 
+                     lemma_for_site = "")) ->
+    verbs
+}
+
+walk2(verbs$lemma, 
+      verbs$lemma_for_site,
       function(lemma, lemma_for_site) {
         htmltools::a(lemma_for_site, href = str_c(lemma, ".html")) |>
           htmltools::div(class = "col") |>
