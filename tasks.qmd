@@ -9,7 +9,7 @@ tribble(
   ~title, ~href,
   "Какой падеж?",          "declension.html",
   "Какая конструкция?",    "government.html",
-  "Какой термин?",         "lexicon.html",
+  "Какой график?",         "plots.html",
   "...",                   "government.html",
   "...",                   "government.html",
   "...",                   "government.html"

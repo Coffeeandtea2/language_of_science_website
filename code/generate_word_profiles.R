@@ -198,6 +198,9 @@ tasks_dataset_full |>
   mutate(options = str_c(options, " ; ", answer)) ->
   generate_pictures_tasks
 
+"### Посмотрите на график и выберите правильное предложение\n\n" |> 
+  write_lines("plots.qmd")
+
 map(seq_along(generate_pictures_tasks$task), 
      function(i) {
        str_c("
@@ -223,7 +226,7 @@ str_c("c('",
 ```
 
 ") }) |> 
-  write_lines("lexicon.qmd")
+  write_lines("plots.qmd")
 
 
 rm(generate_declension_tasks, generate_government_tasks, generate_tasks, tasks_dataset, ru)
@@ -238,6 +241,7 @@ to_remove <- files[!files %in% c("index.qmd",
                                  "about.qmd",
                                  "declension.qmd",
                                  "government.qmd",
+                                 "plots.qmd",
                                  "lexicon.qmd")]
 
 file.remove(c(to_remove, list.files(".", pattern = ".html")))
