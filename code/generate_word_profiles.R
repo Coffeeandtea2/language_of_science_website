@@ -114,7 +114,7 @@ checkdown::check_question(answer = '{answer}',
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить')
 checkdown::check_hint(hint_text = '{answer}',
-                      hint_title = 'Нажмите, чтобы посмотреть ответ')
+                      hint_title = '🔎 Нажмите, чтобы посмотреть ответ')
 ```
 
 ") }) |> 
@@ -125,18 +125,19 @@ checkdown::check_hint(hint_text = '{answer}',
 
 readxl::read_xlsx("data/tasks.xlsx") |> 
   filter(!is.na(answer)) ->
-  tasks_dataset
+  tasks_dataset_full
 
 library(udpipe)
 ru <- udpipe_load_model("/home/agricolamz/work/databases/spoken_corpora/russian-syntagrus-ud-2.5-191206.udpipe")
 
-tasks_dataset |> 
+tasks_dataset_full |> 
   distinct(stimulus) |> 
-  pull(stimulus) |> 
+  pull(stimulus) |>
+  na.omit() |> 
   udpipe(ru) |> 
   select(sentence, upos) |> 
   rename(stimulus = sentence) |> 
-  left_join(tasks_dataset) ->
+  left_join(tasks_dataset_full) ->
   tasks_dataset
 
 tasks_dataset |> 
@@ -159,7 +160,7 @@ checkdown::check_question(answer = '{answer}',
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить')
 checkdown::check_hint(hint_text = '{answer}',
-           hint_title = 'Нажмите, чтобы посмотреть ответ')                          
+           hint_title = '🔎 Нажмите, чтобы посмотреть ответ')                          
 ```
 
 ") }) |> 
@@ -185,11 +186,45 @@ checkdown::check_question(answer = '{answer}',
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить')
 checkdown::check_hint(hint_text = '{answer}',
-           hint_title = 'Нажмите, чтобы посмотреть ответ')
+           hint_title = '🔎 Нажмите, чтобы посмотреть ответ')
 ```
 
 ") }) |> 
   write_lines("government.qmd")
+
+
+tasks_dataset_full |> 
+  filter(task_type == "Графики") |> 
+  mutate(options = str_c(options, " ; ", answer)) ->
+  generate_pictures_tasks
+
+map(seq_along(generate_pictures_tasks$task), 
+     function(i) {
+       str_c("
+
+(@) ",
+             str_c("![](images/", generate_pictures_tasks$task[i]), ".png)",
+"
+```{r}
+#| results: asis
+checkdown::check_question(answer = '",
+              generate_pictures_tasks$answer[i],
+"', 
+                          options = ",
+str_c("c('", 
+      str_replace_all(generate_pictures_tasks$options[i], " ; ", "', '"),
+      "')"),
+",
+                          right = 'все верно!', 
+                          wrong = 'к сожалению нет, попробуйте еще раз...',
+                          button_label = 'проверить',
+                          type = 'radio',
+                          random_answer_order = FALSE)
+```
+
+") }) |> 
+  write_lines("lexicon.qmd")
+
 
 rm(generate_declension_tasks, generate_government_tasks, generate_tasks, tasks_dataset, ru)
 
@@ -202,7 +237,8 @@ to_remove <- files[!files %in% c("index.qmd",
                                  "tasks.qmd",
                                  "about.qmd",
                                  "declension.qmd",
-                                 "government.qmd")]
+                                 "government.qmd",
+                                 "lexicon.qmd")]
 
 file.remove(c(to_remove, list.files(".", pattern = ".html")))
 

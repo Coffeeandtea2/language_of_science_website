@@ -7,12 +7,12 @@ library(htmltools)
 
 tribble(
   ~title, ~href,
-  "Какой падеж?",   "declension.html",
+  "Какой падеж?",          "declension.html",
   "Какая конструкция?",    "government.html",
-  "...",                    "government.html",
-  "...",                    "government.html",
-  "...",                    "government.html",
-  "...",                    "government.html"
+  "Какой термин?",         "lexicon.html",
+  "...",                   "government.html",
+  "...",                   "government.html",
+  "...",                   "government.html"
 ) ->
   df
 
