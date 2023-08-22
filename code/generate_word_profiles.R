@@ -226,7 +226,7 @@ str_c("c('",
 ```
 
 ") }) |> 
-  write_lines("plots.qmd")
+  write_lines("plots.qmd", append = TRUE)
 
 
 rm(generate_declension_tasks, generate_government_tasks, generate_tasks, tasks_dataset, ru)
