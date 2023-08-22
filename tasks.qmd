@@ -7,8 +7,8 @@ library(htmltools)
 
 tribble(
   ~title, ~href,
-  "изменение по падежам",   "declension.html",
-  "управление глаголов",    "government.html",
+  "Какой падеж?",   "declension.html",
+  "Какая конструкция?",    "government.html",
   "...",                    "government.html",
   "...",                    "government.html",
   "...",                    "government.html",

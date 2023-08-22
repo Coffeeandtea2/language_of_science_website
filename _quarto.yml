@@ -12,7 +12,7 @@ website:
       - href: index.qmd
         text: главная
       - href: word_lists.qmd
-        text: списки слов
+        text: портрет слова
       - href: tasks.qmd
         text: упражнения
       - href: about.qmd
