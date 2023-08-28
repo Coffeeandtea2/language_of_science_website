@@ -108,7 +108,6 @@ walk(unique(generate_tasks$lemma), function(i){
 (@) {task}
 
 ```{{r}}
-#| results: asis
 checkdown::check_question(answer = '{answer}', 
                           right = 'все верно!', 
                           wrong = 'к сожалению нет, попробуйте еще раз...',
@@ -154,7 +153,6 @@ map2(generate_declension_tasks$task,
 (@) {task}
 
 ```{{r}}
-#| results: asis
 checkdown::check_question(answer = '{answer}', 
                           right = 'все верно!', 
                           wrong = 'к сожалению нет, попробуйте еще раз...',
@@ -180,7 +178,6 @@ map2(generate_government_tasks$task,
 (@) {task}
 
 ```{{r}}
-#| results: asis
 checkdown::check_question(answer = '{answer}', 
                           right = 'все верно!', 
                           wrong = 'к сожалению нет, попробуйте еще раз...',
@@ -209,7 +206,6 @@ map(seq_along(generate_pictures_tasks$task),
              str_c("![](images/", generate_pictures_tasks$task[i]), ".png)",
 "
 ```{r}
-#| results: asis
 checkdown::check_question(answer = '",
               generate_pictures_tasks$answer[i],
 "', 
