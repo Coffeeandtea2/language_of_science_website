@@ -3,31 +3,38 @@ library(tidyverse)
 library(glue)
 library(rvest)
 library(readxl)
+library(udpipe)
+ru <- udpipe_load_model("/home/agricolamz/work/databases/spoken_corpora/russian-syntagrus-ud-2.5-191206.udpipe")
 
 # extract paradigms -------------------------------------------------------
 
-# read_xlsx("data/word_profiles.xlsx") |>
-#   filter(!is.na(lemma_for_site)) |>
-#   distinct(lemma_for_site) |>
-#   mutate(lemma_for_site = str_split(lemma_for_site, " - ")) |>
-#   unnest_longer(lemma_for_site) |>
-#   mutate(lemma_for_site = str_remove_all(lemma_for_site, "\\(.*?\\)")) |>
-#   pull(lemma_for_site) |> 
-#   sort() |> 
-#   walk(function(i){
-#     read_html(glue("https://ru.wiktionary.org/wiki/{i}")) |>
-#       html_element(".morfotable") |>
-#       write_lines(glue("data/{i}.html"))
-# 
-#     read_lines(glue("data/{i}.html")) |>
-#       str_remove("float:right; ") |>
-#       str_remove_all('<a href.*?>') |>
-#       str_remove_all('</a>') |>
-#       append("<details>", after = 0) |>
-#       append("<summary>парадигма</summary>", after = 1) |>
-#       append("</details>") |>
-#       write_lines(glue("data/{i}.html"))
-#   })
+list.files("data/", pattern = ".html") |> 
+  str_remove(".html") ->
+  already_present
+
+read_xlsx("data/word_profiles.xlsx") |>
+  filter(!is.na(lemma_for_site)) |>
+  distinct(lemma_for_site) |>
+  mutate(lemma_for_site = str_split(lemma_for_site, " - ")) |>
+  unnest_longer(lemma_for_site) |>
+  mutate(lemma_for_site = str_remove_all(lemma_for_site, "\\(.*?\\)")) |>
+  filter(!(lemma_for_site %in% already_present)) |> 
+  pull(lemma_for_site) |>
+  sort() |>  
+  walk(function(i){
+    read_html(glue("https://ru.wiktionary.org/wiki/{i}")) |>
+      html_element(".morfotable") |>
+      write_lines(glue("data/{i}.html"))
+
+    read_lines(glue("data/{i}.html")) |>
+      str_remove("float:right; ") |>
+      str_remove_all('<a href.*?>') |>
+      str_remove_all('</a>') |>
+      append("<details>", after = 0) |>
+      append("<summary>парадигма</summary>", after = 1) |>
+      append("</details>") |>
+      write_lines(glue("data/{i}.html"))
+  })
 
 # merge 2 paradimes of verbs with different aspects
 
@@ -104,11 +111,9 @@ walk(unique(generate_tasks$lemma), function(i){
        function(task, answer) {
          
          glue("
-
-(@) {task}
-
 ```{{r}}
 checkdown::check_question(answer = '{answer}', 
+                          title = '{task}',
                           right = 'все верно!', 
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить')
@@ -125,9 +130,6 @@ checkdown::check_hint(hint_text = '{answer}',
 readxl::read_xlsx("data/tasks.xlsx") |> 
   filter(!is.na(answer)) ->
   tasks_dataset_full
-
-library(udpipe)
-ru <- udpipe_load_model("/home/agricolamz/work/databases/spoken_corpora/russian-syntagrus-ud-2.5-191206.udpipe")
 
 tasks_dataset_full |> 
   distinct(stimulus) |> 
@@ -150,10 +152,9 @@ map2(generate_declension_tasks$task,
        
        glue("
 
-(@) {task}
-
 ```{{r}}
 checkdown::check_question(answer = '{answer}', 
+                          title = '{task}',
                           right = 'все верно!', 
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить')
@@ -175,11 +176,10 @@ map2(generate_government_tasks$task,
        
        glue("
 
-(@) {task}
-
 ```{{r}}
 checkdown::check_question(answer = '{answer}', 
-                          right = 'все верно!', 
+                          right = 'все верно!',
+                          title = '{task}',
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить')
 checkdown::check_hint(hint_text = '{answer}',

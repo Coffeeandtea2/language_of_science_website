@@ -1,12 +1,12 @@
 ---
-title: тренд
+title: дивиденды
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/тренд)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=тренд)
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/дивиденды)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=дивиденды)
 
 
-```{r, child='data/тренд.html'}
+```{r, child='data/дивиденды.html'}
 ```
 ::: {.panel-tabset}
 
@@ -21,7 +21,7 @@ readxl::read_xlsx('data/word_profiles.xlsx') |>
   mutate(lemma = str_extract(lemma_for_site, '^.*?(?=( -))'),
          lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
          lemma = str_remove_all(lemma, '\\(.*?\\)')) |> 
-  filter(lemma == 'тренд') |> 
+  filter(lemma == 'дивиденды') |> 
   mutate(example = ifelse(is.na(example), '', str_c('• ', example))) |> 
   select(phrase_for_site, example) |> 
   group_by(phrase_for_site) |> 
@@ -45,7 +45,7 @@ DT::datatable(result,
 
 ## упражнения
 
-```{r, child='tasks/тренд.qmd'}
+```{r, child='tasks/дивиденды.qmd'}
 ```
 
 :::
