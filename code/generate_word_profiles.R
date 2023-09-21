@@ -113,7 +113,7 @@ walk(unique(generate_tasks$lemma), function(i){
          glue("
 ```{{r}}
 checkdown::check_question(answer = '{answer}', 
-                          title = '{task}',
+                          title = '#### {task}',
                           right = 'все верно!', 
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить')
@@ -154,7 +154,7 @@ map2(generate_declension_tasks$task,
 
 ```{{r}}
 checkdown::check_question(answer = '{answer}', 
-                          title = '{task}',
+                          title = '#### {task}',
                           right = 'все верно!', 
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить')
@@ -179,7 +179,7 @@ map2(generate_government_tasks$task,
 ```{{r}}
 checkdown::check_question(answer = '{answer}', 
                           right = 'все верно!',
-                          title = '{task}',
+                          title = '#### {task}',
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить')
 checkdown::check_hint(hint_text = '{answer}',
@@ -218,7 +218,7 @@ str_c("c('",
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить',
                           type = 'radio',
-                          random_answer_order = FALSE)
+                          random_answer_order = TRUE)
 ```
 
 ") }) |> 

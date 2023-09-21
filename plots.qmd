@@ -11,7 +11,7 @@ checkdown::check_question(answer = 'Высокие темпы естествен
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить',
                           type = 'radio',
-                          random_answer_order = FALSE)
+                          random_answer_order = TRUE)
 ```
 
 
@@ -25,7 +25,7 @@ checkdown::check_question(answer = 'Кривая LM сдвигается вве�
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить',
                           type = 'radio',
-                          random_answer_order = FALSE)
+                          random_answer_order = TRUE)
 ```
 
 
@@ -39,7 +39,7 @@ checkdown::check_question(answer = 'Кривая предельного прод
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить',
                           type = 'radio',
-                          random_answer_order = FALSE)
+                          random_answer_order = TRUE)
 ```
 
 
@@ -53,7 +53,7 @@ checkdown::check_question(answer = 'Кривая предельных издер
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить',
                           type = 'radio',
-                          random_answer_order = FALSE)
+                          random_answer_order = TRUE)
 ```
 
 
@@ -67,7 +67,7 @@ checkdown::check_question(answer = 'Кривая предельного дохо
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить',
                           type = 'radio',
-                          random_answer_order = FALSE)
+                          random_answer_order = TRUE)
 ```
 
 
@@ -81,7 +81,7 @@ checkdown::check_question(answer = 'Кривая наклонена вниз.',
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить',
                           type = 'radio',
-                          random_answer_order = FALSE)
+                          random_answer_order = TRUE)
 ```
 
 
@@ -95,7 +95,7 @@ checkdown::check_question(answer = 'Кривая совокупного спро
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить',
                           type = 'radio',
-                          random_answer_order = FALSE)
+                          random_answer_order = TRUE)
 ```
 
 
@@ -109,7 +109,7 @@ checkdown::check_question(answer = 'Кривая совокупного спро
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить',
                           type = 'radio',
-                          random_answer_order = FALSE)
+                          random_answer_order = TRUE)
 ```
 
 
@@ -123,7 +123,7 @@ checkdown::check_question(answer = 'При росте предложения д�
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить',
                           type = 'radio',
-                          random_answer_order = FALSE)
+                          random_answer_order = TRUE)
 ```
 
 
@@ -137,7 +137,7 @@ checkdown::check_question(answer = 'Увеличение инвестиций п
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить',
                           type = 'radio',
-                          random_answer_order = FALSE)
+                          random_answer_order = TRUE)
 ```
 
 
@@ -151,7 +151,7 @@ checkdown::check_question(answer = 'Растущий объем дохода п�
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить',
                           type = 'radio',
-                          random_answer_order = FALSE)
+                          random_answer_order = TRUE)
 ```
 
 
@@ -165,7 +165,7 @@ checkdown::check_question(answer = 'Более высокая ставка пр�
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить',
                           type = 'radio',
-                          random_answer_order = FALSE)
+                          random_answer_order = TRUE)
 ```
 
 
@@ -179,7 +179,7 @@ checkdown::check_question(answer = 'Кривая совокупного пред
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить',
                           type = 'radio',
-                          random_answer_order = FALSE)
+                          random_answer_order = TRUE)
 ```
 
 
@@ -193,7 +193,7 @@ checkdown::check_question(answer = 'Краткосрочная кривая со
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить',
                           type = 'radio',
-                          random_answer_order = FALSE)
+                          random_answer_order = TRUE)
 ```
 
 
