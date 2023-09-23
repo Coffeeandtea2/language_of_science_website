@@ -339,7 +339,7 @@ read_xlsx("../data/word_profiles.xlsx") |>
   filter(!str_detect(example, "[\\.\\?]$"),
          str_count(example, " ") > 2,
          str_count(example, " ") < 5) |> 
-  mutate(example = str_remove_all(example, " \\(.*?\\)"),
+  mutate(example = str_remove_all(example, "\\s{1,}\\(.*?\\)"),
          example = str_replace_all(example, " ", "; "),
          target = NA,
          task = "Поставьте слова в правильном порядке:",

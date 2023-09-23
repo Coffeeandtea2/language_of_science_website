@@ -10,7 +10,7 @@ tribble(
   "Какой падеж?",          "declension.html",
   "Какая конструкция?",    "government.html",
   "Какой график?",         "plots.html",
-  "Какое слово?",          "wrod_in_order.html",
+  "Какое слово?",          "word_in_order.html",
   "...",                   "government.html",
   "...",                   "government.html"
 ) ->
