@@ -97,7 +97,9 @@ readxl::read_xlsx("data/word_profiles.xlsx") |>
          lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
          lemma = str_remove_all(lemma, "\\(.*?\\)")) |> 
   distinct(lemma, answer, task) |> 
-  na.omit() ->
+  na.omit() |> 
+  group_by(lemma) |> 
+  slice_sample(n = 5) ->
   generate_tasks
 
 walk(unique(generate_tasks$lemma), function(i){
@@ -224,8 +226,30 @@ str_c("c('",
 ") }) |> 
   write_lines("plots.qmd", append = TRUE)
 
+tasks_dataset_full |> 
+  filter(task_type == "Упорядочить слова") |> 
+  slice_sample(prop = 1) |> 
+  pull(answer) |> 
+  map(function(answer) {
+    
+       glue("
 
-rm(generate_declension_tasks, generate_government_tasks, generate_tasks, tasks_dataset, ru)
+```{{r}}
+checkdown::check_question(answer = stringr::str_split('{answer}', '; ') |> unlist(), 
+                          type = 'in_order',
+                          right = 'все верно!',
+                          title = '#### Поставьте слова в правильном порядке:',
+                          wrong = 'к сожалению нет, попробуйте еще раз...',
+                          button_label = 'проверить')
+checkdown::check_hint(hint_text = '{answer}',
+           hint_title = '🔎 Нажмите, чтобы посмотреть ответ')
+```
+
+") }) |> 
+  write_lines("word_in_order.qmd")
+
+rm(generate_declension_tasks, generate_government_tasks, generate_tasks, 
+   tasks_dataset, ru, generate_word_in_order_tasks)
 
 # cleaning ----------------------------------------------------------------
 
@@ -237,6 +261,7 @@ to_remove <- files[!files %in% c("index.qmd",
                                  "about.qmd",
                                  "declension.qmd",
                                  "government.qmd",
+                                 "word_in_order.qmd",
                                  "plots.qmd",
                                  "lexicon.qmd")]
 
