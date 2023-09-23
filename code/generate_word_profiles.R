@@ -89,10 +89,12 @@ walk(files, function(i){
 })
 
 readxl::read_xlsx("data/word_profiles.xlsx") |> 
-  filter(!is.na(lemma_for_site))  |> 
+  filter(!is.na(lemma_for_site)) |> 
   left_join(readxl::read_xlsx("data/tasks.xlsx"), 
             by = join_by("lemma" == "stimulus"),
-            relationship = "many-to-many") |> 
+            relationship = "many-to-many") |>
+  filter(!(task %in% c("Поставьте части предложения в правильном порядке:", 
+                        "Поставьте слова в правильном порядке:"))) |> 
   mutate(lemma = str_extract(lemma_for_site, "^.*?(?=( -))"),
          lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
          lemma = str_remove_all(lemma, "\\(.*?\\)")) |> 
@@ -128,7 +130,6 @@ checkdown::check_hint(hint_text = '{answer}',
   
 })
 
-
 readxl::read_xlsx("data/tasks.xlsx") |> 
   filter(!is.na(answer)) ->
   tasks_dataset_full
@@ -144,7 +145,9 @@ tasks_dataset_full |>
   tasks_dataset
 
 tasks_dataset |> 
-  filter(upos %in% c("ADJ", "NOUN")) |> 
+  filter(upos %in% c("ADJ", "NOUN"),
+         !(task_type %in% c("Поставить слово в правильную форму",
+                          "Упорядочить фрагменты предложений"))) |> 
   slice_sample(prop = 1) ->
   generate_declension_tasks
 
@@ -168,7 +171,9 @@ checkdown::check_hint(hint_text = '{answer}',
   write_lines("declension.qmd")
 
 tasks_dataset |> 
-  filter(upos %in% c("VERB")) |> 
+  filter(upos %in% c("VERB"),
+         !(task_type %in% c("Поставить слово в правильную форму",
+                            "Упорядочить фрагменты предложений"))) |> 
   slice_sample(prop = 1) ->
   generate_government_tasks
 
@@ -248,6 +253,29 @@ checkdown::check_hint(hint_text = '{answer}',
 ") }) |> 
   write_lines("word_in_order.qmd")
 
+tasks_dataset_full |> 
+  filter(task_type == "Упорядочить фрагменты предложений") |> 
+  slice_sample(prop = 1) |> 
+  pull(answer) |> 
+  map(function(answer) {
+    
+    glue("
+
+```{{r}}
+checkdown::check_question(answer = stringr::str_split('{answer}', '; ') |> unlist(), 
+                          type = 'in_order',
+                          alignment = 'vertical',
+                          right = 'все верно!',
+                          title = '#### Поставьте фрагменты предложений в правильном порядке:',
+                          wrong = 'к сожалению нет, попробуйте еще раз...',
+                          button_label = 'проверить')
+checkdown::check_hint(hint_text = '{answer}',
+           hint_title = '🔎 Нажмите, чтобы посмотреть ответ')
+```
+
+") }) |> 
+  write_lines("sentence_in_order.qmd")
+
 rm(generate_declension_tasks, generate_government_tasks, generate_tasks, 
    tasks_dataset, ru, generate_word_in_order_tasks)
 
@@ -262,6 +290,7 @@ to_remove <- files[!files %in% c("index.qmd",
                                  "declension.qmd",
                                  "government.qmd",
                                  "word_in_order.qmd",
+                                 "sentence_in_order.qmd",
                                  "plots.qmd",
                                  "lexicon.qmd")]
 

@@ -305,7 +305,7 @@ direct_extract |>
 
 # create picture tasks ----------------------------------------------------
 
-files <- list.files("../docs/images/")
+files <- list.files("../images/")
 files <- files[!(files %in% c("ruscorpora.png", "wiktionary.png"))]
 files <- str_remove(files, ".png")
 
@@ -348,14 +348,59 @@ read_xlsx("../data/word_profiles.xlsx") |>
          stimulus = lemma) ->
   word_in_order_tasks
   
+# create mixed word tasks -------------------------------------------------
+
+read_xlsx("../data/sentences.xlsx") |> 
+  distinct(stimulus, query) |> 
+  filter(str_count(query, "[\\.\\?]") == 1) |> 
+  na.omit() |>
+  mutate(query = str_squish(query), 
+         query = str_remove(query, "[\\.\\?]$"),
+         query = str_replace(query, ".", str_to_lower(str_extract(query, "."))),
+         cnt = str_count(query, " "),
+         space_count = (cnt - (cnt %% 4))/4) ->
+  generate_sentence_in_order_tasks
+
+generate_sentence_in_order_tasks$query <- 
+  map_chr(seq_along(generate_sentence_in_order_tasks$query), function(i){
+  my_string <- generate_sentence_in_order_tasks$query[i]
+  
+  str_locate_all(my_string, " ") |> 
+    as.data.frame() |> 
+    slice(generate_sentence_in_order_tasks$space_count[i],
+          generate_sentence_in_order_tasks$space_count[i]*2,
+          generate_sentence_in_order_tasks$space_count[i]*3) |> 
+    pull(start) ->
+    cuts
+  
+  str_c(str_sub(my_string, 1, cuts[1]-1),
+        ";",
+        str_sub(my_string, cuts[1], cuts[2]-1),
+        ";",
+        str_sub(my_string, cuts[2], cuts[3]-1),
+        ";",
+        str_sub(my_string, cuts[3], nchar(my_string)))
+})
+
+generate_sentence_in_order_tasks |> 
+  slice_sample(n = 200) |> 
+  mutate(target = NA,
+         task = "Поставьте части предложения в правильном порядке:",
+         task_type = "Упорядочить фрагменты предложений") |> 
+  rename(answer = query) |> 
+  select(-cnt, -space_count) ->
+  sentence_in_order_tasks
+
 # merge_them_all ----------------------------------------------------------
 
 tasks_stimulus |> 
   bind_rows(tasks_phrase, verb_alignment, verb_alignment_lead_minus_one,
-            direct_extract_1, direct_extract_2, word_in_order_tasks) |> 
+            direct_extract_1, direct_extract_2, word_in_order_tasks,
+            sentence_in_order_tasks) |> 
   filter(!is.na(stimulus)) |>
   mutate(options = "") |> 
   bind_rows(pictures) |> 
   arrange(task_type) |>
-  mutate(task = str_replace_all(task, "'", "’")) |> 
+  mutate(task = str_replace_all(task, "'", "’"),
+         answer = str_remove_all(answer, "\\|\\|\\|")) |> 
   writexl::write_xlsx("../data/tasks.xlsx")

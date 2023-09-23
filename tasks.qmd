@@ -10,8 +10,8 @@ tribble(
   "Какой падеж?",          "declension.html",
   "Какая конструкция?",    "government.html",
   "Какой график?",         "plots.html",
-  "Какое слово?",          "word_in_order.html",
-  "...",                   "government.html",
+  "Какое фраза?",          "word_in_order.html",
+  "Какое предложение?",    "sentence_in_order.html",
   "...",                   "government.html"
 ) ->
   df
