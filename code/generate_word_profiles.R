@@ -146,8 +146,8 @@ tasks_dataset_full |>
 
 tasks_dataset |> 
   filter(upos %in% c("ADJ", "NOUN"),
-         !(task_type %in% c("Поставить слово в правильную форму",
-                          "Упорядочить фрагменты предложений"))) |> 
+         !(task_type %in% c("Упорядочить слова",
+                            "Упорядочить фрагменты предложений"))) |> 
   slice_sample(prop = 1) ->
   generate_declension_tasks
 
@@ -172,7 +172,7 @@ checkdown::check_hint(hint_text = '{answer}',
 
 tasks_dataset |> 
   filter(upos %in% c("VERB"),
-         !(task_type %in% c("Поставить слово в правильную форму",
+         !(task_type %in% c("Упорядочить слова",
                             "Упорядочить фрагменты предложений"))) |> 
   slice_sample(prop = 1) ->
   generate_government_tasks
