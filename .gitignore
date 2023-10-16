@@ -2,5 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
-
 /.quarto/
+make_tasks_from_sentences/udpiped_sentences.xlsx

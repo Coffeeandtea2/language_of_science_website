@@ -8,6 +8,19 @@ read_xlsx("../data/sentences.xlsx") |>
   mutate(query = str_remove_all(query, "\\|\\|\\|")) ->
   df
 
+# udpipe sentences --------------------------------------------------------
+
+# df |> 
+#   pull(query) |> 
+#   unique() |> 
+#   udpipe(ru) |> 
+#   select(doc_id, sentence, term_id, token, lemma, upos, feats) |> 
+#   mutate(feats = str_split(feats, "\\|")) |> 
+#   unnest_longer(feats) |> 
+#   separate(feats, into = c("feature", "value"), sep = "=") |> 
+#   pivot_wider(names_from = feature, values_from = value) |> 
+#   writexl::write_xlsx("udpiped_sentences.xlsx")
+
 # create tasks from phrase ------------------------------------------------
 
 df |> 
