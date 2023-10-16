@@ -5851,7 +5851,9 @@ HTMLWidgets.widget({
               $input.parent().hide(); $x.show().trigger('show'); filter[0].selectize.focus();
             },
             input: function() {
-              if ($input.val() === '') filter[0].selectize.setValue([]);
+              var v1 = JSON.stringify(filter[0].selectize.getValue()), v2 = $input.val();
+              if (v1 === '[]') v1 = '';
+              if (v1 !== v2) filter[0].selectize.setValue(v2 === '' ? [] : JSON.parse(v2));
             }
           });
           var $input2 = $x.children('select');
@@ -6756,7 +6758,7 @@ HTMLWidgets.widget({
           console.log('The search keyword for column ' + i + ' is undefined')
           return;
         }
-        $(td).find('input').first().val(v);
+        $(td).find('input').first().val(v).trigger('input');
         searchColumn(i, v);
       });
       table.draw();
@@ -7664,8 +7666,8 @@ b&&(b.preventDefault(),b.stopPropagation())}else(l.isFocused||"single"===l.setti
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-666835b36f359c7623e6" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-666835b36f359c7623e6">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["получаемый","получать (что? №4)","получен","полученный","получить (что? №4)"],["• доход, получаемый в<br>• доход, получаемый от","• фирма получает прибыль<br>• фирма будет получать","• может быть получен<br>• результаты были получены<br>• были получены оценки<br>• которые были получены","• на основе полученных \r<br>• доход, полученный<br>• доход, полученный от<br>• результаты, полученные<br>• достоверность полученных результатов<br>• согласно полученным результатам<br>• с учетом полученных<br>• на основании полученных<br>• средства, полученные от<br>• разница между полученными","• мы получим кривую<br>• чтобы получить кривую<br>• наибольшее распространение получили<br>• мы можем получить<br>• могли бы получить<br>• вы сможете получить"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-7d2866ddf781f1780a0e" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7d2866ddf781f1780a0e">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["получаемый","получать (что? №4)","получен","полученный","получить (что? №4)"],["• доход, получаемый в<br>• доход, получаемый от","• фирма получает прибыль<br>• фирма будет получать","• может быть получен<br>• результаты были получены<br>• были получены оценки<br>• которые были получены","• на основе полученных \r<br>• доход, полученный<br>• доход, полученный от<br>• результаты, полученные<br>• достоверность полученных результатов<br>• согласно полученным результатам<br>• с учетом полученных<br>• на основании полученных<br>• средства, полученные от<br>• разница между полученными","• мы получим кривую<br>• наибольшее распространение получили<br>• мы можем получить<br>• могли бы получить<br>• вы сможете получить"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>

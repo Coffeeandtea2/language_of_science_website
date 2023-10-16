@@ -5851,7 +5851,9 @@ HTMLWidgets.widget({
               $input.parent().hide(); $x.show().trigger('show'); filter[0].selectize.focus();
             },
             input: function() {
-              if ($input.val() === '') filter[0].selectize.setValue([]);
+              var v1 = JSON.stringify(filter[0].selectize.getValue()), v2 = $input.val();
+              if (v1 === '[]') v1 = '';
+              if (v1 !== v2) filter[0].selectize.setValue(v2 === '' ? [] : JSON.parse(v2));
             }
           });
           var $input2 = $x.children('select');
@@ -6756,7 +6758,7 @@ HTMLWidgets.widget({
           console.log('The search keyword for column ' + i + ' is undefined')
           return;
         }
-        $(td).find('input').first().val(v);
+        $(td).find('input').first().val(v).trigger('input');
         searchColumn(i, v);
       });
       table.draw();
@@ -7521,100 +7523,748 @@ b&&(b.preventDefault(),b.stopPropagation())}else(l.isFocused||"single"===l.setti
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-dfb06779f46741d0158c" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-dfb06779f46741d0158c">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["налоговая нагрузка","налоговая служба","налоговая ставка","налоговое закондательство","налоговое стимулирование","налоговые льготы","налоговый","налоговый кредит"],["• налоговая нагрузка на<br>• уровень налоговой нагрузки<br>• снижение налоговой нагрузки","• федеральная налоговая служба","• предельная налоговая ставка<br>• снижение налоговой ставки<br>• налоговая ставка на","• в налоговом законодательстве","• инструменты налогового стимулирования \r","• налоговые льготы на<br>• налоговые льготы в<br>• налоговые льготы для<br>• предоставление налоговых льгот","• налоговый кодекс РФ<br>• налоговые доходы банков<br>• налоговые доходы в<br>• налоговые поступления в<br>• налоговые поступления от<br>• объем налоговых поступлений<br>• прирост налоговых поступлений<br>• налоговое бремя на<br>• часть налогового бремени<br>• распределение налогового бремени<br>• специальный налоговый режим<br>• создание налоговой системы<br>• налоговые платежи в","• инвестиционный налоговый кредит<br>• налоговый кредит на"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-4e6383f5e078cdbda9ad" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-4e6383f5e078cdbda9ad">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["налоговая нагрузка","налоговая служба","налоговая ставка","налоговое закондательство","налоговое стимулирование","налоговые льготы","налоговый","налоговый кредит"],["• налоговая нагрузка на<br>• уровень налоговой нагрузки<br>• снижение налоговой нагрузки","• федеральная налоговая служба","• предельная налоговая ставка<br>• снижение налоговой ставки<br>• налоговая ставка на","• в налоговом законодательстве","• инструменты налогового стимулирования \r","• налоговые льготы на<br>• налоговые льготы в<br>• налоговые льготы для<br>• предоставление налоговых льгот","• налоговый кодекс РФ<br>• налоговые доходы банков<br>• налоговые доходы в<br>• налоговые поступления в<br>• налоговые поступления от<br>• объем налоговых поступлений<br>• прирост налоговых поступлений<br>• налоговое бремя на<br>• часть налогового бремени<br>• распределение налогового бремени<br>• специальный налоговый режим<br>• создание налоговой системы<br>• налоговые платежи в","• инвестиционный налоговый кредит<br>• налоговый кредит на"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_66161" onsubmit="return validate_form_66161()" method="post">
-<fieldset>
-<legend><h4 id="section" class="anchored">Частичное уменьшение ____________ (<strong>налоговый, нагрузка, на</strong>) предприятие следует рассматривать как вклад государства (в рамках государственно-частного партнерства) в реализацию инновационно-инвестиционных проектов на промышленных предприятиях.</h4></legend>
-<input type="text" placeholder name="answer_66161">
-<input type="submit" value="проверить">
-<div id="result_66161"></div>
-</fieldset>
-</form>
-<script>function validate_form_66161() {var x, text; var x = document.forms['form_66161']['answer_66161'].value;if (x == 'налоговой нагрузки на'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_66161').innerHTML = text; return false;}</script>
-</div>
-<div class="cell-output-display">
-<div id="hint_85203" onclick="return show_hint_85203()">🔎 Нажмите, чтобы посмотреть ответ</div>
-<div id="result_85203" onclick="return show_hint_85203()"></div>
-<script>function show_hint_85203(){var x = document.getElementById('result_85203').innerHTML; if(!x){document.getElementById('result_85203').innerHTML = 'налоговой нагрузки на';} else {document.getElementById('result_85203').innerHTML = '';}}</script>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<form name="form_23910" onsubmit="return validate_form_23910()" method="post">
-<fieldset>
-<legend><h4 id="section" class="anchored">Если говорить о стимулах к труду, то исследования свидетельствуют: в результате ____________ (<strong>снижение, налоговый, ставка</strong>) одни люди работают больше, а другие — меньше.</h4></legend>
-<input type="text" placeholder name="answer_23910">
-<input type="submit" value="проверить">
-<div id="result_23910"></div>
-</fieldset>
-</form>
-<script>function validate_form_23910() {var x, text; var x = document.forms['form_23910']['answer_23910'].value;if (x == 'снижения налоговых ставок'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_23910').innerHTML = text; return false;}</script>
-</div>
-<div class="cell-output-display">
-<div id="hint_95755" onclick="return show_hint_95755()">🔎 Нажмите, чтобы посмотреть ответ</div>
-<div id="result_95755" onclick="return show_hint_95755()"></div>
-<script>function show_hint_95755(){var x = document.getElementById('result_95755').innerHTML; if(!x){document.getElementById('result_95755').innerHTML = 'снижения налоговых ставок';} else {document.getElementById('result_95755').innerHTML = '';}}</script>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<form name="form_80470" onsubmit="return validate_form_80470()" method="post">
-<fieldset>
-<legend><h4 id="section" class="anchored">Свертывание объемов производства работающих на экспорт товаропроизводителей и их доходов вызовет сокращение занятости и, как следствие, меньший ____________ (<strong>объем, налоговый, поступление</strong>) в бюджеты всех уровней.</h4></legend>
-<input type="text" placeholder name="answer_80470">
-<input type="submit" value="проверить">
-<div id="result_80470"></div>
-</fieldset>
-</form>
-<script>function validate_form_80470() {var x, text; var x = document.forms['form_80470']['answer_80470'].value;if (x == 'объем налоговых поступлений'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_80470').innerHTML = text; return false;}</script>
-</div>
-<div class="cell-output-display">
-<div id="hint_10914" onclick="return show_hint_10914()">🔎 Нажмите, чтобы посмотреть ответ</div>
-<div id="result_10914" onclick="return show_hint_10914()"></div>
-<script>function show_hint_10914(){var x = document.getElementById('result_10914').innerHTML; if(!x){document.getElementById('result_10914').innerHTML = 'объем налоговых поступлений';} else {document.getElementById('result_10914').innerHTML = '';}}</script>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<form name="form_55075" onsubmit="return validate_form_55075()" method="post">
+<form name="form_30232" onsubmit="return validate_form_30232()" method="post">
 <fieldset>
 <legend><h4 id="section" class="anchored">Первое направление налоговой политики связано с уровнем и со структурой ____________ (<strong>налоговый, нагрузка, на</strong>) бизнес.</h4></legend>
-<input type="text" placeholder name="answer_55075">
+<input type="text" placeholder name="answer_30232">
 <input type="submit" value="проверить">
-<div id="result_55075"></div>
+<div id="result_30232"></div>
 </fieldset>
 </form>
-<script>function validate_form_55075() {var x, text; var x = document.forms['form_55075']['answer_55075'].value;if (x == 'налоговой нагрузки на'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_55075').innerHTML = text; return false;}</script>
+<script>function validate_form_30232() {var x, text; var x = document.forms['form_30232']['answer_30232'].value;if (x == 'налоговой нагрузки на'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_30232').innerHTML = text; return false;}</script>
 </div>
 <div class="cell-output-display">
-<div id="hint_92438" onclick="return show_hint_92438()">🔎 Нажмите, чтобы посмотреть ответ</div>
-<div id="result_92438" onclick="return show_hint_92438()"></div>
-<script>function show_hint_92438(){var x = document.getElementById('result_92438').innerHTML; if(!x){document.getElementById('result_92438').innerHTML = 'налоговой нагрузки на';} else {document.getElementById('result_92438').innerHTML = '';}}</script>
+<div id="hint_11654" onclick="return show_hint_11654()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_11654" onclick="return show_hint_11654()"></div>
+<script>function show_hint_11654(){var x = document.getElementById('result_11654').innerHTML; if(!x){document.getElementById('result_11654').innerHTML = 'налоговой нагрузки на';} else {document.getElementById('result_11654').innerHTML = '';}}</script>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_45353" onsubmit="return validate_form_45353()" method="post">
+<form name="form_77443" onsubmit="return validate_form_77443()" method="post">
 <fieldset>
-<legend><h4 id="section" class="anchored">На положительное отношение граждан и предприятий к местным властям влияет ____________ (<strong>распределение, налоговый, бремя</strong>) между местным населением и деловым сектором, хотя боязнь загрязнения окружающей среды часто заставляет местные власти выступать против создания новых промышленных предприятий.</h4></legend>
-<input type="text" placeholder name="answer_45353">
+<legend><h4 id="section" class="anchored">Предоставление ____________ (<strong>инвестиционный, налоговый, кредит</strong>) осуществляется на основании заявления организации и документации, подтверждающей основания для предоставления кредита.</h4></legend>
+<input type="text" placeholder name="answer_77443">
 <input type="submit" value="проверить">
-<div id="result_45353"></div>
+<div id="result_77443"></div>
 </fieldset>
 </form>
-<script>function validate_form_45353() {var x, text; var x = document.forms['form_45353']['answer_45353'].value;if (x == 'распределение налогового бремени'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_45353').innerHTML = text; return false;}</script>
+<script>function validate_form_77443() {var x, text; var x = document.forms['form_77443']['answer_77443'].value;if (x == 'инвестиционного налогового кредита'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_77443').innerHTML = text; return false;}</script>
 </div>
 <div class="cell-output-display">
-<div id="hint_59718" onclick="return show_hint_59718()">🔎 Нажмите, чтобы посмотреть ответ</div>
-<div id="result_59718" onclick="return show_hint_59718()"></div>
-<script>function show_hint_59718(){var x = document.getElementById('result_59718').innerHTML; if(!x){document.getElementById('result_59718').innerHTML = 'распределение налогового бремени';} else {document.getElementById('result_59718').innerHTML = '';}}</script>
+<div id="hint_31387" onclick="return show_hint_31387()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_31387" onclick="return show_hint_31387()"></div>
+<script>function show_hint_31387(){var x = document.getElementById('result_31387').innerHTML; if(!x){document.getElementById('result_31387').innerHTML = 'инвестиционного налогового кредита';} else {document.getElementById('result_31387').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_21559" onsubmit="return validate_form_21559()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Свертывание объемов производства работающих на экспорт товаропроизводителей и их доходов вызовет сокращение занятости и, как следствие, меньший ____________ (<strong>объем, налоговый, поступление</strong>) в бюджеты всех уровней.</h4></legend>
+<input type="text" placeholder name="answer_21559">
+<input type="submit" value="проверить">
+<div id="result_21559"></div>
+</fieldset>
+</form>
+<script>function validate_form_21559() {var x, text; var x = document.forms['form_21559']['answer_21559'].value;if (x == 'объем налоговых поступлений'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_21559').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_60477" onclick="return show_hint_60477()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_60477" onclick="return show_hint_60477()"></div>
+<script>function show_hint_60477(){var x = document.getElementById('result_60477').innerHTML; if(!x){document.getElementById('result_60477').innerHTML = 'объем налоговых поступлений';} else {document.getElementById('result_60477').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_11924" onsubmit="return validate_form_11924()" method="post">
+<fieldset>
+<legend><h4 id="14" class="anchored">В качестве изменений ____________ (<strong>в, налоговый, законодательство</strong>) в Китае следует отметить рост коэффициента квалифицированной рабочей силы на 14% и объема расходов на НИОКР.</h4></legend>
+<input type="text" placeholder name="answer_11924">
+<input type="submit" value="проверить">
+<div id="result_11924"></div>
+</fieldset>
+</form>
+<script>function validate_form_11924() {var x, text; var x = document.forms['form_11924']['answer_11924'].value;if (x == 'в налоговом законодательстве'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_11924').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_57365" onclick="return show_hint_57365()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_57365" onclick="return show_hint_57365()"></div>
+<script>function show_hint_57365(){var x = document.getElementById('result_57365').innerHTML; if(!x){document.getElementById('result_57365').innerHTML = 'в налоговом законодательстве';} else {document.getElementById('result_57365').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_42895" onsubmit="return validate_form_42895()" method="post">
+<fieldset>
+<legend><h4 id="33-4-8-7" class="anchored">Экспортной составляющей экономики региона объясняются различия в уровне налоговой нагрузки в Красноярском крае (доля экспорта в ВРП в среднем за исследуемый период составила 33,4%) и Томской области (доля экспорта в ВРП - 8,7%), а также низкий ____________ (<strong>уровень, налоговый, нагрузка</strong>) в Республике Хакасии.</h4></legend>
+<input type="text" placeholder name="answer_42895">
+<input type="submit" value="проверить">
+<div id="result_42895"></div>
+</fieldset>
+</form>
+<script>function validate_form_42895() {var x, text; var x = document.forms['form_42895']['answer_42895'].value;if (x == 'уровень налоговой нагрузки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_42895').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_20749" onclick="return show_hint_20749()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_20749" onclick="return show_hint_20749()"></div>
+<script>function show_hint_20749(){var x = document.getElementById('result_20749').innerHTML; if(!x){document.getElementById('result_20749').innerHTML = 'уровень налоговой нагрузки';} else {document.getElementById('result_20749').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_47850" onsubmit="return validate_form_47850()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Ожидается, что в перспективе наибольшего ____________ (<strong>снижение, налоговый, нагрузка</strong>) потребуют проекты, реализуемые на арктическом шельфе (вариант «Шельф»).</h4></legend>
+<input type="text" placeholder name="answer_47850">
+<input type="submit" value="проверить">
+<div id="result_47850"></div>
+</fieldset>
+</form>
+<script>function validate_form_47850() {var x, text; var x = document.forms['form_47850']['answer_47850'].value;if (x == 'снижения налоговой нагрузки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_47850').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_71199" onclick="return show_hint_71199()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_71199" onclick="return show_hint_71199()"></div>
+<script>function show_hint_71199(){var x = document.getElementById('result_71199').innerHTML; if(!x){document.getElementById('result_71199').innerHTML = 'снижения налоговой нагрузки';} else {document.getElementById('result_71199').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_70279" onsubmit="return validate_form_70279()" method="post">
+<fieldset>
+<legend><h4 id="z-15-50" class="anchored">Для предприятий, работающих на территории Z-парк, предусмотрены: ____________ (<strong>налоговый, льгота, в</strong>) виде снижения налоговой ставки до 15%; налоговые вычеты по расходам до 50%.</h4></legend>
+<input type="text" placeholder name="answer_70279">
+<input type="submit" value="проверить">
+<div id="result_70279"></div>
+</fieldset>
+</form>
+<script>function validate_form_70279() {var x, text; var x = document.forms['form_70279']['answer_70279'].value;if (x == 'налоговые льготы в'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_70279').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_89574" onclick="return show_hint_89574()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_89574" onclick="return show_hint_89574()"></div>
+<script>function show_hint_89574(){var x = document.getElementById('result_89574').innerHTML; if(!x){document.getElementById('result_89574').innerHTML = 'налоговые льготы в';} else {document.getElementById('result_89574').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_2307" onsubmit="return validate_form_2307()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Частичное уменьшение ____________ (<strong>налоговый, нагрузка, на</strong>) предприятие следует рассматривать как вклад государства (в рамках государственно-частного партнерства) в реализацию инновационно-инвестиционных проектов на промышленных предприятиях.</h4></legend>
+<input type="text" placeholder name="answer_2307">
+<input type="submit" value="проверить">
+<div id="result_2307"></div>
+</fieldset>
+</form>
+<script>function validate_form_2307() {var x, text; var x = document.forms['form_2307']['answer_2307'].value;if (x == 'налоговой нагрузки на'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_2307').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_95269" onclick="return show_hint_95269()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_95269" onclick="return show_hint_95269()"></div>
+<script>function show_hint_95269(){var x = document.getElementById('result_95269').innerHTML; if(!x){document.getElementById('result_95269').innerHTML = 'налоговой нагрузки на';} else {document.getElementById('result_95269').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_99735" onsubmit="return validate_form_99735()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Следует отметить, что вышеперечисленные налоговые льготы не уникальны, так как распространены и множество других налоговых льгот в сфере НИОКР, при применении которых общий ____________ (<strong>налоговый, кредит, на</strong>) проведение научных исследований не применяется.</h4></legend>
+<input type="text" placeholder name="answer_99735">
+<input type="submit" value="проверить">
+<div id="result_99735"></div>
+</fieldset>
+</form>
+<script>function validate_form_99735() {var x, text; var x = document.forms['form_99735']['answer_99735'].value;if (x == 'налоговый кредит на'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_99735').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_58531" onclick="return show_hint_58531()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_58531" onclick="return show_hint_58531()"></div>
+<script>function show_hint_58531(){var x = document.getElementById('result_58531').innerHTML; if(!x){document.getElementById('result_58531').innerHTML = 'налоговый кредит на';} else {document.getElementById('result_58531').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_15597" onsubmit="return validate_form_15597()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Таким образом, ____________ (<strong>предоставление, налоговый, льгота</strong>) для участников строительной индустрии, позволило в короткие сроки обеспечить формирование и развитие столицы.</h4></legend>
+<input type="text" placeholder name="answer_15597">
+<input type="submit" value="проверить">
+<div id="result_15597"></div>
+</fieldset>
+</form>
+<script>function validate_form_15597() {var x, text; var x = document.forms['form_15597']['answer_15597'].value;if (x == 'предоставление налоговых льгот'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_15597').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_53293" onclick="return show_hint_53293()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_53293" onclick="return show_hint_53293()"></div>
+<script>function show_hint_53293(){var x = document.getElementById('result_53293').innerHTML; if(!x){document.getElementById('result_53293').innerHTML = 'предоставление налоговых льгот';} else {document.getElementById('result_53293').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_5509" onsubmit="return validate_form_5509()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">В Томской, Омской, Кемеровской областях, Красноярском и Забайкальского краях и Республике Бурятии приняты нормативные правовые акты, определяющие условия предоставления ____________ (<strong>инвестиционный, налоговый, кредит</strong>).</h4></legend>
+<input type="text" placeholder name="answer_5509">
+<input type="submit" value="проверить">
+<div id="result_5509"></div>
+</fieldset>
+</form>
+<script>function validate_form_5509() {var x, text; var x = document.forms['form_5509']['answer_5509'].value;if (x == 'инвестиционного налогового кредита'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_5509').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_65798" onclick="return show_hint_65798()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_65798" onclick="return show_hint_65798()"></div>
+<script>function show_hint_65798(){var x = document.getElementById('result_65798').innerHTML; if(!x){document.getElementById('result_65798').innerHTML = 'инвестиционного налогового кредита';} else {document.getElementById('result_65798').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_66942" onsubmit="return validate_form_66942()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Подразумевается, что ____________ (<strong>налоговый, льгота, в</strong>) России, например, перенос убытков на будущие налоговые льготы, применяются в результате модернизации производства, приобретения нового высокотехнологичного оборудования.</h4></legend>
+<input type="text" placeholder name="answer_66942">
+<input type="submit" value="проверить">
+<div id="result_66942"></div>
+</fieldset>
+</form>
+<script>function validate_form_66942() {var x, text; var x = document.forms['form_66942']['answer_66942'].value;if (x == 'налоговые льготы в'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_66942').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_89573" onclick="return show_hint_89573()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_89573" onclick="return show_hint_89573()"></div>
+<script>function show_hint_89573(){var x = document.getElementById('result_89573').innerHTML; if(!x){document.getElementById('result_89573').innerHTML = 'налоговые льготы в';} else {document.getElementById('result_89573').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_20481" onsubmit="return validate_form_20481()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Изменения ____________ (<strong>в, налоговый, поступление</strong>) и государственных расходах происходят автоматически.</h4></legend>
+<input type="text" placeholder name="answer_20481">
+<input type="submit" value="проверить">
+<div id="result_20481"></div>
+</fieldset>
+</form>
+<script>function validate_form_20481() {var x, text; var x = document.forms['form_20481']['answer_20481'].value;if (x == 'в налоговых поступлениях'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_20481').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_99897" onclick="return show_hint_99897()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_99897" onclick="return show_hint_99897()"></div>
+<script>function show_hint_99897(){var x = document.getElementById('result_99897').innerHTML; if(!x){document.getElementById('result_99897').innerHTML = 'в налоговых поступлениях';} else {document.getElementById('result_99897').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_82602" onsubmit="return validate_form_82602()" method="post">
+<fieldset>
+<legend><h4 id="12-5" class="anchored">Разумеется, правительство использует эти____________ (<strong>налоговый, поступление</strong>) в 12,5 млн дол. на производство общественных товаров и услуг соответствующей стоимости.</h4></legend>
+<input type="text" placeholder name="answer_82602">
+<input type="submit" value="проверить">
+<div id="result_82602"></div>
+</fieldset>
+</form>
+<script>function validate_form_82602() {var x, text; var x = document.forms['form_82602']['answer_82602'].value;if (x == 'налоговые поступления'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_82602').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_47694" onclick="return show_hint_47694()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_47694" onclick="return show_hint_47694()"></div>
+<script>function show_hint_47694(){var x = document.getElementById('result_47694').innerHTML; if(!x){document.getElementById('result_47694').innerHTML = 'налоговые поступления';} else {document.getElementById('result_47694').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_87690" onsubmit="return validate_form_87690()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Отрицательный подоходный налог напоминает ____________ (<strong>налоговый, кредит, на</strong>) заработанный доход, который позволяет работающим членам бедных семей получать возмещение подоходного налога, превышающее уплаченные в течение года налоги.</h4></legend>
+<input type="text" placeholder name="answer_87690">
+<input type="submit" value="проверить">
+<div id="result_87690"></div>
+</fieldset>
+</form>
+<script>function validate_form_87690() {var x, text; var x = document.forms['form_87690']['answer_87690'].value;if (x == 'налоговый кредит на'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_87690').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_281" onclick="return show_hint_281()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_281" onclick="return show_hint_281()"></div>
+<script>function show_hint_281(){var x = document.getElementById('result_281').innerHTML; if(!x){document.getElementById('result_281').innerHTML = 'налоговый кредит на';} else {document.getElementById('result_281').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_28325" onsubmit="return validate_form_28325()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Потоки денежных средств в контуре «региональный актив - федеральный бюджет - региональные бюджеты» отражают локализацию ____________ (<strong>налоговый, доход, в</strong>) регионе.</h4></legend>
+<input type="text" placeholder name="answer_28325">
+<input type="submit" value="проверить">
+<div id="result_28325"></div>
+</fieldset>
+</form>
+<script>function validate_form_28325() {var x, text; var x = document.forms['form_28325']['answer_28325'].value;if (x == 'налоговых доходов в'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_28325').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_43701" onclick="return show_hint_43701()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_43701" onclick="return show_hint_43701()"></div>
+<script>function show_hint_43701(){var x = document.getElementById('result_43701').innerHTML; if(!x){document.getElementById('result_43701').innerHTML = 'налоговых доходов в';} else {document.getElementById('result_43701').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_56117" onsubmit="return validate_form_56117()" method="post">
+<fieldset>
+<legend><h4 id="35-2006-8" class="anchored">До этого времени около 35% доходной части консолидированного бюджета Омской области формировалось за счет ____________ (<strong>налоговый, поступление, от</strong>) «Сибнефти», соответственно, бюджет региона недополучил в 2006 г. более 8 млрд руб.</h4></legend>
+<input type="text" placeholder name="answer_56117">
+<input type="submit" value="проверить">
+<div id="result_56117"></div>
+</fieldset>
+</form>
+<script>function validate_form_56117() {var x, text; var x = document.forms['form_56117']['answer_56117'].value;if (x == 'налоговых поступлений от'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_56117').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_81220" onclick="return show_hint_81220()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_81220" onclick="return show_hint_81220()"></div>
+<script>function show_hint_81220(){var x = document.getElementById('result_81220').innerHTML; if(!x){document.getElementById('result_81220').innerHTML = 'налоговых поступлений от';} else {document.getElementById('result_81220').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_74517" onsubmit="return validate_form_74517()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">По оценке экспертов РСПП, ключевая причина низкого спроса со стороны предприятий на ____________ (<strong>налоговый, льгота, в</strong>) инновационной деятельности - несоответствие условиям применения налоговых льгот.</h4></legend>
+<input type="text" placeholder name="answer_74517">
+<input type="submit" value="проверить">
+<div id="result_74517"></div>
+</fieldset>
+</form>
+<script>function validate_form_74517() {var x, text; var x = document.forms['form_74517']['answer_74517'].value;if (x == 'налоговые льготы в'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_74517').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_60175" onclick="return show_hint_60175()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_60175" onclick="return show_hint_60175()"></div>
+<script>function show_hint_60175(){var x = document.getElementById('result_60175').innerHTML; if(!x){document.getElementById('result_60175').innerHTML = 'налоговые льготы в';} else {document.getElementById('result_60175').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_89562" onsubmit="return validate_form_89562()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Исправлением «некондиционной» (неполной) информации путем обхода каждого потенциального плательщика должны были заняться сотрудники администраций муниципальных органов власти при поддержке ____________ (<strong>федеральный, налоговый, служба</strong>) и Росреестра.</h4></legend>
+<input type="text" placeholder name="answer_89562">
+<input type="submit" value="проверить">
+<div id="result_89562"></div>
+</fieldset>
+</form>
+<script>function validate_form_89562() {var x, text; var x = document.forms['form_89562']['answer_89562'].value;if (x == 'федеральной налоговой службы'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_89562').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_95497" onclick="return show_hint_95497()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_95497" onclick="return show_hint_95497()"></div>
+<script>function show_hint_95497(){var x = document.getElementById('result_95497').innerHTML; if(!x){document.getElementById('result_95497').innerHTML = 'федеральной налоговой службы';} else {document.getElementById('result_95497').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_66098" onsubmit="return validate_form_66098()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">На положительное отношение граждан и предприятий к местным властям влияет ____________ (<strong>распределение, налоговый, бремя</strong>) между местным населением и деловым сектором, хотя боязнь загрязнения окружающей среды часто заставляет местные власти выступать против создания новых промышленных предприятий.</h4></legend>
+<input type="text" placeholder name="answer_66098">
+<input type="submit" value="проверить">
+<div id="result_66098"></div>
+</fieldset>
+</form>
+<script>function validate_form_66098() {var x, text; var x = document.forms['form_66098']['answer_66098'].value;if (x == 'распределение налогового бремени'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_66098').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_41242" onclick="return show_hint_41242()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_41242" onclick="return show_hint_41242()"></div>
+<script>function show_hint_41242(){var x = document.getElementById('result_41242').innerHTML; if(!x){document.getElementById('result_41242').innerHTML = 'распределение налогового бремени';} else {document.getElementById('result_41242').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_90013" onsubmit="return validate_form_90013()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Некоторые источники утверждают, что налоговые льготы способствуют уязвимости экономики, так как ____________ (<strong>снижение, налоговый, нагрузка</strong>) для бизнеса может вызвать значительный рост государственных заимствований для обслуживания текущих обязательств в ближайшие годы.</h4></legend>
+<input type="text" placeholder name="answer_90013">
+<input type="submit" value="проверить">
+<div id="result_90013"></div>
+</fieldset>
+</form>
+<script>function validate_form_90013() {var x, text; var x = document.forms['form_90013']['answer_90013'].value;if (x == 'снижение налоговой нагрузки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_90013').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_82367" onclick="return show_hint_82367()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_82367" onclick="return show_hint_82367()"></div>
+<script>function show_hint_82367(){var x = document.getElementById('result_82367').innerHTML; if(!x){document.getElementById('result_82367').innerHTML = 'снижение налоговой нагрузки';} else {document.getElementById('result_82367').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_84037" onsubmit="return validate_form_84037()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">В.Г. Басарева группы предлагают сохранить все виды ____________ (<strong>специальный, налоговый, режим</strong>) для субъектов малого бизнеса: «Целесообразно сохранить все виды специальных налоговых режимов для субъектов малого и среднего предпринимательства. Это не только позволит сохранить налоговые поступления от этой категории бизнеса, но и сохранит лояльность предпринимательского сообщества к власти и будет способствовать укреплению традиций легальности в российском бизнесе».</h4></legend>
+<input type="text" placeholder name="answer_84037">
+<input type="submit" value="проверить">
+<div id="result_84037"></div>
+</fieldset>
+</form>
+<script>function validate_form_84037() {var x, text; var x = document.forms['form_84037']['answer_84037'].value;if (x == 'специальных налоговых режимов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_84037').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_71767" onclick="return show_hint_71767()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_71767" onclick="return show_hint_71767()"></div>
+<script>function show_hint_71767(){var x = document.getElementById('result_71767').innerHTML; if(!x){document.getElementById('result_71767').innerHTML = 'специальных налоговых режимов';} else {document.getElementById('result_71767').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_49792" onsubmit="return validate_form_49792()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Следующим весьма распространенным видом ____________ (<strong>налоговый, льгота, в</strong>) Казахстане являются налоговые освобождения, которые в основном распространяются на налог на прибыль.</h4></legend>
+<input type="text" placeholder name="answer_49792">
+<input type="submit" value="проверить">
+<div id="result_49792"></div>
+</fieldset>
+</form>
+<script>function validate_form_49792() {var x, text; var x = document.forms['form_49792']['answer_49792'].value;if (x == 'налоговых льгот в'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_49792').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_68725" onclick="return show_hint_68725()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_68725" onclick="return show_hint_68725()"></div>
+<script>function show_hint_68725(){var x = document.getElementById('result_68725').innerHTML; if(!x){document.getElementById('result_68725').innerHTML = 'налоговых льгот в';} else {document.getElementById('result_68725').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_51501" onsubmit="return validate_form_51501()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Предложены ____________ (<strong>налоговый, льгота, для</strong>) производителей цифрового оборудования из РФ.</h4></legend>
+<input type="text" placeholder name="answer_51501">
+<input type="submit" value="проверить">
+<div id="result_51501"></div>
+</fieldset>
+</form>
+<script>function validate_form_51501() {var x, text; var x = document.forms['form_51501']['answer_51501'].value;if (x == 'налоговые льготы для'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_51501').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_59633" onclick="return show_hint_59633()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_59633" onclick="return show_hint_59633()"></div>
+<script>function show_hint_59633(){var x = document.getElementById('result_59633').innerHTML; if(!x){document.getElementById('result_59633').innerHTML = 'налоговые льготы для';} else {document.getElementById('result_59633').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_5717" onsubmit="return validate_form_5717()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Если говорить о стимулах к труду, то исследования свидетельствуют: в результате ____________ (<strong>снижение, налоговый, ставка</strong>) одни люди работают больше, а другие — меньше.</h4></legend>
+<input type="text" placeholder name="answer_5717">
+<input type="submit" value="проверить">
+<div id="result_5717"></div>
+</fieldset>
+</form>
+<script>function validate_form_5717() {var x, text; var x = document.forms['form_5717']['answer_5717'].value;if (x == 'снижения налоговых ставок'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_5717').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_22352" onclick="return show_hint_22352()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_22352" onclick="return show_hint_22352()"></div>
+<script>function show_hint_22352(){var x = document.getElementById('result_22352').innerHTML; if(!x){document.getElementById('result_22352').innerHTML = 'снижения налоговых ставок';} else {document.getElementById('result_22352').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_45723" onsubmit="return validate_form_45723()" method="post">
+<fieldset>
+<legend><h4 id="3-8-22-85-6" class="anchored">Доля налоговой задолженности ____________ (<strong>в, налоговый, поступление</strong>) в Томской области (3,8%) почти в 22 раза ниже, чем в Забайкальском крае (85,6%).</h4></legend>
+<input type="text" placeholder name="answer_45723">
+<input type="submit" value="проверить">
+<div id="result_45723"></div>
+</fieldset>
+</form>
+<script>function validate_form_45723() {var x, text; var x = document.forms['form_45723']['answer_45723'].value;if (x == 'в налоговых поступлениях'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_45723').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_57294" onclick="return show_hint_57294()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_57294" onclick="return show_hint_57294()"></div>
+<script>function show_hint_57294(){var x = document.getElementById('result_57294').innerHTML; if(!x){document.getElementById('result_57294').innerHTML = 'в налоговых поступлениях';} else {document.getElementById('result_57294').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_57684" onsubmit="return validate_form_57684()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Группы, которые держат под контролем цены на предлагаемые ими услуги, имеют возможность переложить ____________ (<strong>часть, налоговый, бремя</strong>).</h4></legend>
+<input type="text" placeholder name="answer_57684">
+<input type="submit" value="проверить">
+<div id="result_57684"></div>
+</fieldset>
+</form>
+<script>function validate_form_57684() {var x, text; var x = document.forms['form_57684']['answer_57684'].value;if (x == 'часть налогового бремени'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_57684').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_95126" onclick="return show_hint_95126()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_95126" onclick="return show_hint_95126()"></div>
+<script>function show_hint_95126(){var x = document.getElementById('result_95126').innerHTML; if(!x){document.getElementById('result_95126').innerHTML = 'часть налогового бремени';} else {document.getElementById('result_95126').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_86681" onsubmit="return validate_form_86681()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Несмотря на существенное сокращение объема промышленного производства с начала рыночных реформ, сегодня город располагает значительным промышленным потенциалом, составляющим весомую долю в общероссийском производстве, обеспечивающим стабильную занятость и являющимся источником ____________ (<strong>налоговый, поступление, в</strong>) городской бюджет.</h4></legend>
+<input type="text" placeholder name="answer_86681">
+<input type="submit" value="проверить">
+<div id="result_86681"></div>
+</fieldset>
+</form>
+<script>function validate_form_86681() {var x, text; var x = document.forms['form_86681']['answer_86681'].value;if (x == 'налоговых поступлений в'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_86681').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_24564" onclick="return show_hint_24564()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_24564" onclick="return show_hint_24564()"></div>
+<script>function show_hint_24564(){var x = document.getElementById('result_24564').innerHTML; if(!x){document.getElementById('result_24564').innerHTML = 'налоговых поступлений в';} else {document.getElementById('result_24564').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_28879" onsubmit="return validate_form_28879()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Так как ____________ (<strong>предельный, налоговый, ставка</strong>) по мере увеличения дохода возрастает, высокообеспеченные семьи выплачивают правительству значительную часть дохода.</h4></legend>
+<input type="text" placeholder name="answer_28879">
+<input type="submit" value="проверить">
+<div id="result_28879"></div>
+</fieldset>
+</form>
+<script>function validate_form_28879() {var x, text; var x = document.forms['form_28879']['answer_28879'].value;if (x == 'предельная налоговая ставка'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_28879').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_13146" onclick="return show_hint_13146()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_13146" onclick="return show_hint_13146()"></div>
+<script>function show_hint_13146(){var x = document.getElementById('result_13146').innerHTML; if(!x){document.getElementById('result_13146').innerHTML = 'предельная налоговая ставка';} else {document.getElementById('result_13146').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_74869" onsubmit="return validate_form_74869()" method="post">
+<fieldset>
+<legend><h4 id="1991-23" class="anchored">Принятый в конце 1991 г. Федеральный закон «Об основах ____________ (<strong>налоговый, система, в</strong>) Российской Федерации» предусматривал 23 местных налога, перечень которых был закрытым.</h4></legend>
+<input type="text" placeholder name="answer_74869">
+<input type="submit" value="проверить">
+<div id="result_74869"></div>
+</fieldset>
+</form>
+<script>function validate_form_74869() {var x, text; var x = document.forms['form_74869']['answer_74869'].value;if (x == 'налоговой системы в'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_74869').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_76788" onclick="return show_hint_76788()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_76788" onclick="return show_hint_76788()"></div>
+<script>function show_hint_76788(){var x = document.getElementById('result_76788').innerHTML; if(!x){document.getElementById('result_76788').innerHTML = 'налоговой системы в';} else {document.getElementById('result_76788').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_60555" onsubmit="return validate_form_60555()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Несмотря на то, что весь налог вносится в госбюджет продавцами, ____________ (<strong>часть, налоговый, бремя</strong>) ложится на покупателей.</h4></legend>
+<input type="text" placeholder name="answer_60555">
+<input type="submit" value="проверить">
+<div id="result_60555"></div>
+</fieldset>
+</form>
+<script>function validate_form_60555() {var x, text; var x = document.forms['form_60555']['answer_60555'].value;if (x == 'часть налогового бремени'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_60555').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_22026" onclick="return show_hint_22026()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_22026" onclick="return show_hint_22026()"></div>
+<script>function show_hint_22026(){var x = document.getElementById('result_22026').innerHTML; if(!x){document.getElementById('result_22026').innerHTML = 'часть налогового бремени';} else {document.getElementById('result_22026').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_65803" onsubmit="return validate_form_65803()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Для снижения налоговой нагрузки также целесообразно практиковать финансовое стимулирование экоинновационных процессов (зачеты экологических платежей в размере осуществленных природоохранных затрат, ____________ (<strong>предоставление, налоговый, льгота</strong>) и каникул, дифференциация налоговых ставок и их проциклический характер) при внедрении наилучших существующих технологий.</h4></legend>
+<input type="text" placeholder name="answer_65803">
+<input type="submit" value="проверить">
+<div id="result_65803"></div>
+</fieldset>
+</form>
+<script>function validate_form_65803() {var x, text; var x = document.forms['form_65803']['answer_65803'].value;if (x == 'предоставление налоговых льгот'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_65803').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_62186" onclick="return show_hint_62186()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_62186" onclick="return show_hint_62186()"></div>
+<script>function show_hint_62186(){var x = document.getElementById('result_62186').innerHTML; if(!x){document.getElementById('result_62186').innerHTML = 'предоставление налоговых льгот';} else {document.getElementById('result_62186').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_59730" onsubmit="return validate_form_59730()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Можно предположить, что это ____________ (<strong>проявление, региональный, налоговый, политика</strong>) в сфере налогового контроля, которая в отличие от региональной налоговой политики в сфере налогового регулирования не декларируется и законодательно не оформляется.</h4></legend>
+<input type="text" placeholder name="answer_59730">
+<input type="submit" value="проверить">
+<div id="result_59730"></div>
+</fieldset>
+</form>
+<script>function validate_form_59730() {var x, text; var x = document.forms['form_59730']['answer_59730'].value;if (x == 'проявления региональной налоговой политики'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_59730').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_8105" onclick="return show_hint_8105()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_8105" onclick="return show_hint_8105()"></div>
+<script>function show_hint_8105(){var x = document.getElementById('result_8105').innerHTML; if(!x){document.getElementById('result_8105').innerHTML = 'проявления региональной налоговой политики';} else {document.getElementById('result_8105').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_16849" onsubmit="return validate_form_16849()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Охарактеризуем региональную налоговую политику субъектов СФО в сфере налогового регулирования через сравнительный анализ эффективности ____________ (<strong>предоставление, налоговый, льгота</strong>).</h4></legend>
+<input type="text" placeholder name="answer_16849">
+<input type="submit" value="проверить">
+<div id="result_16849"></div>
+</fieldset>
+</form>
+<script>function validate_form_16849() {var x, text; var x = document.forms['form_16849']['answer_16849'].value;if (x == 'предоставления налоговых льгот'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_16849').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_56512" onclick="return show_hint_56512()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_56512" onclick="return show_hint_56512()"></div>
+<script>function show_hint_56512(){var x = document.getElementById('result_56512').innerHTML; if(!x){document.getElementById('result_56512').innerHTML = 'предоставления налоговых льгот';} else {document.getElementById('result_56512').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_14547" onsubmit="return validate_form_14547()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Показатели вклада отражают долю вкладов, поступающих в федеральный бюджет за счет ____________ (<strong>налоговый, платеж, в</strong>) регионе.</h4></legend>
+<input type="text" placeholder name="answer_14547">
+<input type="submit" value="проверить">
+<div id="result_14547"></div>
+</fieldset>
+</form>
+<script>function validate_form_14547() {var x, text; var x = document.forms['form_14547']['answer_14547'].value;if (x == 'налоговых платежей в'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_14547').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_93436" onclick="return show_hint_93436()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_93436" onclick="return show_hint_93436()"></div>
+<script>function show_hint_93436(){var x = document.getElementById('result_93436').innerHTML; if(!x){document.getElementById('result_93436').innerHTML = 'налоговых платежей в';} else {document.getElementById('result_93436').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_69027" onsubmit="return validate_form_69027()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Рост ставок налога на прибыль корпораций смещают кривую спроса на капитал вниз-влево, так как ослабляются стимулы к инвестированию. И, наоборот, ____________ (<strong>снижение, налоговый, ставка</strong>) и введение налоговых льгот сместят кривую спроса на капитал в правостороннем направлении.</h4></legend>
+<input type="text" placeholder name="answer_69027">
+<input type="submit" value="проверить">
+<div id="result_69027"></div>
+</fieldset>
+</form>
+<script>function validate_form_69027() {var x, text; var x = document.forms['form_69027']['answer_69027'].value;if (x == 'снижение налоговых ставок'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_69027').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_48942" onclick="return show_hint_48942()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_48942" onclick="return show_hint_48942()"></div>
+<script>function show_hint_48942(){var x = document.getElementById('result_48942').innerHTML; if(!x){document.getElementById('result_48942').innerHTML = 'снижение налоговых ставок';} else {document.getElementById('result_48942').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_57838" onsubmit="return validate_form_57838()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Определенную роль в дифференциации ____________ (<strong>уровень, налоговый, нагрузка</strong>) играет отраслевая специфика субъектов, и в первую очередь внешнеэкономическая деятельность налогоплательщиков, функционирующих на территории того или иного субъекта.</h4></legend>
+<input type="text" placeholder name="answer_57838">
+<input type="submit" value="проверить">
+<div id="result_57838"></div>
+</fieldset>
+</form>
+<script>function validate_form_57838() {var x, text; var x = document.forms['form_57838']['answer_57838'].value;if (x == 'уровня налоговой нагрузки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_57838').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_57746" onclick="return show_hint_57746()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_57746" onclick="return show_hint_57746()"></div>
+<script>function show_hint_57746(){var x = document.getElementById('result_57746').innerHTML; if(!x){document.getElementById('result_57746').innerHTML = 'уровня налоговой нагрузки';} else {document.getElementById('result_57746').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_48704" onsubmit="return validate_form_48704()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Следует отметить существенные отличия применения ____________ (<strong>налоговый, льгота, в</strong>) России и зарубежных странах, в США, например, и по смыслу, и по условиям применения.</h4></legend>
+<input type="text" placeholder name="answer_48704">
+<input type="submit" value="проверить">
+<div id="result_48704"></div>
+</fieldset>
+</form>
+<script>function validate_form_48704() {var x, text; var x = document.forms['form_48704']['answer_48704'].value;if (x == 'налоговых льгот в'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_48704').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_94390" onclick="return show_hint_94390()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_94390" onclick="return show_hint_94390()"></div>
+<script>function show_hint_94390(){var x = document.getElementById('result_94390').innerHTML; if(!x){document.getElementById('result_94390').innerHTML = 'налоговых льгот в';} else {document.getElementById('result_94390').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_6709" onsubmit="return validate_form_6709()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">В этом случае предполагается законодательное установление таких ____________ (<strong>налоговый, льгота, для</strong>) инвесторов — держателей внешнего долга, которые побудили бы их к инвестициям.</h4></legend>
+<input type="text" placeholder name="answer_6709">
+<input type="submit" value="проверить">
+<div id="result_6709"></div>
+</fieldset>
+</form>
+<script>function validate_form_6709() {var x, text; var x = document.forms['form_6709']['answer_6709'].value;if (x == 'налоговых льгот для'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_6709').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_77296" onclick="return show_hint_77296()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_77296" onclick="return show_hint_77296()"></div>
+<script>function show_hint_77296(){var x = document.getElementById('result_77296').innerHTML; if(!x){document.getElementById('result_77296').innerHTML = 'налоговых льгот для';} else {document.getElementById('result_77296').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_36510" onsubmit="return validate_form_36510()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Намечались общее ____________ (<strong>снижение, налоговый, нагрузка</strong>) на экономику и концентрация дефицита бюджетной системы и государственного долга на федеральном уровне, что также способствовало бы самостоятельности регионов.</h4></legend>
+<input type="text" placeholder name="answer_36510">
+<input type="submit" value="проверить">
+<div id="result_36510"></div>
+</fieldset>
+</form>
+<script>function validate_form_36510() {var x, text; var x = document.forms['form_36510']['answer_36510'].value;if (x == 'снижение налоговой нагрузки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_36510').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_70773" onclick="return show_hint_70773()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_70773" onclick="return show_hint_70773()"></div>
+<script>function show_hint_70773(){var x = document.getElementById('result_70773').innerHTML; if(!x){document.getElementById('result_70773').innerHTML = 'снижение налоговой нагрузки';} else {document.getElementById('result_70773').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_17745" onsubmit="return validate_form_17745()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Экономисты сводят многие налоговые льготы, оказывающие воздействие на величину инвестиций, в единый измеритель ____________ (<strong>налоговый, бремя, на</strong>) капитал, называемый эффективной налоговой ставкой.</h4></legend>
+<input type="text" placeholder name="answer_17745">
+<input type="submit" value="проверить">
+<div id="result_17745"></div>
+</fieldset>
+</form>
+<script>function validate_form_17745() {var x, text; var x = document.forms['form_17745']['answer_17745'].value;if (x == 'налогового бремени на'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_17745').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_14653" onclick="return show_hint_14653()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_14653" onclick="return show_hint_14653()"></div>
+<script>function show_hint_14653(){var x = document.getElementById('result_14653').innerHTML; if(!x){document.getElementById('result_14653').innerHTML = 'налогового бремени на';} else {document.getElementById('result_14653').innerHTML = '';}}</script>
 </div>
 </div>
 </div>

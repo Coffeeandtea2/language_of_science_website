@@ -99,9 +99,9 @@ readxl::read_xlsx("data/word_profiles.xlsx") |>
          lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
          lemma = str_remove_all(lemma, "\\(.*?\\)")) |> 
   distinct(lemma, answer, task) |> 
-  na.omit() |> 
-  group_by(lemma) |> 
-  slice_sample(n = 5) ->
+  na.omit() -> # |> 
+  # group_by(lemma) |> 
+  # slice_sample(n = 5) ->
   generate_tasks
 
 walk(unique(generate_tasks$lemma), function(i){

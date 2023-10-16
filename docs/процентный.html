@@ -5851,7 +5851,9 @@ HTMLWidgets.widget({
               $input.parent().hide(); $x.show().trigger('show'); filter[0].selectize.focus();
             },
             input: function() {
-              if ($input.val() === '') filter[0].selectize.setValue([]);
+              var v1 = JSON.stringify(filter[0].selectize.getValue()), v2 = $input.val();
+              if (v1 === '[]') v1 = '';
+              if (v1 !== v2) filter[0].selectize.setValue(v2 === '' ? [] : JSON.parse(v2));
             }
           });
           var $input2 = $x.children('select');
@@ -6756,7 +6758,7 @@ HTMLWidgets.widget({
           console.log('The search keyword for column ' + i + ' is undefined')
           return;
         }
-        $(td).find('input').first().val(v);
+        $(td).find('input').first().val(v).trigger('input');
         searchColumn(i, v);
       });
       table.draw();
@@ -7538,100 +7540,982 @@ b&&(b.preventDefault(),b.stopPropagation())}else(l.isFocused||"single"===l.setti
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-cdc9990f788c5fddd492" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-cdc9990f788c5fddd492">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["процентная выплата","процентная маржа","процентная ставка","процентное изменение","процентное отношение","процентный доход"],["• процентные выплаты по","• прогнозирование чистой процентной маржи<br>• чистая процентная маржа","• оценки равновесной процентной ставки<br>• мировая реальная процентная ставка<br>• рост реальной процентной ставки<br>• увеличение реальной процентной ставки<br>• реальная процентная ставка равна<br>• процентная ставка, обеспечивающая равновесие<br>• значения реальной процентной ставки<br>• ожидаемая реальная процентная ставка<br>• реальная процентная ставка<br>• номинальная процентная ставка<br>• равновесная процентная ставка<br>• безрисковая процентная ставка<br>• уровень процентных ставок<br>• шок процентной ставки<br>• снижение процентных ставок<br>• процентная ставка составляет<br>• низкие процентные ставки<br>• изменения процентной ставки<br>• cнижение процентной ставки<br>• годовая процентная ставка<br>• эффект процентной ставки<br>• траектории процентной ставки<br>• безрисковая процентная ставка<br>• паритет процентных ставок<br>• рыночная процентная ставка<br>• высокая процентная ставка<br>• нейтральные процентные ставки<br>• прогнозирование чистой процентной<br>• внутренняя процентная ставка<br>• краткосрочные процентные ставки<br>• субсидирование процентной ставки","• процентное изменение в<br>• процентное изменение величины","• в процентном отношении","• процентный доход от<br>• процентный доход по"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2074f03c3deff238bbd6" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2074f03c3deff238bbd6">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["процентная выплата","процентная маржа","процентная ставка","процентное изменение","процентное отношение","процентный доход"],["• процентные выплаты по","• прогнозирование чистой процентной маржи<br>• чистая процентная маржа","• оценки равновесной процентной ставки<br>• мировая реальная процентная ставка<br>• рост реальной процентной ставки<br>• увеличение реальной процентной ставки<br>• реальная процентная ставка равна<br>• процентная ставка, обеспечивающая равновесие<br>• значения реальной процентной ставки<br>• ожидаемая реальная процентная ставка<br>• реальная процентная ставка<br>• номинальная процентная ставка<br>• равновесная процентная ставка<br>• безрисковая процентная ставка<br>• уровень процентных ставок<br>• шок процентной ставки<br>• снижение процентных ставок<br>• процентная ставка составляет<br>• низкие процентные ставки<br>• изменения процентной ставки<br>• cнижение процентной ставки<br>• годовая процентная ставка<br>• эффект процентной ставки<br>• траектории процентной ставки<br>• безрисковая процентная ставка<br>• паритет процентных ставок<br>• рыночная процентная ставка<br>• высокая процентная ставка<br>• нейтральные процентные ставки<br>• прогнозирование чистой процентной<br>• внутренняя процентная ставка<br>• краткосрочные процентные ставки<br>• субсидирование процентной ставки","• процентное изменение в<br>• процентное изменение величины","• в процентном отношении","• процентный доход от<br>• процентный доход по"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_53110" onsubmit="return validate_form_53110()" method="post">
+<form name="form_49965" onsubmit="return validate_form_49965()" method="post">
 <fieldset>
-<legend><h4 id="section" class="anchored">Как отреагирует население на повышение ____________ (<strong>процентный, ставка</strong>) по депозитам?</h4></legend>
-<input type="text" placeholder name="answer_53110">
+<legend><h4 id="section" class="anchored">Банк обязан ежемесячно раскрывать данные о ____________ (<strong>процентный, ставка</strong>) по вкладам физических лиц в рублях, долларах США и евро по срокам привлечения.</h4></legend>
+<input type="text" placeholder name="answer_49965">
 <input type="submit" value="проверить">
-<div id="result_53110"></div>
+<div id="result_49965"></div>
 </fieldset>
 </form>
-<script>function validate_form_53110() {var x, text; var x = document.forms['form_53110']['answer_53110'].value;if (x == 'процентных ставок'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_53110').innerHTML = text; return false;}</script>
+<script>function validate_form_49965() {var x, text; var x = document.forms['form_49965']['answer_49965'].value;if (x == 'процентных ставках'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_49965').innerHTML = text; return false;}</script>
 </div>
 <div class="cell-output-display">
-<div id="hint_16653" onclick="return show_hint_16653()">🔎 Нажмите, чтобы посмотреть ответ</div>
-<div id="result_16653" onclick="return show_hint_16653()"></div>
-<script>function show_hint_16653(){var x = document.getElementById('result_16653').innerHTML; if(!x){document.getElementById('result_16653').innerHTML = 'процентных ставок';} else {document.getElementById('result_16653').innerHTML = '';}}</script>
+<div id="hint_78604" onclick="return show_hint_78604()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_78604" onclick="return show_hint_78604()"></div>
+<script>function show_hint_78604(){var x = document.getElementById('result_78604').innerHTML; if(!x){document.getElementById('result_78604').innerHTML = 'процентных ставках';} else {document.getElementById('result_78604').innerHTML = '';}}</script>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_12517" onsubmit="return validate_form_12517()" method="post">
+<form name="form_56460" onsubmit="return validate_form_56460()" method="post">
 <fieldset>
-<legend><h4 id="26-1980-51-1995" class="anchored">Государ­ственный долг в ____________ (<strong>процентный, отношение</strong>) к годовому ВВП вырос с 26% в 1980 г. до 51% в 1995 г.</h4></legend>
-<input type="text" placeholder name="answer_12517">
+<legend><h4 id="section" class="anchored">Более высокая ____________ (<strong>процентный, ставка</strong>) по денежным средствам увеличивает спрос на деньги.</h4></legend>
+<input type="text" placeholder name="answer_56460">
 <input type="submit" value="проверить">
-<div id="result_12517"></div>
+<div id="result_56460"></div>
 </fieldset>
 </form>
-<script>function validate_form_12517() {var x, text; var x = document.forms['form_12517']['answer_12517'].value;if (x == 'процентном отношении'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_12517').innerHTML = text; return false;}</script>
+<script>function validate_form_56460() {var x, text; var x = document.forms['form_56460']['answer_56460'].value;if (x == 'процентная ставка'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_56460').innerHTML = text; return false;}</script>
 </div>
 <div class="cell-output-display">
-<div id="hint_20007" onclick="return show_hint_20007()">🔎 Нажмите, чтобы посмотреть ответ</div>
-<div id="result_20007" onclick="return show_hint_20007()"></div>
-<script>function show_hint_20007(){var x = document.getElementById('result_20007').innerHTML; if(!x){document.getElementById('result_20007').innerHTML = 'процентном отношении';} else {document.getElementById('result_20007').innerHTML = '';}}</script>
+<div id="hint_31277" onclick="return show_hint_31277()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_31277" onclick="return show_hint_31277()"></div>
+<script>function show_hint_31277(){var x = document.getElementById('result_31277').innerHTML; if(!x){document.getElementById('result_31277').innerHTML = 'процентная ставка';} else {document.getElementById('result_31277').innerHTML = '';}}</script>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_25869" onsubmit="return validate_form_25869()" method="post">
+<form name="form_48495" onsubmit="return validate_form_48495()" method="post">
 <fieldset>
-<legend><h4 id="section" class="anchored">Невозможность одновременного контроля денежного предложения и уровня ____________ (<strong>процентный, ставка</strong>) называется дилеммой целей кредитно-денежной политики.</h4></legend>
-<input type="text" placeholder name="answer_25869">
+<legend><h4 id="section" class="anchored">Чем больше люди предпочитают потреблять товаров и услуг сегодня, не оставляя эту возможность на будущее, тем выше ____________ (<strong>процентный, ставка</strong>) в экономике.</h4></legend>
+<input type="text" placeholder name="answer_48495">
 <input type="submit" value="проверить">
-<div id="result_25869"></div>
+<div id="result_48495"></div>
 </fieldset>
 </form>
-<script>function validate_form_25869() {var x, text; var x = document.forms['form_25869']['answer_25869'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_25869').innerHTML = text; return false;}</script>
+<script>function validate_form_48495() {var x, text; var x = document.forms['form_48495']['answer_48495'].value;if (x == 'процентная ставка'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_48495').innerHTML = text; return false;}</script>
 </div>
 <div class="cell-output-display">
-<div id="hint_30861" onclick="return show_hint_30861()">🔎 Нажмите, чтобы посмотреть ответ</div>
-<div id="result_30861" onclick="return show_hint_30861()"></div>
-<script>function show_hint_30861(){var x = document.getElementById('result_30861').innerHTML; if(!x){document.getElementById('result_30861').innerHTML = 'процентной ставки';} else {document.getElementById('result_30861').innerHTML = '';}}</script>
+<div id="hint_32513" onclick="return show_hint_32513()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_32513" onclick="return show_hint_32513()"></div>
+<script>function show_hint_32513(){var x = document.getElementById('result_32513').innerHTML; if(!x){document.getElementById('result_32513').innerHTML = 'процентная ставка';} else {document.getElementById('result_32513').innerHTML = '';}}</script>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_47324" onsubmit="return validate_form_47324()" method="post">
+<form name="form_82943" onsubmit="return validate_form_82943()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Процентная ставка, выплачиваемая государством, обычно служит ориентиром для остальных процентных ставок в ____________ (<strong>экономика</strong>).</h4></legend>
+<input type="text" placeholder name="answer_82943">
+<input type="submit" value="проверить">
+<div id="result_82943"></div>
+</fieldset>
+</form>
+<script>function validate_form_82943() {var x, text; var x = document.forms['form_82943']['answer_82943'].value;if (x == 'экономике'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_82943').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_83006" onclick="return show_hint_83006()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_83006" onclick="return show_hint_83006()"></div>
+<script>function show_hint_83006(){var x = document.getElementById('result_83006').innerHTML; if(!x){document.getElementById('result_83006').innerHTML = 'экономике';} else {document.getElementById('result_83006').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_64569" onsubmit="return validate_form_64569()" method="post">
 <fieldset>
 <legend><h4 id="0-lt-cy-lt-1-9-8" class="anchored">доходов, сберегая оставшуюся часть, логичным допущением будет, что 0 &lt; cY &lt; 1. В соответствии с уравнением 9А.8 рост располагаемых доходов вызывает уве личение желаемого потребления, а рост реальной ____________ (<strong>процентный, ставка</strong>) вызывает снижение желаемого потребления (и увеличение желаемых сбережений). Дру гие факторы, которые оказывают воздействие на величину желаемого потреб</h4></legend>
-<input type="text" placeholder name="answer_47324">
+<input type="text" placeholder name="answer_64569">
 <input type="submit" value="проверить">
-<div id="result_47324"></div>
+<div id="result_64569"></div>
 </fieldset>
 </form>
-<script>function validate_form_47324() {var x, text; var x = document.forms['form_47324']['answer_47324'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_47324').innerHTML = text; return false;}</script>
+<script>function validate_form_64569() {var x, text; var x = document.forms['form_64569']['answer_64569'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_64569').innerHTML = text; return false;}</script>
 </div>
 <div class="cell-output-display">
-<div id="hint_32112" onclick="return show_hint_32112()">🔎 Нажмите, чтобы посмотреть ответ</div>
-<div id="result_32112" onclick="return show_hint_32112()"></div>
-<script>function show_hint_32112(){var x = document.getElementById('result_32112').innerHTML; if(!x){document.getElementById('result_32112').innerHTML = 'процентной ставки';} else {document.getElementById('result_32112').innerHTML = '';}}</script>
+<div id="hint_87646" onclick="return show_hint_87646()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_87646" onclick="return show_hint_87646()"></div>
+<script>function show_hint_87646(){var x = document.getElementById('result_87646').innerHTML; if(!x){document.getElementById('result_87646').innerHTML = 'процентной ставки';} else {document.getElementById('result_87646').innerHTML = '';}}</script>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_49054" onsubmit="return validate_form_49054()" method="post">
+<form name="form_44958" onsubmit="return validate_form_44958()" method="post">
 <fieldset>
-<legend><h4 id="section" class="anchored">Когда размер инвестиций является эндогенным, реакция кредитного спреда на изменение ____________ (<strong>процентный, ставка</strong>) не столь очевидна.</h4></legend>
-<input type="text" placeholder name="answer_49054">
+<legend><h4 id="section" class="anchored">Снижение внутренней ____________ (<strong>процентный, ставка</strong>) ниже мировой приводит к оттоку капитала из страны.</h4></legend>
+<input type="text" placeholder name="answer_44958">
 <input type="submit" value="проверить">
-<div id="result_49054"></div>
+<div id="result_44958"></div>
 </fieldset>
 </form>
-<script>function validate_form_49054() {var x, text; var x = document.forms['form_49054']['answer_49054'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_49054').innerHTML = text; return false;}</script>
+<script>function validate_form_44958() {var x, text; var x = document.forms['form_44958']['answer_44958'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_44958').innerHTML = text; return false;}</script>
 </div>
 <div class="cell-output-display">
-<div id="hint_65071" onclick="return show_hint_65071()">🔎 Нажмите, чтобы посмотреть ответ</div>
-<div id="result_65071" onclick="return show_hint_65071()"></div>
-<script>function show_hint_65071(){var x = document.getElementById('result_65071').innerHTML; if(!x){document.getElementById('result_65071').innerHTML = 'процентной ставки';} else {document.getElementById('result_65071').innerHTML = '';}}</script>
+<div id="hint_17211" onclick="return show_hint_17211()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_17211" onclick="return show_hint_17211()"></div>
+<script>function show_hint_17211(){var x = document.getElementById('result_17211').innerHTML; if(!x){document.getElementById('result_17211').innerHTML = 'процентной ставки';} else {document.getElementById('result_17211').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_82991" onsubmit="return validate_form_82991()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Чем выше степень неприятия риска среди населения, тем выше премия за риск и ниже величина безрисковой ____________ (<strong>процентный, ставка</strong>).</h4></legend>
+<input type="text" placeholder name="answer_82991">
+<input type="submit" value="проверить">
+<div id="result_82991"></div>
+</fieldset>
+</form>
+<script>function validate_form_82991() {var x, text; var x = document.forms['form_82991']['answer_82991'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_82991').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_18309" onclick="return show_hint_18309()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_18309" onclick="return show_hint_18309()"></div>
+<script>function show_hint_18309(){var x = document.getElementById('result_18309').innerHTML; if(!x){document.getElementById('result_18309').innerHTML = 'процентной ставки';} else {document.getElementById('result_18309').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_75211" onsubmit="return validate_form_75211()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Сокращение спроса и объема производства приводит к понижению внутренней ____________ (<strong>процентный, ставка</strong>).</h4></legend>
+<input type="text" placeholder name="answer_75211">
+<input type="submit" value="проверить">
+<div id="result_75211"></div>
+</fieldset>
+</form>
+<script>function validate_form_75211() {var x, text; var x = document.forms['form_75211']['answer_75211'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_75211').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_12557" onclick="return show_hint_12557()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_12557" onclick="return show_hint_12557()"></div>
+<script>function show_hint_12557(){var x = document.getElementById('result_12557').innerHTML; if(!x){document.getElementById('result_12557').innerHTML = 'процентной ставки';} else {document.getElementById('result_12557').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_58214" onsubmit="return validate_form_58214()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Поскольку долг накапливается во времени, то ____________ (<strong>процентный, выплата</strong>) по долгу возрастают и далее будут возрастать.</h4></legend>
+<input type="text" placeholder name="answer_58214">
+<input type="submit" value="проверить">
+<div id="result_58214"></div>
+</fieldset>
+</form>
+<script>function validate_form_58214() {var x, text; var x = document.forms['form_58214']['answer_58214'].value;if (x == 'процентные выплаты'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_58214').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_35844" onclick="return show_hint_35844()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_35844" onclick="return show_hint_35844()"></div>
+<script>function show_hint_35844(){var x = document.getElementById('result_35844').innerHTML; if(!x){document.getElementById('result_35844').innerHTML = 'процентные выплаты';} else {document.getElementById('result_35844').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_91406" onsubmit="return validate_form_91406()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Рост ____________ (<strong>процентный, ставка</strong>) приводит к значительному снижению региональной занятости в большинстве регионов.</h4></legend>
+<input type="text" placeholder name="answer_91406">
+<input type="submit" value="проверить">
+<div id="result_91406"></div>
+</fieldset>
+</form>
+<script>function validate_form_91406() {var x, text; var x = document.forms['form_91406']['answer_91406'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_91406').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_31883" onclick="return show_hint_31883()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_31883" onclick="return show_hint_31883()"></div>
+<script>function show_hint_31883(){var x = document.getElementById('result_31883').innerHTML; if(!x){document.getElementById('result_31883').innerHTML = 'процентной ставки';} else {document.getElementById('result_31883').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_6171" onsubmit="return validate_form_6171()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Перекрестная эластичность спроса — отношение процентного изменения спроса на один товар к ____________ (<strong>процентный, изменение</strong>) цены на другой товар.</h4></legend>
+<input type="text" placeholder name="answer_6171">
+<input type="submit" value="проверить">
+<div id="result_6171"></div>
+</fieldset>
+</form>
+<script>function validate_form_6171() {var x, text; var x = document.forms['form_6171']['answer_6171'].value;if (x == 'процентному изменению'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_6171').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_99456" onclick="return show_hint_99456()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_99456" onclick="return show_hint_99456()"></div>
+<script>function show_hint_99456(){var x = document.getElementById('result_99456').innerHTML; if(!x){document.getElementById('result_99456').innerHTML = 'процентному изменению';} else {document.getElementById('result_99456').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_4310" onsubmit="return validate_form_4310()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Эластичность предложения — это ____________ (<strong>процентный, изменение</strong>) величины предложения в ответ на изменение цены.</h4></legend>
+<input type="text" placeholder name="answer_4310">
+<input type="submit" value="проверить">
+<div id="result_4310"></div>
+</fieldset>
+</form>
+<script>function validate_form_4310() {var x, text; var x = document.forms['form_4310']['answer_4310'].value;if (x == 'процентное изменение'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_4310').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_6092" onclick="return show_hint_6092()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_6092" onclick="return show_hint_6092()"></div>
+<script>function show_hint_6092(){var x = document.getElementById('result_6092').innerHTML; if(!x){document.getElementById('result_6092').innerHTML = 'процентное изменение';} else {document.getElementById('result_6092').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_62497" onsubmit="return validate_form_62497()" method="post">
+<fieldset>
+<legend><h4 id="26-1980-51-1995" class="anchored">Государ­ственный долг в ____________ (<strong>процентный, отношение</strong>) к годовому ВВП вырос с 26% в 1980 г. до 51% в 1995 г.</h4></legend>
+<input type="text" placeholder name="answer_62497">
+<input type="submit" value="проверить">
+<div id="result_62497"></div>
+</fieldset>
+</form>
+<script>function validate_form_62497() {var x, text; var x = document.forms['form_62497']['answer_62497'].value;if (x == 'процентном отношении'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_62497').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_50515" onclick="return show_hint_50515()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_50515" onclick="return show_hint_50515()"></div>
+<script>function show_hint_50515(){var x = document.getElementById('result_50515').innerHTML; if(!x){document.getElementById('result_50515').innerHTML = 'процентном отношении';} else {document.getElementById('result_50515').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_65346" onsubmit="return validate_form_65346()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Изменение рыночных ____________ (<strong>процентный, ставка</strong>) приводит к изменению в противоположном направлении рыночных цен всех существующих финансовых инструментов с фиксированными доходами.</h4></legend>
+<input type="text" placeholder name="answer_65346">
+<input type="submit" value="проверить">
+<div id="result_65346"></div>
+</fieldset>
+</form>
+<script>function validate_form_65346() {var x, text; var x = document.forms['form_65346']['answer_65346'].value;if (x == 'процентных ставок'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_65346').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_9377" onclick="return show_hint_9377()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_9377" onclick="return show_hint_9377()"></div>
+<script>function show_hint_9377(){var x = document.getElementById('result_9377').innerHTML; if(!x){document.getElementById('result_9377').innerHTML = 'процентных ставок';} else {document.getElementById('result_9377').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_30513" onsubmit="return validate_form_30513()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Альтернативным индикатором долгосрочных ____________ (<strong>процентный, ставка</strong>) служат доходности государственных облигаций.</h4></legend>
+<input type="text" placeholder name="answer_30513">
+<input type="submit" value="проверить">
+<div id="result_30513"></div>
+</fieldset>
+</form>
+<script>function validate_form_30513() {var x, text; var x = document.forms['form_30513']['answer_30513'].value;if (x == 'процентных ставок'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_30513').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_33839" onclick="return show_hint_33839()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_33839" onclick="return show_hint_33839()"></div>
+<script>function show_hint_33839(){var x = document.getElementById('result_33839').innerHTML; if(!x){document.getElementById('result_33839').innerHTML = 'процентных ставок';} else {document.getElementById('result_33839').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_66388" onsubmit="return validate_form_66388()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Это может произойти только в том случае, когда потребление и инвестиции не реагируют на изменение процентной ставки, т.е. их эластичность по отношению к ____________ (<strong>процентный, ставка</strong>) равна нулю.</h4></legend>
+<input type="text" placeholder name="answer_66388">
+<input type="submit" value="проверить">
+<div id="result_66388"></div>
+</fieldset>
+</form>
+<script>function validate_form_66388() {var x, text; var x = document.forms['form_66388']['answer_66388'].value;if (x == 'процентной ставке'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_66388').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_70103" onclick="return show_hint_70103()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_70103" onclick="return show_hint_70103()"></div>
+<script>function show_hint_70103(){var x = document.getElementById('result_70103').innerHTML; if(!x){document.getElementById('result_70103').innerHTML = 'процентной ставке';} else {document.getElementById('result_70103').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_33134" onsubmit="return validate_form_33134()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">При повышении рыночных ____________ (<strong>процентный, ставка</strong>) курс любых ценных бумаг с фиксированным доходом понижается.</h4></legend>
+<input type="text" placeholder name="answer_33134">
+<input type="submit" value="проверить">
+<div id="result_33134"></div>
+</fieldset>
+</form>
+<script>function validate_form_33134() {var x, text; var x = document.forms['form_33134']['answer_33134'].value;if (x == 'процентных ставок'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_33134').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_82685" onclick="return show_hint_82685()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_82685" onclick="return show_hint_82685()"></div>
+<script>function show_hint_82685(){var x = document.getElementById('result_82685').innerHTML; if(!x){document.getElementById('result_82685').innerHTML = 'процентных ставок';} else {document.getElementById('result_82685').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_22050" onsubmit="return validate_form_22050()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Невозможность одновременного контроля денежного предложения и уровня ____________ (<strong>процентный, ставка</strong>) называется дилеммой целей кредитно-денежной политики.</h4></legend>
+<input type="text" placeholder name="answer_22050">
+<input type="submit" value="проверить">
+<div id="result_22050"></div>
+</fieldset>
+</form>
+<script>function validate_form_22050() {var x, text; var x = document.forms['form_22050']['answer_22050'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_22050').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_75123" onclick="return show_hint_75123()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_75123" onclick="return show_hint_75123()"></div>
+<script>function show_hint_75123(){var x = document.getElementById('result_75123').innerHTML; if(!x){document.getElementById('result_75123').innerHTML = 'процентной ставки';} else {document.getElementById('result_75123').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_88231" onsubmit="return validate_form_88231()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Если объем производства останется на первоначальном уровне, то рост реальной ____________ (<strong>процентный, ставка</strong>) приведет к ситуации, когда величина совокупного предложения товаров превысит величину совокупного спроса на товары.</h4></legend>
+<input type="text" placeholder name="answer_88231">
+<input type="submit" value="проверить">
+<div id="result_88231"></div>
+</fieldset>
+</form>
+<script>function validate_form_88231() {var x, text; var x = document.forms['form_88231']['answer_88231'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_88231').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_35732" onclick="return show_hint_35732()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_35732" onclick="return show_hint_35732()"></div>
+<script>function show_hint_35732(){var x = document.getElementById('result_35732').innerHTML; if(!x){document.getElementById('result_35732').innerHTML = 'процентной ставки';} else {document.getElementById('result_35732').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_84728" onsubmit="return validate_form_84728()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Ожидаемая реальная ____________ (<strong>процентный, ставка</strong>) равна разности номинальной процентной ставки и ожидаемого уровня инфляции.</h4></legend>
+<input type="text" placeholder name="answer_84728">
+<input type="submit" value="проверить">
+<div id="result_84728"></div>
+</fieldset>
+</form>
+<script>function validate_form_84728() {var x, text; var x = document.forms['form_84728']['answer_84728'].value;if (x == 'процентная ставка'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_84728').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_87294" onclick="return show_hint_87294()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_87294" onclick="return show_hint_87294()"></div>
+<script>function show_hint_87294(){var x = document.getElementById('result_87294').innerHTML; if(!x){document.getElementById('result_87294').innerHTML = 'процентная ставка';} else {document.getElementById('result_87294').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_89083" onsubmit="return validate_form_89083()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Однако при постоянной реальной ставке процента более высокий уровень инфляции будет увеличивать номинальную ____________ (<strong>процентный, ставка</strong>), заставляя людей сокращать свои реальные денежные остатки.</h4></legend>
+<input type="text" placeholder name="answer_89083">
+<input type="submit" value="проверить">
+<div id="result_89083"></div>
+</fieldset>
+</form>
+<script>function validate_form_89083() {var x, text; var x = document.forms['form_89083']['answer_89083'].value;if (x == 'процентную ставку'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_89083').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_15461" onclick="return show_hint_15461()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_15461" onclick="return show_hint_15461()"></div>
+<script>function show_hint_15461(){var x = document.getElementById('result_15461').innerHTML; if(!x){document.getElementById('result_15461').innerHTML = 'процентную ставку';} else {document.getElementById('result_15461').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_85377" onsubmit="return validate_form_85377()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Реальная ____________ (<strong>процентный, ставка</strong>) – это изменение покупательной способности процентного дохода.</h4></legend>
+<input type="text" placeholder name="answer_85377">
+<input type="submit" value="проверить">
+<div id="result_85377"></div>
+</fieldset>
+</form>
+<script>function validate_form_85377() {var x, text; var x = document.forms['form_85377']['answer_85377'].value;if (x == 'процентная ставка'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_85377').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_46806" onclick="return show_hint_46806()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_46806" onclick="return show_hint_46806()"></div>
+<script>function show_hint_46806(){var x = document.getElementById('result_46806').innerHTML; if(!x){document.getElementById('result_46806').innerHTML = 'процентная ставка';} else {document.getElementById('result_46806').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_19180" onsubmit="return validate_form_19180()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">В долгосрочной перспективе оценки равновесной ____________ (<strong>процентный, ставка</strong>) в соответствии с различными условиями частного равновесия ведут себя по-разному.</h4></legend>
+<input type="text" placeholder name="answer_19180">
+<input type="submit" value="проверить">
+<div id="result_19180"></div>
+</fieldset>
+</form>
+<script>function validate_form_19180() {var x, text; var x = document.forms['form_19180']['answer_19180'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_19180').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_4263" onclick="return show_hint_4263()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_4263" onclick="return show_hint_4263()"></div>
+<script>function show_hint_4263(){var x = document.getElementById('result_4263').innerHTML; if(!x){document.getElementById('result_4263').innerHTML = 'процентной ставки';} else {document.getElementById('result_4263').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_41260" onsubmit="return validate_form_41260()" method="post">
+<fieldset>
+<legend><h4 id="4-4-4-0" class="anchored">Если инфляция равна 4%, то реальная ____________ (<strong>процентный, ставка</strong>) будет равна разнице номинальной процентной ставки 4% и уровня инфляции 4%, т. е. 0%.</h4></legend>
+<input type="text" placeholder name="answer_41260">
+<input type="submit" value="проверить">
+<div id="result_41260"></div>
+</fieldset>
+</form>
+<script>function validate_form_41260() {var x, text; var x = document.forms['form_41260']['answer_41260'].value;if (x == 'процентная ставка'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_41260').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_89662" onclick="return show_hint_89662()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_89662" onclick="return show_hint_89662()"></div>
+<script>function show_hint_89662(){var x = document.getElementById('result_89662').innerHTML; if(!x){document.getElementById('result_89662').innerHTML = 'процентная ставка';} else {document.getElementById('result_89662').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_26561" onsubmit="return validate_form_26561()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Снижение ____________ (<strong>процентный, ставка</strong>) стимулирует потребление и, следовательно, совокупный спрос и производственные инвестиции.</h4></legend>
+<input type="text" placeholder name="answer_26561">
+<input type="submit" value="проверить">
+<div id="result_26561"></div>
+</fieldset>
+</form>
+<script>function validate_form_26561() {var x, text; var x = document.forms['form_26561']['answer_26561'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_26561').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_91097" onclick="return show_hint_91097()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_91097" onclick="return show_hint_91097()"></div>
+<script>function show_hint_91097(){var x = document.getElementById('result_91097').innerHTML; if(!x){document.getElementById('result_91097').innerHTML = 'процентной ставки';} else {document.getElementById('result_91097').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_65176" onsubmit="return validate_form_65176()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Спрос считается эластичным, если данное ____________ (<strong>процентный, изменение</strong>) цены ведет к еще большему процентному изменению количества запрашиваемых товаров.</h4></legend>
+<input type="text" placeholder name="answer_65176">
+<input type="submit" value="проверить">
+<div id="result_65176"></div>
+</fieldset>
+</form>
+<script>function validate_form_65176() {var x, text; var x = document.forms['form_65176']['answer_65176'].value;if (x == 'процентное изменение'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_65176').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_47896" onclick="return show_hint_47896()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_47896" onclick="return show_hint_47896()"></div>
+<script>function show_hint_47896(){var x = document.getElementById('result_47896').innerHTML; if(!x){document.getElementById('result_47896').innerHTML = 'процентное изменение';} else {document.getElementById('result_47896').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_65262" onsubmit="return validate_form_65262()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Рост ____________ (<strong>процентный, ставка</strong>) заставил многих потенциаль­ных заемщиков отказаться от планов строительства новых домов или предприя­тий.</h4></legend>
+<input type="text" placeholder name="answer_65262">
+<input type="submit" value="проверить">
+<div id="result_65262"></div>
+</fieldset>
+</form>
+<script>function validate_form_65262() {var x, text; var x = document.forms['form_65262']['answer_65262'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_65262').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_78615" onclick="return show_hint_78615()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_78615" onclick="return show_hint_78615()"></div>
+<script>function show_hint_78615(){var x = document.getElementById('result_78615').innerHTML; if(!x){document.getElementById('result_78615').innerHTML = 'процентной ставки';} else {document.getElementById('result_78615').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_11103" onsubmit="return validate_form_11103()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Увеличение реальных ____________ (<strong>процентный, ставка</strong>) произошло в период, когда большинство развивающихся стран выталкивалось с международных рынков капитала в связи с кризисом международной задолженности и их сложными внутрихозяйственными проблемами.</h4></legend>
+<input type="text" placeholder name="answer_11103">
+<input type="submit" value="проверить">
+<div id="result_11103"></div>
+</fieldset>
+</form>
+<script>function validate_form_11103() {var x, text; var x = document.forms['form_11103']['answer_11103'].value;if (x == 'процентных ставок'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_11103').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_97611" onclick="return show_hint_97611()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_97611" onclick="return show_hint_97611()"></div>
+<script>function show_hint_97611(){var x = document.getElementById('result_97611').innerHTML; if(!x){document.getElementById('result_97611').innerHTML = 'процентных ставок';} else {document.getElementById('result_97611').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_66084" onsubmit="return validate_form_66084()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Информационная функция дает участникам рынка через постоянно меняющиеся цены и процентные ставки на ____________ (<strong>кредит</strong>) объективную информацию о спросе и предложении товаров и услуг.</h4></legend>
+<input type="text" placeholder name="answer_66084">
+<input type="submit" value="проверить">
+<div id="result_66084"></div>
+</fieldset>
+</form>
+<script>function validate_form_66084() {var x, text; var x = document.forms['form_66084']['answer_66084'].value;if (x == 'кредит'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_66084').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_30039" onclick="return show_hint_30039()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_30039" onclick="return show_hint_30039()"></div>
+<script>function show_hint_30039(){var x = document.getElementById('result_30039').innerHTML; if(!x){document.getElementById('result_30039').innerHTML = 'кредит';} else {document.getElementById('result_30039').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_29919" onsubmit="return validate_form_29919()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Это повышение ____________ (<strong>процентный, ставка</strong>) приводит к увеличению альтернативных издержек хранения денег.</h4></legend>
+<input type="text" placeholder name="answer_29919">
+<input type="submit" value="проверить">
+<div id="result_29919"></div>
+</fieldset>
+</form>
+<script>function validate_form_29919() {var x, text; var x = document.forms['form_29919']['answer_29919'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_29919').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_94465" onclick="return show_hint_94465()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_94465" onclick="return show_hint_94465()"></div>
+<script>function show_hint_94465(){var x = document.getElementById('result_94465').innerHTML; if(!x){document.getElementById('result_94465').innerHTML = 'процентной ставки';} else {document.getElementById('result_94465').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_99550" onsubmit="return validate_form_99550()" method="post">
+<fieldset>
+<legend><h4 id="1" class="anchored">Эластичность спроса по цене в любой точке кривой спроса изменяет ____________ (<strong>процентный, изменение</strong>) величины спроса при повышении цены на товар на 1%.</h4></legend>
+<input type="text" placeholder name="answer_99550">
+<input type="submit" value="проверить">
+<div id="result_99550"></div>
+</fieldset>
+</form>
+<script>function validate_form_99550() {var x, text; var x = document.forms['form_99550']['answer_99550'].value;if (x == 'процентное изменение'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_99550').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_32451" onclick="return show_hint_32451()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_32451" onclick="return show_hint_32451()"></div>
+<script>function show_hint_32451(){var x = document.getElementById('result_32451').innerHTML; if(!x){document.getElementById('result_32451').innerHTML = 'процентное изменение';} else {document.getElementById('result_32451').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_49160" onsubmit="return validate_form_49160()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Чему равны равновесные значения выпуска, потребления, инвестиций, реальной ____________ (<strong>процентный, ставка</strong>) и уровня цен?</h4></legend>
+<input type="text" placeholder name="answer_49160">
+<input type="submit" value="проверить">
+<div id="result_49160"></div>
+</fieldset>
+</form>
+<script>function validate_form_49160() {var x, text; var x = document.forms['form_49160']['answer_49160'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_49160').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_84468" onclick="return show_hint_84468()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_84468" onclick="return show_hint_84468()"></div>
+<script>function show_hint_84468(){var x = document.getElementById('result_84468').innerHTML; if(!x){document.getElementById('result_84468').innerHTML = 'процентной ставки';} else {document.getElementById('result_84468').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_55072" onsubmit="return validate_form_55072()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Когда размер инвестиций является эндогенным, реакция кредитного спреда на изменение ____________ (<strong>процентный, ставка</strong>) не столь очевидна.</h4></legend>
+<input type="text" placeholder name="answer_55072">
+<input type="submit" value="проверить">
+<div id="result_55072"></div>
+</fieldset>
+</form>
+<script>function validate_form_55072() {var x, text; var x = document.forms['form_55072']['answer_55072'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_55072').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_28917" onclick="return show_hint_28917()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_28917" onclick="return show_hint_28917()"></div>
+<script>function show_hint_28917(){var x = document.getElementById('result_28917').innerHTML; if(!x){document.getElementById('result_28917').innerHTML = 'процентной ставки';} else {document.getElementById('result_28917').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_59874" onsubmit="return validate_form_59874()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">При этом вероятность дефолта каждого отдельного банка оказывает влияние на агрегированный показатель вероятности дефолта в банковской системе и на процентные ставки по ____________ (<strong>депозит</strong>) и кредитам.</h4></legend>
+<input type="text" placeholder name="answer_59874">
+<input type="submit" value="проверить">
+<div id="result_59874"></div>
+</fieldset>
+</form>
+<script>function validate_form_59874() {var x, text; var x = document.forms['form_59874']['answer_59874'].value;if (x == 'депозитам'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_59874').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_6818" onclick="return show_hint_6818()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_6818" onclick="return show_hint_6818()"></div>
+<script>function show_hint_6818(){var x = document.getElementById('result_6818').innerHTML; if(!x){document.getElementById('result_6818').innerHTML = 'депозитам';} else {document.getElementById('result_6818').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_37630" onsubmit="return validate_form_37630()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">На уровень ____________ (<strong>процентный, ставка</strong>), устанавливаемых на региональных рынках ссудного капитала, могут оказывать влияние ограничения мобильности спроса.</h4></legend>
+<input type="text" placeholder name="answer_37630">
+<input type="submit" value="проверить">
+<div id="result_37630"></div>
+</fieldset>
+</form>
+<script>function validate_form_37630() {var x, text; var x = document.forms['form_37630']['answer_37630'].value;if (x == 'процентных ставок'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_37630').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_1172" onclick="return show_hint_1172()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_1172" onclick="return show_hint_1172()"></div>
+<script>function show_hint_1172(){var x = document.getElementById('result_1172').innerHTML; if(!x){document.getElementById('result_1172').innerHTML = 'процентных ставок';} else {document.getElementById('result_1172').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_79981" onsubmit="return validate_form_79981()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Под номинальной ____________ (<strong>процентный, ставка</strong>) понимается показатель доходности сбережений или стоимости пользования ссудой.</h4></legend>
+<input type="text" placeholder name="answer_79981">
+<input type="submit" value="проверить">
+<div id="result_79981"></div>
+</fieldset>
+</form>
+<script>function validate_form_79981() {var x, text; var x = document.forms['form_79981']['answer_79981'].value;if (x == 'процентной ставкой'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_79981').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_60422" onclick="return show_hint_60422()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_60422" onclick="return show_hint_60422()"></div>
+<script>function show_hint_60422(){var x = document.getElementById('result_60422').innerHTML; if(!x){document.getElementById('result_60422').innerHTML = 'процентной ставкой';} else {document.getElementById('result_60422').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_19745" onsubmit="return validate_form_19745()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Высокие процентные ставки увеличивают процентные выплаты по ____________ ____________ (<strong>государственный, долг</strong>).</h4></legend>
+<input type="text" placeholder name="answer_19745">
+<input type="submit" value="проверить">
+<div id="result_19745"></div>
+</fieldset>
+</form>
+<script>function validate_form_19745() {var x, text; var x = document.forms['form_19745']['answer_19745'].value;if (x == 'государственному долгу'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_19745').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_68125" onclick="return show_hint_68125()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_68125" onclick="return show_hint_68125()"></div>
+<script>function show_hint_68125(){var x = document.getElementById('result_68125').innerHTML; if(!x){document.getElementById('result_68125').innerHTML = 'государственному долгу';} else {document.getElementById('result_68125').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_31680" onsubmit="return validate_form_31680()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">При любом ожидаемом уровне инфляции рост реальной ____________ (<strong>процентный, ставка</strong>) приводит к росту номинальной процентной ставки и вызывает снижение величины спроса на деньги.</h4></legend>
+<input type="text" placeholder name="answer_31680">
+<input type="submit" value="проверить">
+<div id="result_31680"></div>
+</fieldset>
+</form>
+<script>function validate_form_31680() {var x, text; var x = document.forms['form_31680']['answer_31680'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_31680').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_86380" onclick="return show_hint_86380()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_86380" onclick="return show_hint_86380()"></div>
+<script>function show_hint_86380(){var x = document.getElementById('result_86380').innerHTML; if(!x){document.getElementById('result_86380').innerHTML = 'процентной ставки';} else {document.getElementById('result_86380').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_73451" onsubmit="return validate_form_73451()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Кредитные гарантии снижают риск дефолта по кредиту и могут повлечь за собой снижение ____________ (<strong>процентный, ставка</strong>).</h4></legend>
+<input type="text" placeholder name="answer_73451">
+<input type="submit" value="проверить">
+<div id="result_73451"></div>
+</fieldset>
+</form>
+<script>function validate_form_73451() {var x, text; var x = document.forms['form_73451']['answer_73451'].value;if (x == 'процентных ставок'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_73451').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_14054" onclick="return show_hint_14054()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_14054" onclick="return show_hint_14054()"></div>
+<script>function show_hint_14054(){var x = document.getElementById('result_14054').innerHTML; if(!x){document.getElementById('result_14054').innerHTML = 'процентных ставок';} else {document.getElementById('result_14054').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_5877" onsubmit="return validate_form_5877()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Оценки издержек на создание резервов на основании только лишь разницы в ____________ (<strong>процентный, ставка</strong>) могут быть сильно завышены.</h4></legend>
+<input type="text" placeholder name="answer_5877">
+<input type="submit" value="проверить">
+<div id="result_5877"></div>
+</fieldset>
+</form>
+<script>function validate_form_5877() {var x, text; var x = document.forms['form_5877']['answer_5877'].value;if (x == 'процентных ставках'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_5877').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_33980" onclick="return show_hint_33980()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_33980" onclick="return show_hint_33980()"></div>
+<script>function show_hint_33980(){var x = document.getElementById('result_33980').innerHTML; if(!x){document.getElementById('result_33980').innerHTML = 'процентных ставках';} else {document.getElementById('result_33980').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_11949" onsubmit="return validate_form_11949()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">____________ (<strong>процентный, ставка</strong>) для заемщиков и кредиторов различается, поскольку последние несут на себе издержки мониторинга действий заемщиков, чтобы избежать дефолта.</h4></legend>
+<input type="text" placeholder name="answer_11949">
+<input type="submit" value="проверить">
+<div id="result_11949"></div>
+</fieldset>
+</form>
+<script>function validate_form_11949() {var x, text; var x = document.forms['form_11949']['answer_11949'].value;if (x == 'процентная ставка'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_11949').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_11868" onclick="return show_hint_11868()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_11868" onclick="return show_hint_11868()"></div>
+<script>function show_hint_11868(){var x = document.getElementById('result_11868').innerHTML; if(!x){document.getElementById('result_11868').innerHTML = 'процентная ставка';} else {document.getElementById('result_11868').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_18982" onsubmit="return validate_form_18982()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">В долгосрочной перспективе устойчивое изменение темпов роста денежной массы ведет к изменению роста инфляции и номинальной ____________ (<strong>процентный, ставка</strong>) в том же направлении и на ту же величину.</h4></legend>
+<input type="text" placeholder name="answer_18982">
+<input type="submit" value="проверить">
+<div id="result_18982"></div>
+</fieldset>
+</form>
+<script>function validate_form_18982() {var x, text; var x = document.forms['form_18982']['answer_18982'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_18982').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_26629" onclick="return show_hint_26629()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_26629" onclick="return show_hint_26629()"></div>
+<script>function show_hint_26629(){var x = document.getElementById('result_26629').innerHTML; if(!x){document.getElementById('result_26629').innerHTML = 'процентной ставки';} else {document.getElementById('result_26629').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_18663" onsubmit="return validate_form_18663()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Реальная ставка доходности представляет собой разницу между номинальной ____________ (<strong>процентный, ставка</strong>) и уровнем инфляции.</h4></legend>
+<input type="text" placeholder name="answer_18663">
+<input type="submit" value="проверить">
+<div id="result_18663"></div>
+</fieldset>
+</form>
+<script>function validate_form_18663() {var x, text; var x = document.forms['form_18663']['answer_18663'].value;if (x == 'процентной ставкой'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_18663').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_62074" onclick="return show_hint_62074()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_62074" onclick="return show_hint_62074()"></div>
+<script>function show_hint_62074(){var x = document.getElementById('result_62074').innerHTML; if(!x){document.getElementById('result_62074').innerHTML = 'процентной ставкой';} else {document.getElementById('result_62074').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_29692" onsubmit="return validate_form_29692()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Эластичность спроса по доходу — это ____________ (<strong>процентный, изменение</strong>) величины спроса, возникающее в результате увеличения дохода.</h4></legend>
+<input type="text" placeholder name="answer_29692">
+<input type="submit" value="проверить">
+<div id="result_29692"></div>
+</fieldset>
+</form>
+<script>function validate_form_29692() {var x, text; var x = document.forms['form_29692']['answer_29692'].value;if (x == 'процентное изменение'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_29692').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_60423" onclick="return show_hint_60423()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_60423" onclick="return show_hint_60423()"></div>
+<script>function show_hint_60423(){var x = document.getElementById('result_60423').innerHTML; if(!x){document.getElementById('result_60423').innerHTML = 'процентное изменение';} else {document.getElementById('result_60423').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_40434" onsubmit="return validate_form_40434()" method="post">
+<fieldset>
+<legend><h4 id="1-2" class="anchored">Умеренным считается шок ____________ (<strong>процентный, ставка</strong>) в размере 1%, агрессивным – 2%.</h4></legend>
+<input type="text" placeholder name="answer_40434">
+<input type="submit" value="проверить">
+<div id="result_40434"></div>
+</fieldset>
+</form>
+<script>function validate_form_40434() {var x, text; var x = document.forms['form_40434']['answer_40434'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_40434').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_85399" onclick="return show_hint_85399()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_85399" onclick="return show_hint_85399()"></div>
+<script>function show_hint_85399(){var x = document.getElementById('result_85399').innerHTML; if(!x){document.getElementById('result_85399').innerHTML = 'процентной ставки';} else {document.getElementById('result_85399').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_26743" onsubmit="return validate_form_26743()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Банки в силу ограничений по достаточности капитала вынуждены повышать процентные ставки по ____________ (<strong>кредит</strong>).</h4></legend>
+<input type="text" placeholder name="answer_26743">
+<input type="submit" value="проверить">
+<div id="result_26743"></div>
+</fieldset>
+</form>
+<script>function validate_form_26743() {var x, text; var x = document.forms['form_26743']['answer_26743'].value;if (x == 'кредитам'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_26743').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_6028" onclick="return show_hint_6028()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_6028" onclick="return show_hint_6028()"></div>
+<script>function show_hint_6028(){var x = document.getElementById('result_6028').innerHTML; if(!x){document.getElementById('result_6028').innerHTML = 'кредитам';} else {document.getElementById('result_6028').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_3839" onsubmit="return validate_form_3839()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Снижающиеся ставки сокращают процентный доход от ____________ (<strong>депозит</strong>), что ухудшает положение богатых домохозяйств, так как большая доля их доходов зависит от сбережений на депозитах.</h4></legend>
+<input type="text" placeholder name="answer_3839">
+<input type="submit" value="проверить">
+<div id="result_3839"></div>
+</fieldset>
+</form>
+<script>function validate_form_3839() {var x, text; var x = document.forms['form_3839']['answer_3839'].value;if (x == 'депозитов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_3839').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_4180" onclick="return show_hint_4180()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_4180" onclick="return show_hint_4180()"></div>
+<script>function show_hint_4180(){var x = document.getElementById('result_4180').innerHTML; if(!x){document.getElementById('result_4180').innerHTML = 'депозитов';} else {document.getElementById('result_4180').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_95557" onsubmit="return validate_form_95557()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Любые попытки изменить количество денег в обращении меняют уровень ____________ (<strong>процентный, ставка</strong>), что приводит к изменению потоков капитала и нарушению равновесия платежного баланса.</h4></legend>
+<input type="text" placeholder name="answer_95557">
+<input type="submit" value="проверить">
+<div id="result_95557"></div>
+</fieldset>
+</form>
+<script>function validate_form_95557() {var x, text; var x = document.forms['form_95557']['answer_95557'].value;if (x == 'процентной ставки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_95557').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_65363" onclick="return show_hint_65363()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_65363" onclick="return show_hint_65363()"></div>
+<script>function show_hint_65363(){var x = document.getElementById('result_65363').innerHTML; if(!x){document.getElementById('result_65363').innerHTML = 'процентной ставки';} else {document.getElementById('result_65363').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_68872" onsubmit="return validate_form_68872()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Процентная ставка по займам совпадает с ____________ (<strong>процентный, ставка</strong>) по сбережениям.</h4></legend>
+<input type="text" placeholder name="answer_68872">
+<input type="submit" value="проверить">
+<div id="result_68872"></div>
+</fieldset>
+</form>
+<script>function validate_form_68872() {var x, text; var x = document.forms['form_68872']['answer_68872'].value;if (x == 'процентной ставкой'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_68872').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_23318" onclick="return show_hint_23318()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_23318" onclick="return show_hint_23318()"></div>
+<script>function show_hint_23318(){var x = document.getElementById('result_23318').innerHTML; if(!x){document.getElementById('result_23318').innerHTML = 'процентной ставкой';} else {document.getElementById('result_23318').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_12934" onsubmit="return validate_form_12934()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Пока люди будут пытаться продать принадлежащие им неденежные активы, реальная ____________ (<strong>процентный, ставка</strong>) будет продолжать расти.</h4></legend>
+<input type="text" placeholder name="answer_12934">
+<input type="submit" value="проверить">
+<div id="result_12934"></div>
+</fieldset>
+</form>
+<script>function validate_form_12934() {var x, text; var x = document.forms['form_12934']['answer_12934'].value;if (x == 'процентная ставка'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_12934').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_87306" onclick="return show_hint_87306()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_87306" onclick="return show_hint_87306()"></div>
+<script>function show_hint_87306(){var x = document.getElementById('result_87306').innerHTML; if(!x){document.getElementById('result_87306').innerHTML = 'процентная ставка';} else {document.getElementById('result_87306').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_23507" onsubmit="return validate_form_23507()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Денежные власти устанавливают номинальную ____________ (<strong>процентный, ставка</strong>) с помощью правила Тейлора.</h4></legend>
+<input type="text" placeholder name="answer_23507">
+<input type="submit" value="проверить">
+<div id="result_23507"></div>
+</fieldset>
+</form>
+<script>function validate_form_23507() {var x, text; var x = document.forms['form_23507']['answer_23507'].value;if (x == 'процентную ставку'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_23507').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_54943" onclick="return show_hint_54943()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_54943" onclick="return show_hint_54943()"></div>
+<script>function show_hint_54943(){var x = document.getElementById('result_54943').innerHTML; if(!x){document.getElementById('result_54943').innerHTML = 'процентную ставку';} else {document.getElementById('result_54943').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_55925" onsubmit="return validate_form_55925()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Как отреагирует население на повышение ____________ (<strong>процентный, ставка</strong>) по депозитам?</h4></legend>
+<input type="text" placeholder name="answer_55925">
+<input type="submit" value="проверить">
+<div id="result_55925"></div>
+</fieldset>
+</form>
+<script>function validate_form_55925() {var x, text; var x = document.forms['form_55925']['answer_55925'].value;if (x == 'процентных ставок'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_55925').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_54058" onclick="return show_hint_54058()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_54058" onclick="return show_hint_54058()"></div>
+<script>function show_hint_54058(){var x = document.getElementById('result_54058').innerHTML; if(!x){document.getElementById('result_54058').innerHTML = 'процентных ставок';} else {document.getElementById('result_54058').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_54858" onsubmit="return validate_form_54858()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Реальная процентная ставка, которую мы используем, – процентная ставка по ____________ (<strong>кредит</strong>), скорректированная на инфляцию, измеряемую дефлятором ВВП.</h4></legend>
+<input type="text" placeholder name="answer_54858">
+<input type="submit" value="проверить">
+<div id="result_54858"></div>
+</fieldset>
+</form>
+<script>function validate_form_54858() {var x, text; var x = document.forms['form_54858']['answer_54858'].value;if (x == 'кредитам'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_54858').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_59572" onclick="return show_hint_59572()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_59572" onclick="return show_hint_59572()"></div>
+<script>function show_hint_59572(){var x = document.getElementById('result_59572').innerHTML; if(!x){document.getElementById('result_59572').innerHTML = 'кредитам';} else {document.getElementById('result_59572').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_20736" onsubmit="return validate_form_20736()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Чем выше степень этого риска, тем выше ____________ (<strong>процентный, ставка</strong>), которую должен обещать заемщик своим инвесторам для того, чтобы они согласились приобрести его ценные бумаги.</h4></legend>
+<input type="text" placeholder name="answer_20736">
+<input type="submit" value="проверить">
+<div id="result_20736"></div>
+</fieldset>
+</form>
+<script>function validate_form_20736() {var x, text; var x = document.forms['form_20736']['answer_20736'].value;if (x == 'процентная ставка'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_20736').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_81505" onclick="return show_hint_81505()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_81505" onclick="return show_hint_81505()"></div>
+<script>function show_hint_81505(){var x = document.getElementById('result_81505').innerHTML; if(!x){document.getElementById('result_81505').innerHTML = 'процентная ставка';} else {document.getElementById('result_81505').innerHTML = '';}}</script>
 </div>
 </div>
 </div>

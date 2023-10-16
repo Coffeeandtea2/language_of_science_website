@@ -5851,7 +5851,9 @@ HTMLWidgets.widget({
               $input.parent().hide(); $x.show().trigger('show'); filter[0].selectize.focus();
             },
             input: function() {
-              if ($input.val() === '') filter[0].selectize.setValue([]);
+              var v1 = JSON.stringify(filter[0].selectize.getValue()), v2 = $input.val();
+              if (v1 === '[]') v1 = '';
+              if (v1 !== v2) filter[0].selectize.setValue(v2 === '' ? [] : JSON.parse(v2));
             }
           });
           var $input2 = $x.children('select');
@@ -6756,7 +6758,7 @@ HTMLWidgets.widget({
           console.log('The search keyword for column ' + i + ' is undefined')
           return;
         }
-        $(td).find('input').first().val(v);
+        $(td).find('input').first().val(v).trigger('input');
         searchColumn(i, v);
       });
       table.draw();
@@ -7537,8 +7539,8 @@ b&&(b.preventDefault(),b.stopPropagation())}else(l.isFocused||"single"===l.setti
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-b2e38c4eeaf16a1a596f" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-b2e38c4eeaf16a1a596f">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["неожиданный","ожидаемый","ожидать, что","ожидаться, что"],["• неожиданные изменения в<br>• неожиданные шоки","• ожидаемая продолжительность жизни<br>• ожидаемая продолжительность жизни населения<br>• ожидаемый уровень цен<br>• ожидаемая инфляция<br>• ожидаемый уровень инфляции<br>• ожидаемый темп инфляции<br>• ожидаемый темп роста<br>• ожидаемый в будущем<br>• ожидаемая ставка доходности<br>• ожидаемый доход от<br>• равен ожидаемому уровню<br>• ожидаемая доходность<br>• ожидаемая норма чистой прибыли<br>• ожидаемая реальная процентная ставка<br>• фактический и ожидаемый","• можно ожидать, что<br>• можем ожидать, что<br>• следует ожидать, что<br>• следовало ожидать, что","• ожидается, что"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-784e2cc57e7302e025ce" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-784e2cc57e7302e025ce">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["неожиданный","ожидаемый","ожидать, что","ожидаться, что"],["• неожиданные изменения в<br>• неожиданные шоки","• ожидаемая продолжительность жизни<br>• ожидаемая продолжительность жизни населения<br>• ожидаемый уровень цен<br>• ожидаемая инфляция<br>• ожидаемый уровень инфляции<br>• ожидаемый темп инфляции<br>• ожидаемый темп роста<br>• ожидаемый в будущем<br>• ожидаемая ставка доходности<br>• ожидаемый доход от<br>• равен ожидаемому уровню<br>• ожидаемая доходность<br>• ожидаемая норма чистой прибыли<br>• ожидаемая реальная процентная ставка<br>• фактический и ожидаемый","• можно ожидать, что<br>• можем ожидать, что<br>• следует ожидать, что<br>• следовало ожидать, что","• ожидается, что"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>

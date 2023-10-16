@@ -5851,7 +5851,9 @@ HTMLWidgets.widget({
               $input.parent().hide(); $x.show().trigger('show'); filter[0].selectize.focus();
             },
             input: function() {
-              if ($input.val() === '') filter[0].selectize.setValue([]);
+              var v1 = JSON.stringify(filter[0].selectize.getValue()), v2 = $input.val();
+              if (v1 === '[]') v1 = '';
+              if (v1 !== v2) filter[0].selectize.setValue(v2 === '' ? [] : JSON.parse(v2));
             }
           });
           var $input2 = $x.children('select');
@@ -6756,7 +6758,7 @@ HTMLWidgets.widget({
           console.log('The search keyword for column ' + i + ' is undefined')
           return;
         }
-        $(td).find('input').first().val(v);
+        $(td).find('input').first().val(v).trigger('input');
         searchColumn(i, v);
       });
       table.draw();
@@ -7680,13 +7682,1020 @@ b&&(b.preventDefault(),b.stopPropagation())}else(l.isFocused||"single"===l.setti
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c202eab892c3a8a7070f" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-c202eab892c3a8a7070f">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["(как?) использоваться","(как?) использоваться в","(как?) используется в","использован","использовать","использоваться","используемый","использующий"],["• наиболее часто используются","• широко используется в","• часто используется в<br>• активно используется в","• были использованы данные<br>• использован при разработке","• государство может использовать<br>• можно использовать для","• которые используются для<br>• использоваться для производства<br>• используются данные по<br>• используются в качестве<br>• используется для оценки","• показатели используемые для<br>• аббревиатуры, используемые только<br>• используемые факторы производства<br>• товары, используемые в<br>• ресурсы, используемые в<br>• используемый для оценки<br>• используемый для производства","• не использующих латиницу<br>• доля организаций использующих интернет"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-952bee0b252ffece8ac6" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-952bee0b252ffece8ac6">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["(как?) использоваться","(как?) использоваться в","(как?) используется в","использован","использовать","использоваться","используемый"],["• наиболее часто используются","• широко используется в","• часто используется в<br>• активно используется в","• были использованы данные<br>• использован при разработке","• государство может использовать<br>• можно использовать для","• которые используются для<br>• использоваться для производства<br>• используются данные по<br>• используются в качестве<br>• используется для оценки","• показатели используемые для<br>• используемые факторы производства<br>• товары, используемые в<br>• ресурсы, используемые в<br>• используемый для оценки<br>• используемый для производства"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_55948" onsubmit="return validate_form_55948()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Причинами расхождений помимо разных методов анализа данных могут выступать различные характеристики принадлежности, используемые для оценки ____________ (<strong>разнообразие</strong>): национальность, религия, страна происхождения, профессиональные задачи в процессе производства.</h4></legend>
+<input type="text" placeholder name="answer_55948">
+<input type="submit" value="проверить">
+<div id="result_55948"></div>
+</fieldset>
+</form>
+<script>function validate_form_55948() {var x, text; var x = document.forms['form_55948']['answer_55948'].value;if (x == 'разнообразия'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_55948').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_92551" onclick="return show_hint_92551()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_92551" onclick="return show_hint_92551()"></div>
+<script>function show_hint_92551(){var x = document.getElementById('result_92551').innerHTML; if(!x){document.getElementById('result_92551').innerHTML = 'разнообразия';} else {document.getElementById('result_92551').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_62211" onsubmit="return validate_form_62211()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Рассмотренная зависимость широко используется в ____________ (<strong>практика</strong>) ценообразования для финансовых активов.</h4></legend>
+<input type="text" placeholder name="answer_62211">
+<input type="submit" value="проверить">
+<div id="result_62211"></div>
+</fieldset>
+</form>
+<script>function validate_form_62211() {var x, text; var x = document.forms['form_62211']['answer_62211'].value;if (x == 'практике'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_62211').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_78097" onclick="return show_hint_78097()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_78097" onclick="return show_hint_78097()"></div>
+<script>function show_hint_78097(){var x = document.getElementById('result_78097').innerHTML; if(!x){document.getElementById('result_78097').innerHTML = 'практике';} else {document.getElementById('result_78097').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_24878" onsubmit="return validate_form_24878()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Хвойная древесина, в основном из России и Новой Зеландии, в большинстве случаев используется в качестве ____________ (<strong>строительный</strong>) материалов и, таким образом, почти полностью предназначается для внутреннего конечного использования.</h4></legend>
+<input type="text" placeholder name="answer_24878">
+<input type="submit" value="проверить">
+<div id="result_24878"></div>
+</fieldset>
+</form>
+<script>function validate_form_24878() {var x, text; var x = document.forms['form_24878']['answer_24878'].value;if (x == 'строительных'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_24878').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_10321" onclick="return show_hint_10321()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_10321" onclick="return show_hint_10321()"></div>
+<script>function show_hint_10321(){var x = document.getElementById('result_10321').innerHTML; if(!x){document.getElementById('result_10321').innerHTML = 'строительных';} else {document.getElementById('result_10321').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_51853" onsubmit="return validate_form_51853()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Данный показатель выбран в качестве целевого при мониторинге выполнения указов Президента РФ, он отслеживается Росстатом, используется для ____________ (<strong>оценка</strong>) результатов развития конкретных регионов.</h4></legend>
+<input type="text" placeholder name="answer_51853">
+<input type="submit" value="проверить">
+<div id="result_51853"></div>
+</fieldset>
+</form>
+<script>function validate_form_51853() {var x, text; var x = document.forms['form_51853']['answer_51853'].value;if (x == 'оценки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_51853').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_89672" onclick="return show_hint_89672()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_89672" onclick="return show_hint_89672()"></div>
+<script>function show_hint_89672(){var x = document.getElementById('result_89672').innerHTML; if(!x){document.getElementById('result_89672').innerHTML = 'оценки';} else {document.getElementById('result_89672').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_67162" onsubmit="return validate_form_67162()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Общественные экономические ресурсы используются для производства ____________ (<strong>продукция</strong>) монополии.</h4></legend>
+<input type="text" placeholder name="answer_67162">
+<input type="submit" value="проверить">
+<div id="result_67162"></div>
+</fieldset>
+</form>
+<script>function validate_form_67162() {var x, text; var x = document.forms['form_67162']['answer_67162'].value;if (x == 'продукции'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_67162').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_96686" onclick="return show_hint_96686()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_96686" onclick="return show_hint_96686()"></div>
+<script>function show_hint_96686(){var x = document.getElementById('result_96686').innerHTML; if(!x){document.getElementById('result_96686').innerHTML = 'продукции';} else {document.getElementById('result_96686').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_46471" onsubmit="return validate_form_46471()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Индекс деловой активности рассчитывается по результатам опроса менеджеров по закупкам и используется для оценки ____________ (<strong>изменение</strong>) экономической активности.</h4></legend>
+<input type="text" placeholder name="answer_46471">
+<input type="submit" value="проверить">
+<div id="result_46471"></div>
+</fieldset>
+</form>
+<script>function validate_form_46471() {var x, text; var x = document.forms['form_46471']['answer_46471'].value;if (x == 'изменения'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_46471').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_49259" onclick="return show_hint_49259()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_49259" onclick="return show_hint_49259()"></div>
+<script>function show_hint_49259(){var x = document.getElementById('result_49259').innerHTML; if(!x){document.getElementById('result_49259').innerHTML = 'изменения';} else {document.getElementById('result_49259').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_51181" onsubmit="return validate_form_51181()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Для увеличения объемов вложений и активизации инвестиционного процесса государство может использовать ____________ (<strong>политика</strong>) стимулирования инвестиций.</h4></legend>
+<input type="text" placeholder name="answer_51181">
+<input type="submit" value="проверить">
+<div id="result_51181"></div>
+</fieldset>
+</form>
+<script>function validate_form_51181() {var x, text; var x = document.forms['form_51181']['answer_51181'].value;if (x == 'политику'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_51181').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_33163" onclick="return show_hint_33163()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_33163" onclick="return show_hint_33163()"></div>
+<script>function show_hint_33163(){var x = document.getElementById('result_33163').innerHTML; if(!x){document.getElementById('result_33163').innerHTML = 'политику';} else {document.getElementById('result_33163').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_57353" onsubmit="return validate_form_57353()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Дополнительный выпуск денежных знаков помимо оплаты государственного долга используется в качестве ____________ (<strong>источник</strong>) доходов (сеньораж).</h4></legend>
+<input type="text" placeholder name="answer_57353">
+<input type="submit" value="проверить">
+<div id="result_57353"></div>
+</fieldset>
+</form>
+<script>function validate_form_57353() {var x, text; var x = document.forms['form_57353']['answer_57353'].value;if (x == 'источника'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_57353').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_82874" onclick="return show_hint_82874()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_82874" onclick="return show_hint_82874()"></div>
+<script>function show_hint_82874(){var x = document.getElementById('result_82874').innerHTML; if(!x){document.getElementById('result_82874').innerHTML = 'источника';} else {document.getElementById('result_82874').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_50577" onsubmit="return validate_form_50577()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Практические результаты работы могут быть использованы в качестве ____________ (<strong>вводный</strong>) данных для построения системы дифференцированного регулирования банковской системы, нацеленной на сохранение и укрепление позиций региональных банков.</h4></legend>
+<input type="text" placeholder name="answer_50577">
+<input type="submit" value="проверить">
+<div id="result_50577"></div>
+</fieldset>
+</form>
+<script>function validate_form_50577() {var x, text; var x = document.forms['form_50577']['answer_50577'].value;if (x == 'вводных'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_50577').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_98016" onclick="return show_hint_98016()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_98016" onclick="return show_hint_98016()"></div>
+<script>function show_hint_98016(){var x = document.getElementById('result_98016').innerHTML; if(!x){document.getElementById('result_98016').innerHTML = 'вводных';} else {document.getElementById('result_98016').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_70884" onsubmit="return validate_form_70884()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Приведенные примеры отражают нечастые случаи противоречия данных реальности, и ВВП можно использовать в качестве ____________ (<strong>показатель</strong>) общественно-экономического развития, но всегда помнить о большой степени неточности.</h4></legend>
+<input type="text" placeholder name="answer_70884">
+<input type="submit" value="проверить">
+<div id="result_70884"></div>
+</fieldset>
+</form>
+<script>function validate_form_70884() {var x, text; var x = document.forms['form_70884']['answer_70884'].value;if (x == 'показателя'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_70884').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_23936" onclick="return show_hint_23936()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_23936" onclick="return show_hint_23936()"></div>
+<script>function show_hint_23936(){var x = document.getElementById('result_23936').innerHTML; if(!x){document.getElementById('result_23936').innerHTML = 'показателя';} else {document.getElementById('result_23936').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_16062" onsubmit="return validate_form_16062()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Разработаны методология и модельный аппарат построения долгосрочных программ развития проблемных регионов ресурсного типа, методы оценки интегрального эффекта их реализации в рыночных условиях хозяйствования, которые были использованы при ____________ (<strong>разработка</strong>) программ ряда регионов.</h4></legend>
+<input type="text" placeholder name="answer_16062">
+<input type="submit" value="проверить">
+<div id="result_16062"></div>
+</fieldset>
+</form>
+<script>function validate_form_16062() {var x, text; var x = document.forms['form_16062']['answer_16062'].value;if (x == 'разработке'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_16062').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_85225" onclick="return show_hint_85225()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_85225" onclick="return show_hint_85225()"></div>
+<script>function show_hint_85225(){var x = document.getElementById('result_85225').innerHTML; if(!x){document.getElementById('result_85225').innerHTML = 'разработке';} else {document.getElementById('result_85225').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_97218" onsubmit="return validate_form_97218()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">На основе анализа источников был сформирован набор показателей, которые разные авторы предлагают использовать для оценки ____________ (<strong>обслуживание</strong>) клиентов.</h4></legend>
+<input type="text" placeholder name="answer_97218">
+<input type="submit" value="проверить">
+<div id="result_97218"></div>
+</fieldset>
+</form>
+<script>function validate_form_97218() {var x, text; var x = document.forms['form_97218']['answer_97218'].value;if (x == 'обслуживания'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_97218').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_53003" onclick="return show_hint_53003()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_53003" onclick="return show_hint_53003()"></div>
+<script>function show_hint_53003(){var x = document.getElementById('result_53003').innerHTML; if(!x){document.getElementById('result_53003').innerHTML = 'обслуживания';} else {document.getElementById('result_53003').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_69088" onsubmit="return validate_form_69088()" method="post">
+<fieldset>
+<legend><h4 id="capital" class="anchored">Капитал (capital) — ресурсы длительного пользования, используемые для производства ____________ (<strong>экономический</strong>) благ.</h4></legend>
+<input type="text" placeholder name="answer_69088">
+<input type="submit" value="проверить">
+<div id="result_69088"></div>
+</fieldset>
+</form>
+<script>function validate_form_69088() {var x, text; var x = document.forms['form_69088']['answer_69088'].value;if (x == 'экономических'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_69088').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_45840" onclick="return show_hint_45840()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_45840" onclick="return show_hint_45840()"></div>
+<script>function show_hint_45840(){var x = document.getElementById('result_45840').innerHTML; if(!x){document.getElementById('result_45840').innerHTML = 'экономических';} else {document.getElementById('result_45840').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_70239" onsubmit="return validate_form_70239()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Термин «нарратив» часто используется в ____________ (<strong>качество</strong>) «истории», какой-то последовательности событий.</h4></legend>
+<input type="text" placeholder name="answer_70239">
+<input type="submit" value="проверить">
+<div id="result_70239"></div>
+</fieldset>
+</form>
+<script>function validate_form_70239() {var x, text; var x = document.forms['form_70239']['answer_70239'].value;if (x == 'качестве'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_70239').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_25002" onclick="return show_hint_25002()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_25002" onclick="return show_hint_25002()"></div>
+<script>function show_hint_25002(){var x = document.getElementById('result_25002').innerHTML; if(!x){document.getElementById('result_25002').innerHTML = 'качестве';} else {document.getElementById('result_25002').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_71243" onsubmit="return validate_form_71243()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Уровень принятия решения, на котором целесообразно использование показателя: в соответствии с уровнями иерархии управления деятельностью компании показатели могут использоваться для оценки ____________ (<strong>деятельность</strong>) на стратегическом, тактическом и операционном уровне.</h4></legend>
+<input type="text" placeholder name="answer_71243">
+<input type="submit" value="проверить">
+<div id="result_71243"></div>
+</fieldset>
+</form>
+<script>function validate_form_71243() {var x, text; var x = document.forms['form_71243']['answer_71243'].value;if (x == 'деятельности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_71243').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_46376" onclick="return show_hint_46376()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_46376" onclick="return show_hint_46376()"></div>
+<script>function show_hint_46376(){var x = document.getElementById('result_46376').innerHTML; if(!x){document.getElementById('result_46376').innerHTML = 'деятельности';} else {document.getElementById('result_46376').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_55907" onsubmit="return validate_form_55907()" method="post">
+<fieldset>
+<legend><h4 id="618-6-2014-20-2017" class="anchored">Данные ряды, используемые для ____________ (<strong>оценка</strong>) моделей, включают 618 наблюдений (рабочих дней) с 6 ноября 2014 г. по 20 апреля 2017 г.</h4></legend>
+<input type="text" placeholder name="answer_55907">
+<input type="submit" value="проверить">
+<div id="result_55907"></div>
+</fieldset>
+</form>
+<script>function validate_form_55907() {var x, text; var x = document.forms['form_55907']['answer_55907'].value;if (x == 'оценки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_55907').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_66308" onclick="return show_hint_66308()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_66308" onclick="return show_hint_66308()"></div>
+<script>function show_hint_66308(){var x = document.getElementById('result_66308').innerHTML; if(!x){document.getElementById('result_66308').innerHTML = 'оценки';} else {document.getElementById('result_66308').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_38895" onsubmit="return validate_form_38895()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">В работе используются данные по ____________ (<strong>страна</strong>), а основное внимание уделяется странам с формирующимися рынками.</h4></legend>
+<input type="text" placeholder name="answer_38895">
+<input type="submit" value="проверить">
+<div id="result_38895"></div>
+</fieldset>
+</form>
+<script>function validate_form_38895() {var x, text; var x = document.forms['form_38895']['answer_38895'].value;if (x == 'странам'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_38895').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_63927" onclick="return show_hint_63927()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_63927" onclick="return show_hint_63927()"></div>
+<script>function show_hint_63927(){var x = document.getElementById('result_63927').innerHTML; if(!x){document.getElementById('result_63927').innerHTML = 'странам';} else {document.getElementById('result_63927').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_80491" onsubmit="return validate_form_80491()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Ромер доказывала, что методы, используемые для ____________ (<strong>оценка</strong>) исторических данных, обычно преувеличивали величину более ранних циклических колебаний.</h4></legend>
+<input type="text" placeholder name="answer_80491">
+<input type="submit" value="проверить">
+<div id="result_80491"></div>
+</fieldset>
+</form>
+<script>function validate_form_80491() {var x, text; var x = document.forms['form_80491']['answer_80491'].value;if (x == 'оценки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_80491').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_57352" onclick="return show_hint_57352()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_57352" onclick="return show_hint_57352()"></div>
+<script>function show_hint_57352(){var x = document.getElementById('result_57352').innerHTML; if(!x){document.getElementById('result_57352').innerHTML = 'оценки';} else {document.getElementById('result_57352').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_31981" onsubmit="return validate_form_31981()" method="post">
+<fieldset>
+<legend><h4 id="xia-and-wu-2016" class="anchored">Согласно Xia and Wu (2016), теневая ставка может использоваться для оценки ____________ (<strong>эффективность</strong>) ДКП, когда наблюдаемая ставка приближается к нулевой отметке.</h4></legend>
+<input type="text" placeholder name="answer_31981">
+<input type="submit" value="проверить">
+<div id="result_31981"></div>
+</fieldset>
+</form>
+<script>function validate_form_31981() {var x, text; var x = document.forms['form_31981']['answer_31981'].value;if (x == 'эффективности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_31981').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_70622" onclick="return show_hint_70622()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_70622" onclick="return show_hint_70622()"></div>
+<script>function show_hint_70622(){var x = document.getElementById('result_70622').innerHTML; if(!x){document.getElementById('result_70622').innerHTML = 'эффективности';} else {document.getElementById('result_70622').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_1178" onsubmit="return validate_form_1178()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Полученные наборы данных используются для оценки ____________ (<strong>модель</strong>) логистической регрессии.</h4></legend>
+<input type="text" placeholder name="answer_1178">
+<input type="submit" value="проверить">
+<div id="result_1178"></div>
+</fieldset>
+</form>
+<script>function validate_form_1178() {var x, text; var x = document.forms['form_1178']['answer_1178'].value;if (x == 'модели'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_1178').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_1454" onclick="return show_hint_1454()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_1454" onclick="return show_hint_1454()"></div>
+<script>function show_hint_1454(){var x = document.getElementById('result_1454').innerHTML; if(!x){document.getElementById('result_1454').innerHTML = 'модели';} else {document.getElementById('result_1454').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_77761" onsubmit="return validate_form_77761()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Факторов, которые используются для ____________ (<strong>производство</strong>) продукта, очень много.</h4></legend>
+<input type="text" placeholder name="answer_77761">
+<input type="submit" value="проверить">
+<div id="result_77761"></div>
+</fieldset>
+</form>
+<script>function validate_form_77761() {var x, text; var x = document.forms['form_77761']['answer_77761'].value;if (x == 'производства'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_77761').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_25456" onclick="return show_hint_25456()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_25456" onclick="return show_hint_25456()"></div>
+<script>function show_hint_25456(){var x = document.getElementById('result_25456').innerHTML; if(!x){document.getElementById('result_25456').innerHTML = 'производства';} else {document.getElementById('result_25456').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_4115" onsubmit="return validate_form_4115()" method="post">
+<fieldset>
+<legend><h4 id="2008" class="anchored">Во Франции в 2008 г. была создана Комиссия по измерению эффективности экономики и социального прогресса, по итогам работы которой было предложено использовать для оценки ____________ ____________ (<strong>развитие, страна</strong>) такие параметры, как счастье и доступность услуг здравоохранения.</h4></legend>
+<input type="text" placeholder name="answer_4115">
+<input type="submit" value="проверить">
+<div id="result_4115"></div>
+</fieldset>
+</form>
+<script>function validate_form_4115() {var x, text; var x = document.forms['form_4115']['answer_4115'].value;if (x == 'развития страны'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_4115').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_61332" onclick="return show_hint_61332()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_61332" onclick="return show_hint_61332()"></div>
+<script>function show_hint_61332(){var x = document.getElementById('result_61332').innerHTML; if(!x){document.getElementById('result_61332').innerHTML = 'развития страны';} else {document.getElementById('result_61332').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_85776" onsubmit="return validate_form_85776()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Полученные на основе досчета характеристики используются для оценки ____________ (<strong>корпоративный</strong>), региональной и социальной эффективности проектов.</h4></legend>
+<input type="text" placeholder name="answer_85776">
+<input type="submit" value="проверить">
+<div id="result_85776"></div>
+</fieldset>
+</form>
+<script>function validate_form_85776() {var x, text; var x = document.forms['form_85776']['answer_85776'].value;if (x == 'корпоративной'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_85776').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_5614" onclick="return show_hint_5614()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_5614" onclick="return show_hint_5614()"></div>
+<script>function show_hint_5614(){var x = document.getElementById('result_5614').innerHTML; if(!x){document.getElementById('result_5614').innerHTML = 'корпоративной';} else {document.getElementById('result_5614').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_26056" onsubmit="return validate_form_26056()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Сравнительная статистика широко используется в микро- и в макроэкономическом ____________ (<strong>анализ</strong>).</h4></legend>
+<input type="text" placeholder name="answer_26056">
+<input type="submit" value="проверить">
+<div id="result_26056"></div>
+</fieldset>
+</form>
+<script>function validate_form_26056() {var x, text; var x = document.forms['form_26056']['answer_26056'].value;if (x == 'анализе'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_26056').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_4050" onclick="return show_hint_4050()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_4050" onclick="return show_hint_4050()"></div>
+<script>function show_hint_4050(){var x = document.getElementById('result_4050').innerHTML; if(!x){document.getElementById('result_4050').innerHTML = 'анализе';} else {document.getElementById('result_4050').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_45835" onsubmit="return validate_form_45835()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Функция производственная — зависимость между количеством используемых факторов ____________ (<strong>производство</strong>) и максимально возможным выпуском продукции.</h4></legend>
+<input type="text" placeholder name="answer_45835">
+<input type="submit" value="проверить">
+<div id="result_45835"></div>
+</fieldset>
+</form>
+<script>function validate_form_45835() {var x, text; var x = document.forms['form_45835']['answer_45835'].value;if (x == 'производства'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_45835').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_91190" onclick="return show_hint_91190()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_91190" onclick="return show_hint_91190()"></div>
+<script>function show_hint_91190(){var x = document.getElementById('result_91190').innerHTML; if(!x){document.getElementById('result_91190').innerHTML = 'производства';} else {document.getElementById('result_91190').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_18659" onsubmit="return validate_form_18659()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">С помощью технологии обработки открытых вопросов анкет можно разрабатывать типологии, которые используются для ____________ (<strong>анализ</strong>) структур пространственного развития туристского кластера.</h4></legend>
+<input type="text" placeholder name="answer_18659">
+<input type="submit" value="проверить">
+<div id="result_18659"></div>
+</fieldset>
+</form>
+<script>function validate_form_18659() {var x, text; var x = document.forms['form_18659']['answer_18659'].value;if (x == 'анализа'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_18659').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_10427" onclick="return show_hint_10427()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_10427" onclick="return show_hint_10427()"></div>
+<script>function show_hint_10427(){var x = document.getElementById('result_10427').innerHTML; if(!x){document.getElementById('result_10427').innerHTML = 'анализа';} else {document.getElementById('result_10427').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_70308" onsubmit="return validate_form_70308()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Для анализа динамики производительности и заработной платы использованы данные по ____________ (<strong>выработка</strong>) ВДС на одного занятого, скорректированные на величину ФНТУ.</h4></legend>
+<input type="text" placeholder name="answer_70308">
+<input type="submit" value="проверить">
+<div id="result_70308"></div>
+</fieldset>
+</form>
+<script>function validate_form_70308() {var x, text; var x = document.forms['form_70308']['answer_70308'].value;if (x == 'выработке'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_70308').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_65672" onclick="return show_hint_65672()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_65672" onclick="return show_hint_65672()"></div>
+<script>function show_hint_65672(){var x = document.getElementById('result_65672').innerHTML; if(!x){document.getElementById('result_65672').innerHTML = 'выработке';} else {document.getElementById('result_65672').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_11326" onsubmit="return validate_form_11326()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Наличные деньги также широко используются в ____________ ____________ (<strong>теневой, экономика</strong>), как для осуществления нелегальных операций, так и для укрывания легальных операций от налогообложения.</h4></legend>
+<input type="text" placeholder name="answer_11326">
+<input type="submit" value="проверить">
+<div id="result_11326"></div>
+</fieldset>
+</form>
+<script>function validate_form_11326() {var x, text; var x = document.forms['form_11326']['answer_11326'].value;if (x == 'теневой экономике'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_11326').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_14020" onclick="return show_hint_14020()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_14020" onclick="return show_hint_14020()"></div>
+<script>function show_hint_14020(){var x = document.getElementById('result_14020').innerHTML; if(!x){document.getElementById('result_14020').innerHTML = 'теневой экономике';} else {document.getElementById('result_14020').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_3105" onsubmit="return validate_form_3105()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Мы не только продемонстрируем, как анализ спроса и предложения можно использовать для ____________ (<strong>понимание</strong>) и оценки подобной политики, но и посмотрим, как отклонения от конкурентного рыночного равновесия ведут к эффективности издержек.</h4></legend>
+<input type="text" placeholder name="answer_3105">
+<input type="submit" value="проверить">
+<div id="result_3105"></div>
+</fieldset>
+</form>
+<script>function validate_form_3105() {var x, text; var x = document.forms['form_3105']['answer_3105'].value;if (x == 'понимания'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_3105').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_91042" onclick="return show_hint_91042()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_91042" onclick="return show_hint_91042()"></div>
+<script>function show_hint_91042(){var x = document.getElementById('result_91042').innerHTML; if(!x){document.getElementById('result_91042').innerHTML = 'понимания';} else {document.getElementById('result_91042').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_66275" onsubmit="return validate_form_66275()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Отмечалось, что государство может использовать ____________ (<strong>продажа</strong>) своих облигаций для финансирования дефицита госбюджета.</h4></legend>
+<input type="text" placeholder name="answer_66275">
+<input type="submit" value="проверить">
+<div id="result_66275"></div>
+</fieldset>
+</form>
+<script>function validate_form_66275() {var x, text; var x = document.forms['form_66275']['answer_66275'].value;if (x == 'продажу'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_66275').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_84855" onclick="return show_hint_84855()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_84855" onclick="return show_hint_84855()"></div>
+<script>function show_hint_84855(){var x = document.getElementById('result_84855').innerHTML; if(!x){document.getElementById('result_84855').innerHTML = 'продажу';} else {document.getElementById('result_84855').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_11162" onsubmit="return validate_form_11162()" method="post">
+<fieldset>
+<legend><h4 id="1991-2005" class="anchored">Для оценивания параметров этого уравнения использованы данные по ____________ (<strong>восемь</strong>) дальневосточным субъектам Российской Федерации в разрезе основных отраслей за период 1991-2005 гг.</h4></legend>
+<input type="text" placeholder name="answer_11162">
+<input type="submit" value="проверить">
+<div id="result_11162"></div>
+</fieldset>
+</form>
+<script>function validate_form_11162() {var x, text; var x = document.forms['form_11162']['answer_11162'].value;if (x == 'восьми'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_11162').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_1973" onclick="return show_hint_1973()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_1973" onclick="return show_hint_1973()"></div>
+<script>function show_hint_1973(){var x = document.getElementById('result_1973').innerHTML; if(!x){document.getElementById('result_1973').innerHTML = 'восьми';} else {document.getElementById('result_1973').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_67455" onsubmit="return validate_form_67455()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Источник привлечения средств отражает эффективность использования финансовых ____________ (<strong>ресурс</strong>).</h4></legend>
+<input type="text" placeholder name="answer_67455">
+<input type="submit" value="проверить">
+<div id="result_67455"></div>
+</fieldset>
+</form>
+<script>function validate_form_67455() {var x, text; var x = document.forms['form_67455']['answer_67455'].value;if (x == 'ресурсов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_67455').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_67558" onclick="return show_hint_67558()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_67558" onclick="return show_hint_67558()"></div>
+<script>function show_hint_67558(){var x = document.getElementById('result_67558').innerHTML; if(!x){document.getElementById('result_67558').innerHTML = 'ресурсов';} else {document.getElementById('result_67558').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_35498" onsubmit="return validate_form_35498()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Деньги включают в себя активы, которые могут быть использованы в качестве ____________ (<strong>средство</strong>) платежа, такие как наличность и остатки на текущих счетах.</h4></legend>
+<input type="text" placeholder name="answer_35498">
+<input type="submit" value="проверить">
+<div id="result_35498"></div>
+</fieldset>
+</form>
+<script>function validate_form_35498() {var x, text; var x = document.forms['form_35498']['answer_35498'].value;if (x == 'средства'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_35498').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_66575" onclick="return show_hint_66575()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_66575" onclick="return show_hint_66575()"></div>
+<script>function show_hint_66575(){var x = document.getElementById('result_66575').innerHTML; if(!x){document.getElementById('result_66575').innerHTML = 'средства';} else {document.getElementById('result_66575').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_12428" onsubmit="return validate_form_12428()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Учитывалось, что показатели, используемые для ____________ (<strong>оценка</strong>) МВР, должны быть представлены в государственной статистике и ведомственной отчетности.</h4></legend>
+<input type="text" placeholder name="answer_12428">
+<input type="submit" value="проверить">
+<div id="result_12428"></div>
+</fieldset>
+</form>
+<script>function validate_form_12428() {var x, text; var x = document.forms['form_12428']['answer_12428'].value;if (x == 'оценки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_12428').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_38519" onclick="return show_hint_38519()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_38519" onclick="return show_hint_38519()"></div>
+<script>function show_hint_38519(){var x = document.getElementById('result_38519').innerHTML; if(!x){document.getElementById('result_38519').innerHTML = 'оценки';} else {document.getElementById('result_38519').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_65538" onsubmit="return validate_form_65538()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Способ использует в качестве ____________ (<strong>объяснять</strong>) переменной при проведении темпорального дезагрегирования близкую по смыслу и значениям альтернативную переменную с наблюдаемыми как низко, так и высокочастотными данными.</h4></legend>
+<input type="text" placeholder name="answer_65538">
+<input type="submit" value="проверить">
+<div id="result_65538"></div>
+</fieldset>
+</form>
+<script>function validate_form_65538() {var x, text; var x = document.forms['form_65538']['answer_65538'].value;if (x == 'объясняемой'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_65538').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_25975" onclick="return show_hint_25975()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_25975" onclick="return show_hint_25975()"></div>
+<script>function show_hint_25975(){var x = document.getElementById('result_25975').innerHTML; if(!x){document.getElementById('result_25975').innerHTML = 'объясняемой';} else {document.getElementById('result_25975').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_33048" onsubmit="return validate_form_33048()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">На российском рынке наиболее часто используются ____________ ____________ (<strong>административный, мера</strong>) и антимонопольное законодательство.</h4></legend>
+<input type="text" placeholder name="answer_33048">
+<input type="submit" value="проверить">
+<div id="result_33048"></div>
+</fieldset>
+</form>
+<script>function validate_form_33048() {var x, text; var x = document.forms['form_33048']['answer_33048'].value;if (x == 'административные меры'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_33048').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_1657" onclick="return show_hint_1657()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_1657" onclick="return show_hint_1657()"></div>
+<script>function show_hint_1657(){var x = document.getElementById('result_1657').innerHTML; if(!x){document.getElementById('result_1657').innerHTML = 'административные меры';} else {document.getElementById('result_1657').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_83126" onsubmit="return validate_form_83126()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Совокупному выпуску соответствует доход, получаемый владельцами факторов производства - труда, капитала и земли, которые используются для ____________ (<strong>производство</strong>) выпуска.</h4></legend>
+<input type="text" placeholder name="answer_83126">
+<input type="submit" value="проверить">
+<div id="result_83126"></div>
+</fieldset>
+</form>
+<script>function validate_form_83126() {var x, text; var x = document.forms['form_83126']['answer_83126'].value;if (x == 'производства'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_83126').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_41485" onclick="return show_hint_41485()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_41485" onclick="return show_hint_41485()"></div>
+<script>function show_hint_41485(){var x = document.getElementById('result_41485').innerHTML; if(!x){document.getElementById('result_41485').innerHTML = 'производства';} else {document.getElementById('result_41485').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_20003" onsubmit="return validate_form_20003()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Поскольку значение реального ВВП не подвержено влиянию ценовых колебаний, его можно использовать для ____________ (<strong>измерение</strong>) роста производства.</h4></legend>
+<input type="text" placeholder name="answer_20003">
+<input type="submit" value="проверить">
+<div id="result_20003"></div>
+</fieldset>
+</form>
+<script>function validate_form_20003() {var x, text; var x = document.forms['form_20003']['answer_20003'].value;if (x == 'измерения'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_20003').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_11582" onclick="return show_hint_11582()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_11582" onclick="return show_hint_11582()"></div>
+<script>function show_hint_11582(){var x = document.getElementById('result_11582').innerHTML; if(!x){document.getElementById('result_11582').innerHTML = 'измерения';} else {document.getElementById('result_11582').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_69630" onsubmit="return validate_form_69630()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Кратное выручки часто используется для оценки ____________ (<strong>торговый</strong>) и консалтинговых компаний.</h4></legend>
+<input type="text" placeholder name="answer_69630">
+<input type="submit" value="проверить">
+<div id="result_69630"></div>
+</fieldset>
+</form>
+<script>function validate_form_69630() {var x, text; var x = document.forms['form_69630']['answer_69630'].value;if (x == 'торговых'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_69630').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_31714" onclick="return show_hint_31714()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_31714" onclick="return show_hint_31714()"></div>
+<script>function show_hint_31714(){var x = document.getElementById('result_31714').innerHTML; if(!x){document.getElementById('result_31714').innerHTML = 'торговых';} else {document.getElementById('result_31714').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_19841" onsubmit="return validate_form_19841()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Промежуточный продукт в каждый период производится монополистом, который использует в качестве ____________ (<strong>ресурс</strong>) единицу конечного выпуска на единицу промежуточного.</h4></legend>
+<input type="text" placeholder name="answer_19841">
+<input type="submit" value="проверить">
+<div id="result_19841"></div>
+</fieldset>
+</form>
+<script>function validate_form_19841() {var x, text; var x = document.forms['form_19841']['answer_19841'].value;if (x == 'ресурса'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_19841').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_49383" onclick="return show_hint_49383()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_49383" onclick="return show_hint_49383()"></div>
+<script>function show_hint_49383(){var x = document.getElementById('result_49383').innerHTML; if(!x){document.getElementById('result_49383').innerHTML = 'ресурса';} else {document.getElementById('result_49383').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_46671" onsubmit="return validate_form_46671()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Предложенное Шеллингом решение сводится к попытке устранить проблему, используя в качестве ____________ (<strong>альтернатива</strong>) приемлемый материальный стимул.</h4></legend>
+<input type="text" placeholder name="answer_46671">
+<input type="submit" value="проверить">
+<div id="result_46671"></div>
+</fieldset>
+</form>
+<script>function validate_form_46671() {var x, text; var x = document.forms['form_46671']['answer_46671'].value;if (x == 'альтернативы'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_46671').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_73884" onclick="return show_hint_73884()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_73884" onclick="return show_hint_73884()"></div>
+<script>function show_hint_73884(){var x = document.getElementById('result_73884').innerHTML; if(!x){document.getElementById('result_73884').innerHTML = 'альтернативы';} else {document.getElementById('result_73884').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_15121" onsubmit="return validate_form_15121()" method="post">
+<fieldset>
+<legend><h4 id="var" class="anchored">Решить проблему сверхпараметризации в VAR-моделях можно было несколькими способами, которые наиболее часто используются ____________ ____________ (<strong>в, литература</strong>).</h4></legend>
+<input type="text" placeholder name="answer_15121">
+<input type="submit" value="проверить">
+<div id="result_15121"></div>
+</fieldset>
+</form>
+<script>function validate_form_15121() {var x, text; var x = document.forms['form_15121']['answer_15121'].value;if (x == 'в литературе'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_15121').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_33800" onclick="return show_hint_33800()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_33800" onclick="return show_hint_33800()"></div>
+<script>function show_hint_33800(){var x = document.getElementById('result_33800').innerHTML; if(!x){document.getElementById('result_33800').innerHTML = 'в литературе';} else {document.getElementById('result_33800').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_26276" onsubmit="return validate_form_26276()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">В данной статье понятия «счастье», «субъективные оценки благосостояния» и «удовлетворенность жизнью» используются в качестве ____________ (<strong>синоним</strong>).</h4></legend>
+<input type="text" placeholder name="answer_26276">
+<input type="submit" value="проверить">
+<div id="result_26276"></div>
+</fieldset>
+</form>
+<script>function validate_form_26276() {var x, text; var x = document.forms['form_26276']['answer_26276'].value;if (x == 'синонимов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_26276').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_59710" onclick="return show_hint_59710()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_59710" onclick="return show_hint_59710()"></div>
+<script>function show_hint_59710(){var x = document.getElementById('result_59710').innerHTML; if(!x){document.getElementById('result_59710').innerHTML = 'синонимов';} else {document.getElementById('result_59710').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_28990" onsubmit="return validate_form_28990()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Для обозначения деятельности вне работы (такой, как прием пищи, сон, работа в саду, проведение времени с семьей и друзьями) экономисты используют термин ____________ (<strong>досуг</strong>).</h4></legend>
+<input type="text" placeholder name="answer_28990">
+<input type="submit" value="проверить">
+<div id="result_28990"></div>
+</fieldset>
+</form>
+<script>function validate_form_28990() {var x, text; var x = document.forms['form_28990']['answer_28990'].value;if (x == 'досуг'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_28990').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_10147" onclick="return show_hint_10147()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_10147" onclick="return show_hint_10147()"></div>
+<script>function show_hint_10147(){var x = document.getElementById('result_10147').innerHTML; if(!x){document.getElementById('result_10147').innerHTML = 'досуг';} else {document.getElementById('result_10147').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_27257" onsubmit="return validate_form_27257()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Рассмотрим показатели, которые часто используются для ____________ (<strong>оценка</strong>) и сопоставления портфелей инвестиционных (финансовых) активов.</h4></legend>
+<input type="text" placeholder name="answer_27257">
+<input type="submit" value="проверить">
+<div id="result_27257"></div>
+</fieldset>
+</form>
+<script>function validate_form_27257() {var x, text; var x = document.forms['form_27257']['answer_27257'].value;if (x == 'оценки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_27257').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_67310" onclick="return show_hint_67310()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_67310" onclick="return show_hint_67310()"></div>
+<script>function show_hint_67310(){var x = document.getElementById('result_67310').innerHTML; if(!x){document.getElementById('result_67310').innerHTML = 'оценки';} else {document.getElementById('result_67310').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_34002" onsubmit="return validate_form_34002()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Даже самые крупные и наиболее ликвидные выпуски не настолько ликвидны, чтобы использоваться в качестве ____________ (<strong>бенчмарка</strong>).</h4></legend>
+<input type="text" placeholder name="answer_34002">
+<input type="submit" value="проверить">
+<div id="result_34002"></div>
+</fieldset>
+</form>
+<script>function validate_form_34002() {var x, text; var x = document.forms['form_34002']['answer_34002'].value;if (x == 'бенчмарка'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_34002').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_433" onclick="return show_hint_433()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_433" onclick="return show_hint_433()"></div>
+<script>function show_hint_433(){var x = document.getElementById('result_433').innerHTML; if(!x){document.getElementById('result_433').innerHTML = 'бенчмарка';} else {document.getElementById('result_433').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_6815" onsubmit="return validate_form_6815()" method="post">
+<fieldset>
+<legend><h4 id="1975" class="anchored">Тулдава (1975) предлагает свою формулу удобочитаемости и высказывает идею использовать для оценки ____________ ____________ (<strong>трудность, текст</strong>) дополнительный предиктор – количество многозначных слов.</h4></legend>
+<input type="text" placeholder name="answer_6815">
+<input type="submit" value="проверить">
+<div id="result_6815"></div>
+</fieldset>
+</form>
+<script>function validate_form_6815() {var x, text; var x = document.forms['form_6815']['answer_6815'].value;if (x == 'трудности текста'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_6815').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_95130" onclick="return show_hint_95130()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_95130" onclick="return show_hint_95130()"></div>
+<script>function show_hint_95130(){var x = document.getElementById('result_95130').innerHTML; if(!x){document.getElementById('result_95130').innerHTML = 'трудности текста';} else {document.getElementById('result_95130').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_45465" onsubmit="return validate_form_45465()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Показатели налоговой квоты, чистой прибыли, налогового бремени могут использоваться для оценки ____________ (<strong>оптимальность</strong>) выбора систем налогообложения.</h4></legend>
+<input type="text" placeholder name="answer_45465">
+<input type="submit" value="проверить">
+<div id="result_45465"></div>
+</fieldset>
+</form>
+<script>function validate_form_45465() {var x, text; var x = document.forms['form_45465']['answer_45465'].value;if (x == 'оптимальности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_45465').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_96441" onclick="return show_hint_96441()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_96441" onclick="return show_hint_96441()"></div>
+<script>function show_hint_96441(){var x = document.getElementById('result_96441').innerHTML; if(!x){document.getElementById('result_96441').innerHTML = 'оптимальности';} else {document.getElementById('result_96441').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_42875" onsubmit="return validate_form_42875()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Под физическим капиталом, или просто капиталом, мы понимаем оборудование, здания и сооружения, используемые для производства ____________ (<strong>капитал</strong>) — товаров и услуг.</h4></legend>
+<input type="text" placeholder name="answer_42875">
+<input type="submit" value="проверить">
+<div id="result_42875"></div>
+</fieldset>
+</form>
+<script>function validate_form_42875() {var x, text; var x = document.forms['form_42875']['answer_42875'].value;if (x == 'капитала'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_42875').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_90827" onclick="return show_hint_90827()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_90827" onclick="return show_hint_90827()"></div>
+<script>function show_hint_90827(){var x = document.getElementById('result_90827').innerHTML; if(!x){document.getElementById('result_90827').innerHTML = 'капитала';} else {document.getElementById('result_90827').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_38452" onsubmit="return validate_form_38452()" method="post">
+<fieldset>
+<legend><h4 id="1-2-3" class="anchored">Среди предпосылок теоремы Столпера-Самуэльсона значатся: 1) торговля является свободной — государства воздерживаются от установления тарифов и других торговых ограничений; 2) ни один из товаров не используется для производства ____________ (<strong>другой</strong>); 3) количество (предложение) факторов не может быть изменено.</h4></legend>
+<input type="text" placeholder name="answer_38452">
+<input type="submit" value="проверить">
+<div id="result_38452"></div>
+</fieldset>
+</form>
+<script>function validate_form_38452() {var x, text; var x = document.forms['form_38452']['answer_38452'].value;if (x == 'другого'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_38452').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_11420" onclick="return show_hint_11420()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_11420" onclick="return show_hint_11420()"></div>
+<script>function show_hint_11420(){var x = document.getElementById('result_11420').innerHTML; if(!x){document.getElementById('result_11420').innerHTML = 'другого';} else {document.getElementById('result_11420').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_21882" onsubmit="return validate_form_21882()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Материалы диссертации использованы при разработке ____________ (<strong>бакалаврский</strong>) курсов экономического факультета МГУ имени М.В. Ломоносова «Модели экономического роста» и «Методы оптимальных решений» и в настоящее время применяются в их преподавании.</h4></legend>
+<input type="text" placeholder name="answer_21882">
+<input type="submit" value="проверить">
+<div id="result_21882"></div>
+</fieldset>
+</form>
+<script>function validate_form_21882() {var x, text; var x = document.forms['form_21882']['answer_21882'].value;if (x == 'бакалаврских'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_21882').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_63253" onclick="return show_hint_63253()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_63253" onclick="return show_hint_63253()"></div>
+<script>function show_hint_63253(){var x = document.getElementById('result_63253').innerHTML; if(!x){document.getElementById('result_63253').innerHTML = 'бакалаврских';} else {document.getElementById('result_63253').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_32885" onsubmit="return validate_form_32885()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">На современном этапе институт жалоб активно используется в ____________ (<strong>социальный</strong>) государствах и включает легальные формы общественного протеста.</h4></legend>
+<input type="text" placeholder name="answer_32885">
+<input type="submit" value="проверить">
+<div id="result_32885"></div>
+</fieldset>
+</form>
+<script>function validate_form_32885() {var x, text; var x = document.forms['form_32885']['answer_32885'].value;if (x == 'социальных'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_32885').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_36608" onclick="return show_hint_36608()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_36608" onclick="return show_hint_36608()"></div>
+<script>function show_hint_36608(){var x = document.getElementById('result_36608').innerHTML; if(!x){document.getElementById('result_36608').innerHTML = 'социальных';} else {document.getElementById('result_36608').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_70742" onsubmit="return validate_form_70742()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Фермеры получают ценовую поддержку только там, где земля постоянно используется для производства ____________ ____________ (<strong>конкурентный, продукция</strong>), например пшеницы или кукурузы.</h4></legend>
+<input type="text" placeholder name="answer_70742">
+<input type="submit" value="проверить">
+<div id="result_70742"></div>
+</fieldset>
+</form>
+<script>function validate_form_70742() {var x, text; var x = document.forms['form_70742']['answer_70742'].value;if (x == 'конкурентной продукции'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_70742').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_10947" onclick="return show_hint_10947()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_10947" onclick="return show_hint_10947()"></div>
+<script>function show_hint_10947(){var x = document.getElementById('result_10947').innerHTML; if(!x){document.getElementById('result_10947').innerHTML = 'конкурентной продукции';} else {document.getElementById('result_10947').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_52490" onsubmit="return validate_form_52490()" method="post">
+<fieldset>
+<legend><h4 id="18-09-1985" class="anchored">Термин «открытый порт» применяется для обозначения морских портов, аэропортов, станций и сухопутных мест пересечения государственной границы гражданами, товарами или транспортными средствами, которые используются для ____________ (<strong>въезд</strong>) в страну или выезда из страны (Государственные Положения функционирования открытых портов от 18.09.1985, принятые Госсоветом).</h4></legend>
+<input type="text" placeholder name="answer_52490">
+<input type="submit" value="проверить">
+<div id="result_52490"></div>
+</fieldset>
+</form>
+<script>function validate_form_52490() {var x, text; var x = document.forms['form_52490']['answer_52490'].value;if (x == 'въезда'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_52490').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_48561" onclick="return show_hint_48561()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_48561" onclick="return show_hint_48561()"></div>
+<script>function show_hint_48561(){var x = document.getElementById('result_48561').innerHTML; if(!x){document.getElementById('result_48561').innerHTML = 'въезда';} else {document.getElementById('result_48561').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_37431" onsubmit="return validate_form_37431()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Дж. Кейнс, по имени которого получил название данный эффект, дал ему объяснение, используя в качестве ____________ (<strong>промежуточный</strong>) переменной ставку процента по кредитам.</h4></legend>
+<input type="text" placeholder name="answer_37431">
+<input type="submit" value="проверить">
+<div id="result_37431"></div>
+</fieldset>
+</form>
+<script>function validate_form_37431() {var x, text; var x = document.forms['form_37431']['answer_37431'].value;if (x == 'промежуточной'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_37431').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_30410" onclick="return show_hint_30410()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_30410" onclick="return show_hint_30410()"></div>
+<script>function show_hint_30410(){var x = document.getElementById('result_30410').innerHTML; if(!x){document.getElementById('result_30410').innerHTML = 'промежуточной';} else {document.getElementById('result_30410').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_81284" onsubmit="return validate_form_81284()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Некоторые экономисты используют термин «гистерезис», заимствованный из ____________ (<strong>физик</strong>), для описания поведения европейской безработицы.</h4></legend>
+<input type="text" placeholder name="answer_81284">
+<input type="submit" value="проверить">
+<div id="result_81284"></div>
+</fieldset>
+</form>
+<script>function validate_form_81284() {var x, text; var x = document.forms['form_81284']['answer_81284'].value;if (x == 'физики'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_81284').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_38519" onclick="return show_hint_38519()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_38519" onclick="return show_hint_38519()"></div>
+<script>function show_hint_38519(){var x = document.getElementById('result_38519').innerHTML; if(!x){document.getElementById('result_38519').innerHTML = 'физики';} else {document.getElementById('result_38519').innerHTML = '';}}</script>
+</div>
+</div>
 </div>
 </div>
 </div>

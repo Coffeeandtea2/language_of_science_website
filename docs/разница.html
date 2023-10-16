@@ -5851,7 +5851,9 @@ HTMLWidgets.widget({
               $input.parent().hide(); $x.show().trigger('show'); filter[0].selectize.focus();
             },
             input: function() {
-              if ($input.val() === '') filter[0].selectize.setValue([]);
+              var v1 = JSON.stringify(filter[0].selectize.getValue()), v2 = $input.val();
+              if (v1 === '[]') v1 = '';
+              if (v1 !== v2) filter[0].selectize.setValue(v2 === '' ? [] : JSON.parse(v2));
             }
           });
           var $input2 = $x.children('select');
@@ -6756,7 +6758,7 @@ HTMLWidgets.widget({
           console.log('The search keyword for column ' + i + ' is undefined')
           return;
         }
-        $(td).find('input').first().val(v);
+        $(td).find('input').first().val(v).trigger('input');
         searchColumn(i, v);
       });
       table.draw();
@@ -7460,100 +7462,154 @@ b&&(b.preventDefault(),b.stopPropagation())}else(l.isFocused||"single"===l.setti
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-030f9cae82d5063a2f68" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-030f9cae82d5063a2f68">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["за счет разницы","представляет собой разницу","разница между (чем?)"],["• Доход инвестора возникает за счет разницы между ценой погашения облигации (номиналом) и ценой ее приобретения.","• Нефтегазовый дефицит федерального бюджета представляет собой разницу между объемом доходов и объемом расходов федерального бюджета.","• рассчитывается как разница между"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-97fe6c4a26b9136d7118" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-97fe6c4a26b9136d7118">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["за счет разницы","представляет собой разницу","разница между (чем?)"],["• Доход инвестора возникает за счет разницы между ценой погашения облигации (номиналом) и ценой ее приобретения.","• Нефтегазовый дефицит федерального бюджета представляет собой разницу между объемом доходов и объемом расходов федерального бюджета.","• рассчитывается как разница между (чем?)"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_91567" onsubmit="return validate_form_91567()" method="post">
-<fieldset>
-<legend><h4 id="section" class="anchored">Одной из существенных проблем развития банковского сектора является разница между ____________ (<strong>стоимость</strong>) заемных ресурсов и процентной ставкой по вкладам.</h4></legend>
-<input type="text" placeholder name="answer_91567">
-<input type="submit" value="проверить">
-<div id="result_91567"></div>
-</fieldset>
-</form>
-<script>function validate_form_91567() {var x, text; var x = document.forms['form_91567']['answer_91567'].value;if (x == 'стоимостью'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_91567').innerHTML = text; return false;}</script>
-</div>
-<div class="cell-output-display">
-<div id="hint_11763" onclick="return show_hint_11763()">🔎 Нажмите, чтобы посмотреть ответ</div>
-<div id="result_11763" onclick="return show_hint_11763()"></div>
-<script>function show_hint_11763(){var x = document.getElementById('result_11763').innerHTML; if(!x){document.getElementById('result_11763').innerHTML = 'стоимостью';} else {document.getElementById('result_11763').innerHTML = '';}}</script>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<form name="form_33938" onsubmit="return validate_form_33938()" method="post">
-<fieldset>
-<legend><h4 id="section" class="anchored">Экономическую прибыль надо отличать от бухгалтерской прибыли, которая представляет собой разницу между ____________ ____________ (<strong>валовой, доход</strong>) и явными издержками на ресурсы, используемые в производстве.</h4></legend>
-<input type="text" placeholder name="answer_33938">
-<input type="submit" value="проверить">
-<div id="result_33938"></div>
-</fieldset>
-</form>
-<script>function validate_form_33938() {var x, text; var x = document.forms['form_33938']['answer_33938'].value;if (x == 'валовым доходом'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_33938').innerHTML = text; return false;}</script>
-</div>
-<div class="cell-output-display">
-<div id="hint_68518" onclick="return show_hint_68518()">🔎 Нажмите, чтобы посмотреть ответ</div>
-<div id="result_68518" onclick="return show_hint_68518()"></div>
-<script>function show_hint_68518(){var x = document.getElementById('result_68518').innerHTML; if(!x){document.getElementById('result_68518').innerHTML = 'валовым доходом';} else {document.getElementById('result_68518').innerHTML = '';}}</script>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<form name="form_65110" onsubmit="return validate_form_65110()" method="post">
+<form name="form_60297" onsubmit="return validate_form_60297()" method="post">
 <fieldset>
 <legend><h4 id="mff" class="anchored">Маржа представляет собой разницу между ____________ ____________ (<strong>годовой, “, потолок</strong>)” MFF и годовым бюджетом ЕС.</h4></legend>
-<input type="text" placeholder name="answer_65110">
+<input type="text" placeholder name="answer_60297">
 <input type="submit" value="проверить">
-<div id="result_65110"></div>
+<div id="result_60297"></div>
 </fieldset>
 </form>
-<script>function validate_form_65110() {var x, text; var x = document.forms['form_65110']['answer_65110'].value;if (x == 'годовым "потолком'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_65110').innerHTML = text; return false;}</script>
+<script>function validate_form_60297() {var x, text; var x = document.forms['form_60297']['answer_60297'].value;if (x == 'годовым "потолком'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_60297').innerHTML = text; return false;}</script>
 </div>
 <div class="cell-output-display">
-<div id="hint_759" onclick="return show_hint_759()">🔎 Нажмите, чтобы посмотреть ответ</div>
-<div id="result_759" onclick="return show_hint_759()"></div>
-<script>function show_hint_759(){var x = document.getElementById('result_759').innerHTML; if(!x){document.getElementById('result_759').innerHTML = 'годовым “потолком';} else {document.getElementById('result_759').innerHTML = '';}}</script>
+<div id="hint_46585" onclick="return show_hint_46585()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_46585" onclick="return show_hint_46585()"></div>
+<script>function show_hint_46585(){var x = document.getElementById('result_46585').innerHTML; if(!x){document.getElementById('result_46585').innerHTML = 'годовым “потолком';} else {document.getElementById('result_46585').innerHTML = '';}}</script>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_14997" onsubmit="return validate_form_14997()" method="post">
-<fieldset>
-<legend><h4 id="section" class="anchored">Доход инвестора возникает за счет ____________ (<strong>разница</strong>) между ценой погашения облигации (номиналом) и ценой ее приобретения.</h4></legend>
-<input type="text" placeholder name="answer_14997">
-<input type="submit" value="проверить">
-<div id="result_14997"></div>
-</fieldset>
-</form>
-<script>function validate_form_14997() {var x, text; var x = document.forms['form_14997']['answer_14997'].value;if (x == 'разницы'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_14997').innerHTML = text; return false;}</script>
-</div>
-<div class="cell-output-display">
-<div id="hint_53710" onclick="return show_hint_53710()">🔎 Нажмите, чтобы посмотреть ответ</div>
-<div id="result_53710" onclick="return show_hint_53710()"></div>
-<script>function show_hint_53710(){var x = document.getElementById('result_53710').innerHTML; if(!x){document.getElementById('result_53710').innerHTML = 'разницы';} else {document.getElementById('result_53710').innerHTML = '';}}</script>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<form name="form_50806" onsubmit="return validate_form_50806()" method="post">
+<form name="form_92938" onsubmit="return validate_form_92938()" method="post">
 <fieldset>
 <legend><h4 id="section" class="anchored">Банковская прибыль определяется как разница между ____________ (<strong>сумма</strong>) процентов, взимаемых с заемщиков за предоставленный кредит, и суммой процентов, выплачиваемых вкладчикам.</h4></legend>
-<input type="text" placeholder name="answer_50806">
+<input type="text" placeholder name="answer_92938">
 <input type="submit" value="проверить">
-<div id="result_50806"></div>
+<div id="result_92938"></div>
 </fieldset>
 </form>
-<script>function validate_form_50806() {var x, text; var x = document.forms['form_50806']['answer_50806'].value;if (x == 'суммой'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_50806').innerHTML = text; return false;}</script>
+<script>function validate_form_92938() {var x, text; var x = document.forms['form_92938']['answer_92938'].value;if (x == 'суммой'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_92938').innerHTML = text; return false;}</script>
 </div>
 <div class="cell-output-display">
-<div id="hint_82042" onclick="return show_hint_82042()">🔎 Нажмите, чтобы посмотреть ответ</div>
-<div id="result_82042" onclick="return show_hint_82042()"></div>
-<script>function show_hint_82042(){var x = document.getElementById('result_82042').innerHTML; if(!x){document.getElementById('result_82042').innerHTML = 'суммой';} else {document.getElementById('result_82042').innerHTML = '';}}</script>
+<div id="hint_10734" onclick="return show_hint_10734()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_10734" onclick="return show_hint_10734()"></div>
+<script>function show_hint_10734(){var x = document.getElementById('result_10734').innerHTML; if(!x){document.getElementById('result_10734').innerHTML = 'суммой';} else {document.getElementById('result_10734').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_75435" onsubmit="return validate_form_75435()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Экономическую прибыль надо отличать от бухгалтерской прибыли, которая представляет собой разницу между ____________ ____________ (<strong>валовой, доход</strong>) и явными издержками на ресурсы, используемые в производстве.</h4></legend>
+<input type="text" placeholder name="answer_75435">
+<input type="submit" value="проверить">
+<div id="result_75435"></div>
+</fieldset>
+</form>
+<script>function validate_form_75435() {var x, text; var x = document.forms['form_75435']['answer_75435'].value;if (x == 'валовым доходом'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_75435').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_23356" onclick="return show_hint_23356()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_23356" onclick="return show_hint_23356()"></div>
+<script>function show_hint_23356(){var x = document.getElementById('result_23356').innerHTML; if(!x){document.getElementById('result_23356').innerHTML = 'валовым доходом';} else {document.getElementById('result_23356').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_33913" onsubmit="return validate_form_33913()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Доход инвестора возникает за счет ____________ (<strong>разница</strong>) между ценой погашения облигации (номиналом) и ценой ее приобретения.</h4></legend>
+<input type="text" placeholder name="answer_33913">
+<input type="submit" value="проверить">
+<div id="result_33913"></div>
+</fieldset>
+</form>
+<script>function validate_form_33913() {var x, text; var x = document.forms['form_33913']['answer_33913'].value;if (x == 'разницы'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_33913').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_37086" onclick="return show_hint_37086()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_37086" onclick="return show_hint_37086()"></div>
+<script>function show_hint_37086(){var x = document.getElementById('result_37086').innerHTML; if(!x){document.getElementById('result_37086').innerHTML = 'разницы';} else {document.getElementById('result_37086').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_68127" onsubmit="return validate_form_68127()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Одной из существенных проблем развития банковского сектора является разница между ____________ (<strong>стоимость</strong>) заемных ресурсов и процентной ставкой по вкладам.</h4></legend>
+<input type="text" placeholder name="answer_68127">
+<input type="submit" value="проверить">
+<div id="result_68127"></div>
+</fieldset>
+</form>
+<script>function validate_form_68127() {var x, text; var x = document.forms['form_68127']['answer_68127'].value;if (x == 'стоимостью'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_68127').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_7069" onclick="return show_hint_7069()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_7069" onclick="return show_hint_7069()"></div>
+<script>function show_hint_7069(){var x = document.getElementById('result_7069').innerHTML; if(!x){document.getElementById('result_7069').innerHTML = 'стоимостью';} else {document.getElementById('result_7069').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_93584" onsubmit="return validate_form_93584()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Нефтегазовый дефицит федерального бюджета представляет собой ____________ (<strong>разница</strong>) между объемом доходов и объемом расходов федерального бюджета.</h4></legend>
+<input type="text" placeholder name="answer_93584">
+<input type="submit" value="проверить">
+<div id="result_93584"></div>
+</fieldset>
+</form>
+<script>function validate_form_93584() {var x, text; var x = document.forms['form_93584']['answer_93584'].value;if (x == 'разницу'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_93584').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_25193" onclick="return show_hint_25193()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_25193" onclick="return show_hint_25193()"></div>
+<script>function show_hint_25193(){var x = document.getElementById('result_25193').innerHTML; if(!x){document.getElementById('result_25193').innerHTML = 'разницу';} else {document.getElementById('result_25193').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_72715" onsubmit="return validate_form_72715()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Если инвестор продает облигацию, не дожидаясь погашения, то величина Р представляет собой разницу между ____________ (<strong>цена</strong>) продажи и ценой приобретения облигации.</h4></legend>
+<input type="text" placeholder name="answer_72715">
+<input type="submit" value="проверить">
+<div id="result_72715"></div>
+</fieldset>
+</form>
+<script>function validate_form_72715() {var x, text; var x = document.forms['form_72715']['answer_72715'].value;if (x == 'ценой'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_72715').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_46790" onclick="return show_hint_46790()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_46790" onclick="return show_hint_46790()"></div>
+<script>function show_hint_46790(){var x = document.getElementById('result_46790').innerHTML; if(!x){document.getElementById('result_46790').innerHTML = 'ценой';} else {document.getElementById('result_46790').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_75949" onsubmit="return validate_form_75949()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Мы определили излишек потребителя как разницу между ____________ ____________ (<strong>максимальный, цена</strong>), которую человек готов заплатить за товар, и рыночной ценой этого товара.</h4></legend>
+<input type="text" placeholder name="answer_75949">
+<input type="submit" value="проверить">
+<div id="result_75949"></div>
+</fieldset>
+</form>
+<script>function validate_form_75949() {var x, text; var x = document.forms['form_75949']['answer_75949'].value;if (x == 'максимальной ценой'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_75949').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_88689" onclick="return show_hint_88689()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_88689" onclick="return show_hint_88689()"></div>
+<script>function show_hint_88689(){var x = document.getElementById('result_88689').innerHTML; if(!x){document.getElementById('result_88689').innerHTML = 'максимальной ценой';} else {document.getElementById('result_88689').innerHTML = '';}}</script>
 </div>
 </div>
 </div>

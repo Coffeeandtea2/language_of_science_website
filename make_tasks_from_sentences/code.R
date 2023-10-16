@@ -79,8 +79,9 @@ stimulus_to_delete |>
   select(text, doc_id) |> 
   udpipe(ru) |> 
   select(doc_id, token, lemma) |> 
-  left_join(stimulus_udpiped)  |> 
+  left_join(stimulus_udpiped)   |> 
   filter(!is.na(keep)) |> 
+  mutate(doc_id = doc_id |> as.double()) |> 
   group_by(doc_id) |> 
   summarise(to_delete = str_c(token, collapse = ", ")) |> 
   mutate(doc_id = as.double(doc_id),
@@ -402,5 +403,6 @@ tasks_stimulus |>
   bind_rows(pictures) |> 
   arrange(task_type) |>
   mutate(task = str_replace_all(task, "'", "’"),
+         task = str_replace_all(task, "населить, пункт", "населенный, пункт"),
          answer = str_remove_all(answer, "\\|\\|\\|")) |> 
   writexl::write_xlsx("../data/tasks.xlsx")

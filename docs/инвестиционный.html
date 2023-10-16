@@ -5851,7 +5851,9 @@ HTMLWidgets.widget({
               $input.parent().hide(); $x.show().trigger('show'); filter[0].selectize.focus();
             },
             input: function() {
-              if ($input.val() === '') filter[0].selectize.setValue([]);
+              var v1 = JSON.stringify(filter[0].selectize.getValue()), v2 = $input.val();
+              if (v1 === '[]') v1 = '';
+              if (v1 !== v2) filter[0].selectize.setValue(v2 === '' ? [] : JSON.parse(v2));
             }
           });
           var $input2 = $x.children('select');
@@ -6756,7 +6758,7 @@ HTMLWidgets.widget({
           console.log('The search keyword for column ' + i + ' is undefined')
           return;
         }
-        $(td).find('input').first().val(v);
+        $(td).find('input').first().val(v).trigger('input');
         searchColumn(i, v);
       });
       table.draw();
@@ -7538,13 +7540,1704 @@ b&&(b.preventDefault(),b.stopPropagation())}else(l.isFocused||"single"===l.setti
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-e641291aa45068666d43" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e641291aa45068666d43">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["инвестиционная активность","инвестиционная аналитика","инвестиционная деятельность","инвестиционная поддержка","инвестиционная политика","инвестиционная привлекательность","инвестиционная система","инвестиционное решение","инвестиционные расходы","инвестиционные ресурсы","инвестиционные стратегии","инвестиционный климат","инвестиционный налоговый кредит","инвестиционный портфель","инвестиционный поток","инвестиционный проект","инвестиционный риск","инвестиционный рынок","инвестиционный спрос","инвестиционный товар","инвестиционный фонд"],["","","• регулирование инвестиционной деятельности<br>• развитие инвестиционной деятельности<br>• субъект инвестиционной деятельности","","","• оценка инвестиционной привлекательности<br>• рейтинг инвестиционной привлекательности<br>• по инвестиционной привлекательности<br>• повышение инвестиционной привлекательности","","• принятие инвестиционных решений","","","","• благоприятный инвестиционный климат<br>• улучшение инвестиционного климата","","• формирование инвестиционного портфеля","• направления инвестиционных потоков","• инвестиционный проект по (чему?)<br>• крупный инвестиционный проект<br>• крупномасштабный инвестиционный проект<br>• эффективность инвестиционных проектов<br>• оценка эффективности инвестиционных проектов<br>• оценка инвестиционных проектов<br>• финансирование инвестиционных проектов<br>• реализация инвестиционных проектов<br>• портфель инвестиционных проектов","","• мировой инвестиционный рынок","","","• паевые инвестиционные фонды<br>• альтернативные инвестиционные фонды<br>• средства инвестиционного фонда"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-88eb5095681d6370e39a" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-88eb5095681d6370e39a">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["инвестиционная активность","инвестиционная деятельность","инвестиционная поддержка","инвестиционная привлекательность","инвестиционная стратегия","инвестиционное решение","инвестиционные расходы","инвестиционные товары","инвестиционный климат","инвестиционный налоговый кредит","инвестиционный портфель","инвестиционный поток","инвестиционный проект","инвестиционный риск","инвестиционный рынок","инвестиционный спрос","инвестиционный фонд"],["• Пандемия усиливает ограничения для кредитной и инвестиционной активности.","• регулирование инвестиционной деятельности<br>• развитие инвестиционной деятельности<br>• субъект инвестиционной деятельности","• В текущем году размер инвестиционной поддержки в промышленном комплексе сохранится на уровне прошлого года.","• оценка инвестиционной привлекательности<br>• рейтинг инвестиционной привлекательности<br>• по инвестиционной привлекательности<br>• повышение инвестиционной привлекательности","• Люди следуют за популярными инвестиционными стратегиями, которые обещают быструю возможность разбогатеть.","• принятие инвестиционных решений","• Город оптимизирует инвестиционные расходы на развитие транспортной инфраструктуры.","• Спрос на инвестиционные товары увеличивается.","• благоприятный инвестиционный климат<br>• улучшение инвестиционного климата","• Инвестиционный налоговый кредит представляет собой разновидность отсроченных налоговых платежей.","• формирование инвестиционного портфеля","• Направление инвестиционных потоков часто определяется налоговыми режимами в принимающих странах.","• крупный инвестиционный проект<br>• эффективность инвестиционных проектов<br>• оценка эффективности инвестиционных проектов<br>• оценка инвестиционных проектов<br>• финансирование инвестиционных проектов<br>• реализация инвестиционных проектов<br>• портфель инвестиционных проектов","• Вероятность инвестиционного риска в малом бизнесе достаточно высока.","• мировой инвестиционный рынок","• При низкой процентной ставке инвестиционный спрос повышается.","• паевые инвестиционные фонды<br>• акционерный инвестиционный фонд<br>• альтернативные инвестиционные фонды"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_79667" onsubmit="return validate_form_79667()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">У российских предприятий есть доступ к ____________ (<strong>инвестиционный, налоговый, кредит</strong>) по налогу на прибыль, по региональным и местным налогам.</h4></legend>
+<input type="text" placeholder name="answer_79667">
+<input type="submit" value="проверить">
+<div id="result_79667"></div>
+</fieldset>
+</form>
+<script>function validate_form_79667() {var x, text; var x = document.forms['form_79667']['answer_79667'].value;if (x == 'инвестиционному налоговому кредиту'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_79667').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_28293" onclick="return show_hint_28293()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_28293" onclick="return show_hint_28293()"></div>
+<script>function show_hint_28293(){var x = document.getElementById('result_28293').innerHTML; if(!x){document.getElementById('result_28293').innerHTML = 'инвестиционному налоговому кредиту';} else {document.getElementById('result_28293').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_33502" onsubmit="return validate_form_33502()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Дисконтирование и современная стоимость чаще всего применяются при оценке ____________ (<strong>инвестиционный, проект</strong>), при расчетах экономической эффективности капиталовложений.</h4></legend>
+<input type="text" placeholder name="answer_33502">
+<input type="submit" value="проверить">
+<div id="result_33502"></div>
+</fieldset>
+</form>
+<script>function validate_form_33502() {var x, text; var x = document.forms['form_33502']['answer_33502'].value;if (x == 'инвестиционных проектов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_33502').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_85361" onclick="return show_hint_85361()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_85361" onclick="return show_hint_85361()"></div>
+<script>function show_hint_85361(){var x = document.getElementById('result_85361').innerHTML; if(!x){document.getElementById('result_85361').innerHTML = 'инвестиционных проектов';} else {document.getElementById('result_85361').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_51001" onsubmit="return validate_form_51001()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Фискальная политика не обеспечила стимулы для ____________ (<strong>инвестиционный</strong>) активности.</h4></legend>
+<input type="text" placeholder name="answer_51001">
+<input type="submit" value="проверить">
+<div id="result_51001"></div>
+</fieldset>
+</form>
+<script>function validate_form_51001() {var x, text; var x = document.forms['form_51001']['answer_51001'].value;if (x == 'инвестиционной'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_51001').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_73797" onclick="return show_hint_73797()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_73797" onclick="return show_hint_73797()"></div>
+<script>function show_hint_73797(){var x = document.getElementById('result_73797').innerHTML; if(!x){document.getElementById('result_73797').innerHTML = 'инвестиционной';} else {document.getElementById('result_73797').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_71660" onsubmit="return validate_form_71660()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">При действии ____________ (<strong>инвестиционный</strong>) налогового кредита происходит перераспределение налогового бремени инвестора.</h4></legend>
+<input type="text" placeholder name="answer_71660">
+<input type="submit" value="проверить">
+<div id="result_71660"></div>
+</fieldset>
+</form>
+<script>function validate_form_71660() {var x, text; var x = document.forms['form_71660']['answer_71660'].value;if (x == 'инвестиционного'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_71660').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_51461" onclick="return show_hint_51461()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_51461" onclick="return show_hint_51461()"></div>
+<script>function show_hint_51461(){var x = document.getElementById('result_51461').innerHTML; if(!x){document.getElementById('result_51461').innerHTML = 'инвестиционного';} else {document.getElementById('result_51461').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_7537" onsubmit="return validate_form_7537()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Будет обеспечена государственная поддержка крупных ____________ (<strong>инвестиционный, проект</strong>).</h4></legend>
+<input type="text" placeholder name="answer_7537">
+<input type="submit" value="проверить">
+<div id="result_7537"></div>
+</fieldset>
+</form>
+<script>function validate_form_7537() {var x, text; var x = document.forms['form_7537']['answer_7537'].value;if (x == 'инвестиционных проектов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_7537').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_97370" onclick="return show_hint_97370()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_97370" onclick="return show_hint_97370()"></div>
+<script>function show_hint_97370(){var x = document.getElementById('result_97370').innerHTML; if(!x){document.getElementById('result_97370').innerHTML = 'инвестиционных проектов';} else {document.getElementById('result_97370').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_32545" onsubmit="return validate_form_32545()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">На схеме города распределены по наличию ____________ (<strong>инвестиционный, политика</strong>) и инвестиционного паспорта.</h4></legend>
+<input type="text" placeholder name="answer_32545">
+<input type="submit" value="проверить">
+<div id="result_32545"></div>
+</fieldset>
+</form>
+<script>function validate_form_32545() {var x, text; var x = document.forms['form_32545']['answer_32545'].value;if (x == 'инвестиционной политики'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_32545').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_66571" onclick="return show_hint_66571()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_66571" onclick="return show_hint_66571()"></div>
+<script>function show_hint_66571(){var x = document.getElementById('result_66571').innerHTML; if(!x){document.getElementById('result_66571').innerHTML = 'инвестиционной политики';} else {document.getElementById('result_66571').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_57838" onsubmit="return validate_form_57838()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Компании закрывают ____________ (<strong>инвестиционный</strong>) проекты в ожидании спада экономической активности.</h4></legend>
+<input type="text" placeholder name="answer_57838">
+<input type="submit" value="проверить">
+<div id="result_57838"></div>
+</fieldset>
+</form>
+<script>function validate_form_57838() {var x, text; var x = document.forms['form_57838']['answer_57838'].value;if (x == 'инвестиционные'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_57838').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_58190" onclick="return show_hint_58190()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_58190" onclick="return show_hint_58190()"></div>
+<script>function show_hint_58190(){var x = document.getElementById('result_58190').innerHTML; if(!x){document.getElementById('result_58190').innerHTML = 'инвестиционные';} else {document.getElementById('result_58190').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_49256" onsubmit="return validate_form_49256()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Анализ инвестиционной программы выявил высокие ____________ (<strong>инвестиционный</strong>) риски в первые пять лет.</h4></legend>
+<input type="text" placeholder name="answer_49256">
+<input type="submit" value="проверить">
+<div id="result_49256"></div>
+</fieldset>
+</form>
+<script>function validate_form_49256() {var x, text; var x = document.forms['form_49256']['answer_49256'].value;if (x == 'инвестиционные'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_49256').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_45908" onclick="return show_hint_45908()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_45908" onclick="return show_hint_45908()"></div>
+<script>function show_hint_45908(){var x = document.getElementById('result_45908').innerHTML; if(!x){document.getElementById('result_45908').innerHTML = 'инвестиционные';} else {document.getElementById('result_45908').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_49761" onsubmit="return validate_form_49761()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Восстановление потребительского и ____________ (<strong>инвестиционный, спрос</strong>) займет определенное время.</h4></legend>
+<input type="text" placeholder name="answer_49761">
+<input type="submit" value="проверить">
+<div id="result_49761"></div>
+</fieldset>
+</form>
+<script>function validate_form_49761() {var x, text; var x = document.forms['form_49761']['answer_49761'].value;if (x == 'инвестиционного спроса'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_49761').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_90824" onclick="return show_hint_90824()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_90824" onclick="return show_hint_90824()"></div>
+<script>function show_hint_90824(){var x = document.getElementById('result_90824').innerHTML; if(!x){document.getElementById('result_90824').innerHTML = 'инвестиционного спроса';} else {document.getElementById('result_90824').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_29560" onsubmit="return validate_form_29560()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Отдельные международные финансовые организации специализируются на финансировании ____________ (<strong>инвестиционный, проект</strong>).</h4></legend>
+<input type="text" placeholder name="answer_29560">
+<input type="submit" value="проверить">
+<div id="result_29560"></div>
+</fieldset>
+</form>
+<script>function validate_form_29560() {var x, text; var x = document.forms['form_29560']['answer_29560'].value;if (x == 'инвестиционных проектов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_29560').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_28089" onclick="return show_hint_28089()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_28089" onclick="return show_hint_28089()"></div>
+<script>function show_hint_28089(){var x = document.getElementById('result_28089').innerHTML; if(!x){document.getElementById('result_28089').innerHTML = 'инвестиционных проектов';} else {document.getElementById('result_28089').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_97202" onsubmit="return validate_form_97202()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">На практике оценка ____________ (<strong>инвестиционный</strong>) привлекательности часто сводится к анализу финансового состояния объектов инвестиций.</h4></legend>
+<input type="text" placeholder name="answer_97202">
+<input type="submit" value="проверить">
+<div id="result_97202"></div>
+</fieldset>
+</form>
+<script>function validate_form_97202() {var x, text; var x = document.forms['form_97202']['answer_97202'].value;if (x == 'инвестиционной'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_97202').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_58580" onclick="return show_hint_58580()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_58580" onclick="return show_hint_58580()"></div>
+<script>function show_hint_58580(){var x = document.getElementById('result_58580').innerHTML; if(!x){document.getElementById('result_58580').innerHTML = 'инвестиционной';} else {document.getElementById('result_58580').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_41397" onsubmit="return validate_form_41397()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Вероятность не получить прибыль от вложенных денег называется ____________ (<strong>инвестиционный</strong>) риском.</h4></legend>
+<input type="text" placeholder name="answer_41397">
+<input type="submit" value="проверить">
+<div id="result_41397"></div>
+</fieldset>
+</form>
+<script>function validate_form_41397() {var x, text; var x = document.forms['form_41397']['answer_41397'].value;if (x == 'инвестиционным'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_41397').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_71272" onclick="return show_hint_71272()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_71272" onclick="return show_hint_71272()"></div>
+<script>function show_hint_71272(){var x = document.getElementById('result_71272').innerHTML; if(!x){document.getElementById('result_71272').innerHTML = 'инвестиционным';} else {document.getElementById('result_71272').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_56658" onsubmit="return validate_form_56658()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Существует модель оптимизации портфеля ____________ (<strong>инвестиционный, проект</strong>).</h4></legend>
+<input type="text" placeholder name="answer_56658">
+<input type="submit" value="проверить">
+<div id="result_56658"></div>
+</fieldset>
+</form>
+<script>function validate_form_56658() {var x, text; var x = document.forms['form_56658']['answer_56658'].value;if (x == 'инвестиционных проектов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_56658').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_67065" onclick="return show_hint_67065()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_67065" onclick="return show_hint_67065()"></div>
+<script>function show_hint_67065(){var x = document.getElementById('result_67065').innerHTML; if(!x){document.getElementById('result_67065').innerHTML = 'инвестиционных проектов';} else {document.getElementById('result_67065').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_33571" onsubmit="return validate_form_33571()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Центральный банк подготовил обзор ключевых показателей паевых и акционерных ____________ (<strong>инвестиционный, фонд</strong>).</h4></legend>
+<input type="text" placeholder name="answer_33571">
+<input type="submit" value="проверить">
+<div id="result_33571"></div>
+</fieldset>
+</form>
+<script>function validate_form_33571() {var x, text; var x = document.forms['form_33571']['answer_33571'].value;if (x == 'инвестиционных фондов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_33571').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_53132" onclick="return show_hint_53132()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_53132" onclick="return show_hint_53132()"></div>
+<script>function show_hint_53132(){var x = document.getElementById('result_53132').innerHTML; if(!x){document.getElementById('result_53132').innerHTML = 'инвестиционных фондов';} else {document.getElementById('result_53132').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_67134" onsubmit="return validate_form_67134()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Рейтинговая оценка ____________ (<strong>инвестиционный, привлекательность</strong>) региона присваивается по специальной шкале.</h4></legend>
+<input type="text" placeholder name="answer_67134">
+<input type="submit" value="проверить">
+<div id="result_67134"></div>
+</fieldset>
+</form>
+<script>function validate_form_67134() {var x, text; var x = document.forms['form_67134']['answer_67134'].value;if (x == 'инвестиционной привлекательности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_67134').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_23843" onclick="return show_hint_23843()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_23843" onclick="return show_hint_23843()"></div>
+<script>function show_hint_23843(){var x = document.getElementById('result_23843').innerHTML; if(!x){document.getElementById('result_23843').innerHTML = 'инвестиционной привлекательности';} else {document.getElementById('result_23843').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_43500" onsubmit="return validate_form_43500()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Американские покупатели потребительских и ____________ (<strong>инвестиционный, товар</strong>) переключат свой спрос с британских товаров на американские, что также ограничит спрос на фунты.</h4></legend>
+<input type="text" placeholder name="answer_43500">
+<input type="submit" value="проверить">
+<div id="result_43500"></div>
+</fieldset>
+</form>
+<script>function validate_form_43500() {var x, text; var x = document.forms['form_43500']['answer_43500'].value;if (x == 'инвестиционных товаров'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_43500').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_32359" onclick="return show_hint_32359()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_32359" onclick="return show_hint_32359()"></div>
+<script>function show_hint_32359(){var x = document.getElementById('result_32359').innerHTML; if(!x){document.getElementById('result_32359').innerHTML = 'инвестиционных товаров';} else {document.getElementById('result_32359').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_47968" onsubmit="return validate_form_47968()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Ресурсы предопределяют не только структуру российской внешней торговли, но и структуру ____________ (<strong>инвестиционный, поток</strong>).</h4></legend>
+<input type="text" placeholder name="answer_47968">
+<input type="submit" value="проверить">
+<div id="result_47968"></div>
+</fieldset>
+</form>
+<script>function validate_form_47968() {var x, text; var x = document.forms['form_47968']['answer_47968'].value;if (x == 'инвестиционных потоков'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_47968').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_85007" onclick="return show_hint_85007()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_85007" onclick="return show_hint_85007()"></div>
+<script>function show_hint_85007(){var x = document.getElementById('result_85007').innerHTML; if(!x){document.getElementById('result_85007').innerHTML = 'инвестиционных потоков';} else {document.getElementById('result_85007').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_75537" onsubmit="return validate_form_75537()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Активы сопоставлены по ____________ (<strong>инвестиционный, привлекательность</strong>).</h4></legend>
+<input type="text" placeholder name="answer_75537">
+<input type="submit" value="проверить">
+<div id="result_75537"></div>
+</fieldset>
+</form>
+<script>function validate_form_75537() {var x, text; var x = document.forms['form_75537']['answer_75537'].value;if (x == 'инвестиционной привлекательности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_75537').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_58092" onclick="return show_hint_58092()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_58092" onclick="return show_hint_58092()"></div>
+<script>function show_hint_58092(){var x = document.getElementById('result_58092').innerHTML; if(!x){document.getElementById('result_58092').innerHTML = 'инвестиционной привлекательности';} else {document.getElementById('result_58092').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_85273" onsubmit="return validate_form_85273()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">В компании допущены ошибки при оценке эффективности ____________ (<strong>инвестиционный, проект</strong>).</h4></legend>
+<input type="text" placeholder name="answer_85273">
+<input type="submit" value="проверить">
+<div id="result_85273"></div>
+</fieldset>
+</form>
+<script>function validate_form_85273() {var x, text; var x = document.forms['form_85273']['answer_85273'].value;if (x == 'инвестиционных проектов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_85273').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_97888" onclick="return show_hint_97888()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_97888" onclick="return show_hint_97888()"></div>
+<script>function show_hint_97888(){var x = document.getElementById('result_97888').innerHTML; if(!x){document.getElementById('result_97888').innerHTML = 'инвестиционных проектов';} else {document.getElementById('result_97888').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_15400" onsubmit="return validate_form_15400()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Ужесточение политики Федеральной резервной системы снижает ____________ (<strong>инвестиционный, привлекательность</strong>) развивающихся рынков.</h4></legend>
+<input type="text" placeholder name="answer_15400">
+<input type="submit" value="проверить">
+<div id="result_15400"></div>
+</fieldset>
+</form>
+<script>function validate_form_15400() {var x, text; var x = document.forms['form_15400']['answer_15400'].value;if (x == 'инвестиционную привлекательность'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_15400').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_16868" onclick="return show_hint_16868()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_16868" onclick="return show_hint_16868()"></div>
+<script>function show_hint_16868(){var x = document.getElementById('result_16868').innerHTML; if(!x){document.getElementById('result_16868').innerHTML = 'инвестиционную привлекательность';} else {document.getElementById('result_16868').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_21735" onsubmit="return validate_form_21735()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">При разработке инвестиционных проектов важно внимательно изучать действующие редакции нормативных актов, которые устанавливают основы государственного регулирования ____________ (<strong>инвестиционный, деятельность</strong>).</h4></legend>
+<input type="text" placeholder name="answer_21735">
+<input type="submit" value="проверить">
+<div id="result_21735"></div>
+</fieldset>
+</form>
+<script>function validate_form_21735() {var x, text; var x = document.forms['form_21735']['answer_21735'].value;if (x == 'инвестиционной деятельности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_21735').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_85484" onclick="return show_hint_85484()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_85484" onclick="return show_hint_85484()"></div>
+<script>function show_hint_85484(){var x = document.getElementById('result_85484').innerHTML; if(!x){document.getElementById('result_85484').innerHTML = 'инвестиционной деятельности';} else {document.getElementById('result_85484').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_21590" onsubmit="return validate_form_21590()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Предложен комплекс мер государственной ____________ (<strong>инвестиционный, политика</strong>), предусматривающих приоритет инновационных инвестиций.</h4></legend>
+<input type="text" placeholder name="answer_21590">
+<input type="submit" value="проверить">
+<div id="result_21590"></div>
+</fieldset>
+</form>
+<script>function validate_form_21590() {var x, text; var x = document.forms['form_21590']['answer_21590'].value;if (x == 'инвестиционной политики'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_21590').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_79995" onclick="return show_hint_79995()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_79995" onclick="return show_hint_79995()"></div>
+<script>function show_hint_79995(){var x = document.getElementById('result_79995').innerHTML; if(!x){document.getElementById('result_79995').innerHTML = 'инвестиционной политики';} else {document.getElementById('result_79995').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_94279" onsubmit="return validate_form_94279()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">После пандемии ____________ (<strong>инвестиционный</strong>) рынок начал восстанавливаться.</h4></legend>
+<input type="text" placeholder name="answer_94279">
+<input type="submit" value="проверить">
+<div id="result_94279"></div>
+</fieldset>
+</form>
+<script>function validate_form_94279() {var x, text; var x = document.forms['form_94279']['answer_94279'].value;if (x == 'инвестиционный'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_94279').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_41245" onclick="return show_hint_41245()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_41245" onclick="return show_hint_41245()"></div>
+<script>function show_hint_41245(){var x = document.getElementById('result_41245').innerHTML; if(!x){document.getElementById('result_41245').innerHTML = 'инвестиционный';} else {document.getElementById('result_41245').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_55135" onsubmit="return validate_form_55135()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Экологическая повестка повлечет перераспределение ____________ (<strong>инвестиционный, поток</strong>).</h4></legend>
+<input type="text" placeholder name="answer_55135">
+<input type="submit" value="проверить">
+<div id="result_55135"></div>
+</fieldset>
+</form>
+<script>function validate_form_55135() {var x, text; var x = document.forms['form_55135']['answer_55135'].value;if (x == 'инвестиционных потоков'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_55135').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_75971" onclick="return show_hint_75971()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_75971" onclick="return show_hint_75971()"></div>
+<script>function show_hint_75971(){var x = document.getElementById('result_75971').innerHTML; if(!x){document.getElementById('result_75971').innerHTML = 'инвестиционных потоков';} else {document.getElementById('result_75971').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_57417" onsubmit="return validate_form_57417()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Нередко под инвестиционным рынком понимают только рынок ____________ (<strong>инвестиционный, товар</strong>) и инвестиционных услуг.</h4></legend>
+<input type="text" placeholder name="answer_57417">
+<input type="submit" value="проверить">
+<div id="result_57417"></div>
+</fieldset>
+</form>
+<script>function validate_form_57417() {var x, text; var x = document.forms['form_57417']['answer_57417'].value;if (x == 'инвестиционных товаров'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_57417').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_22336" onclick="return show_hint_22336()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_22336" onclick="return show_hint_22336()"></div>
+<script>function show_hint_22336(){var x = document.getElementById('result_22336').innerHTML; if(!x){document.getElementById('result_22336').innerHTML = 'инвестиционных товаров';} else {document.getElementById('result_22336').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_9651" onsubmit="return validate_form_9651()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Хотя санкции были сняты, ____________ (<strong>инвестиционный, климат</strong>) в стране оставался достаточно плохим.</h4></legend>
+<input type="text" placeholder name="answer_9651">
+<input type="submit" value="проверить">
+<div id="result_9651"></div>
+</fieldset>
+</form>
+<script>function validate_form_9651() {var x, text; var x = document.forms['form_9651']['answer_9651'].value;if (x == 'инвестиционный климат'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_9651').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_50747" onclick="return show_hint_50747()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_50747" onclick="return show_hint_50747()"></div>
+<script>function show_hint_50747(){var x = document.getElementById('result_50747').innerHTML; if(!x){document.getElementById('result_50747').innerHTML = 'инвестиционный климат';} else {document.getElementById('result_50747').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_99562" onsubmit="return validate_form_99562()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Причина макроэкономической нестабильности кроется в колебаниях ____________ (<strong>инвестиционный, расход</strong>) и происходящих время от времени спадах совокупного предложения.</h4></legend>
+<input type="text" placeholder name="answer_99562">
+<input type="submit" value="проверить">
+<div id="result_99562"></div>
+</fieldset>
+</form>
+<script>function validate_form_99562() {var x, text; var x = document.forms['form_99562']['answer_99562'].value;if (x == 'инвестиционных расходов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_99562').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_75126" onclick="return show_hint_75126()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_75126" onclick="return show_hint_75126()"></div>
+<script>function show_hint_75126(){var x = document.getElementById('result_75126').innerHTML; if(!x){document.getElementById('result_75126').innerHTML = 'инвестиционных расходов';} else {document.getElementById('result_75126').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_29852" onsubmit="return validate_form_29852()" method="post">
+<fieldset>
+<legend><h4 id="100" class="anchored">Ученые изучили ____________ (<strong>инвестиционный, портфель</strong>) более 100 европейских банков.</h4></legend>
+<input type="text" placeholder name="answer_29852">
+<input type="submit" value="проверить">
+<div id="result_29852"></div>
+</fieldset>
+</form>
+<script>function validate_form_29852() {var x, text; var x = document.forms['form_29852']['answer_29852'].value;if (x == 'инвестиционные портфели'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_29852').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_621" onclick="return show_hint_621()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_621" onclick="return show_hint_621()"></div>
+<script>function show_hint_621(){var x = document.getElementById('result_621').innerHTML; if(!x){document.getElementById('result_621').innerHTML = 'инвестиционные портфели';} else {document.getElementById('result_621').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_63177" onsubmit="return validate_form_63177()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Агентство ежегодно составляет рейтинг ____________ (<strong>инвестиционный, привлекательность</strong>) регионов России.</h4></legend>
+<input type="text" placeholder name="answer_63177">
+<input type="submit" value="проверить">
+<div id="result_63177"></div>
+</fieldset>
+</form>
+<script>function validate_form_63177() {var x, text; var x = document.forms['form_63177']['answer_63177'].value;if (x == 'инвестиционной привлекательности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_63177').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_61375" onclick="return show_hint_61375()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_61375" onclick="return show_hint_61375()"></div>
+<script>function show_hint_61375(){var x = document.getElementById('result_61375').innerHTML; if(!x){document.getElementById('result_61375').innerHTML = 'инвестиционной привлекательности';} else {document.getElementById('result_61375').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_87403" onsubmit="return validate_form_87403()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">____________ (<strong>инвестиционный</strong>) налоговый кредит представляет собой разновидность отсроченных налоговых платежей.</h4></legend>
+<input type="text" placeholder name="answer_87403">
+<input type="submit" value="проверить">
+<div id="result_87403"></div>
+</fieldset>
+</form>
+<script>function validate_form_87403() {var x, text; var x = document.forms['form_87403']['answer_87403'].value;if (x == 'инвестиционный'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_87403').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_31275" onclick="return show_hint_31275()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_31275" onclick="return show_hint_31275()"></div>
+<script>function show_hint_31275(){var x = document.getElementById('result_31275').innerHTML; if(!x){document.getElementById('result_31275').innerHTML = 'инвестиционный';} else {document.getElementById('result_31275').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_39720" onsubmit="return validate_form_39720()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Различные предубеждения влияют на учестников торгов при принятии ____________ (<strong>инвестиционный, решение</strong>).</h4></legend>
+<input type="text" placeholder name="answer_39720">
+<input type="submit" value="проверить">
+<div id="result_39720"></div>
+</fieldset>
+</form>
+<script>function validate_form_39720() {var x, text; var x = document.forms['form_39720']['answer_39720'].value;if (x == 'инвестиционных решений'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_39720').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_73680" onclick="return show_hint_73680()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_73680" onclick="return show_hint_73680()"></div>
+<script>function show_hint_73680(){var x = document.getElementById('result_73680').innerHTML; if(!x){document.getElementById('result_73680').innerHTML = 'инвестиционных решений';} else {document.getElementById('result_73680').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_9281" onsubmit="return validate_form_9281()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Государственное регулирование ____________ (<strong>инвестиционный, деятельность</strong>) – это воздействие государства на инвестиционные отношения.</h4></legend>
+<input type="text" placeholder name="answer_9281">
+<input type="submit" value="проверить">
+<div id="result_9281"></div>
+</fieldset>
+</form>
+<script>function validate_form_9281() {var x, text; var x = document.forms['form_9281']['answer_9281'].value;if (x == 'инвестиционной деятельности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_9281').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_86311" onclick="return show_hint_86311()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_86311" onclick="return show_hint_86311()"></div>
+<script>function show_hint_86311(){var x = document.getElementById('result_86311').innerHTML; if(!x){document.getElementById('result_86311').innerHTML = 'инвестиционной деятельности';} else {document.getElementById('result_86311').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_28865" onsubmit="return validate_form_28865()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">активизация ____________ (<strong>инвестиционный</strong>) деятельности – залог экономического роста.</h4></legend>
+<input type="text" placeholder name="answer_28865">
+<input type="submit" value="проверить">
+<div id="result_28865"></div>
+</fieldset>
+</form>
+<script>function validate_form_28865() {var x, text; var x = document.forms['form_28865']['answer_28865'].value;if (x == 'инвестиционной'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_28865').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_76932" onclick="return show_hint_76932()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_76932" onclick="return show_hint_76932()"></div>
+<script>function show_hint_76932(){var x = document.getElementById('result_76932').innerHTML; if(!x){document.getElementById('result_76932').innerHTML = 'инвестиционной';} else {document.getElementById('result_76932').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_77937" onsubmit="return validate_form_77937()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Высокий уровень тарифов на продукцию и услуги естественных монополий влекут за собой низкий уровень ____________ (<strong>инвестиционный, активность</strong>) в реальном секторе экономики, несмотря на снижение темпов инфляции и процентных ставок.</h4></legend>
+<input type="text" placeholder name="answer_77937">
+<input type="submit" value="проверить">
+<div id="result_77937"></div>
+</fieldset>
+</form>
+<script>function validate_form_77937() {var x, text; var x = document.forms['form_77937']['answer_77937'].value;if (x == 'инвестиционной активности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_77937').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_87232" onclick="return show_hint_87232()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_87232" onclick="return show_hint_87232()"></div>
+<script>function show_hint_87232(){var x = document.getElementById('result_87232').innerHTML; if(!x){document.getElementById('result_87232').innerHTML = 'инвестиционной активности';} else {document.getElementById('result_87232').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_9432" onsubmit="return validate_form_9432()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Эффективность государственной ____________ (<strong>инвестиционный, политика</strong>) зависит не только от общего объема инвестиций, а от того, в какие именно отрасли будут направлены инвестиционные потоки.</h4></legend>
+<input type="text" placeholder name="answer_9432">
+<input type="submit" value="проверить">
+<div id="result_9432"></div>
+</fieldset>
+</form>
+<script>function validate_form_9432() {var x, text; var x = document.forms['form_9432']['answer_9432'].value;if (x == 'инвестиционной политики'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_9432').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_5494" onclick="return show_hint_5494()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_5494" onclick="return show_hint_5494()"></div>
+<script>function show_hint_5494(){var x = document.getElementById('result_5494').innerHTML; if(!x){document.getElementById('result_5494').innerHTML = 'инвестиционной политики';} else {document.getElementById('result_5494').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_91340" onsubmit="return validate_form_91340()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Заметную роль в поддержании ____________ (<strong>инвестиционный</strong>) активности в области начинают играть инвестиции в жилищное строительство.</h4></legend>
+<input type="text" placeholder name="answer_91340">
+<input type="submit" value="проверить">
+<div id="result_91340"></div>
+</fieldset>
+</form>
+<script>function validate_form_91340() {var x, text; var x = document.forms['form_91340']['answer_91340'].value;if (x == 'инвестиционной'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_91340').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_85447" onclick="return show_hint_85447()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_85447" onclick="return show_hint_85447()"></div>
+<script>function show_hint_85447(){var x = document.getElementById('result_85447').innerHTML; if(!x){document.getElementById('result_85447').innerHTML = 'инвестиционной';} else {document.getElementById('result_85447').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_59912" onsubmit="return validate_form_59912()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Рост ожидаемого выпуска, уменьшение ставки процента или увеличение ____________ (<strong>инвестиционный, налоговый, кредит</strong>) увеличивают объем инвестирования.</h4></legend>
+<input type="text" placeholder name="answer_59912">
+<input type="submit" value="проверить">
+<div id="result_59912"></div>
+</fieldset>
+</form>
+<script>function validate_form_59912() {var x, text; var x = document.forms['form_59912']['answer_59912'].value;if (x == 'инвестиционного налогового кредита'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_59912').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_81297" onclick="return show_hint_81297()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_81297" onclick="return show_hint_81297()"></div>
+<script>function show_hint_81297(){var x = document.getElementById('result_81297').innerHTML; if(!x){document.getElementById('result_81297').innerHTML = 'инвестиционного налогового кредита';} else {document.getElementById('result_81297').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_14675" onsubmit="return validate_form_14675()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">На схеме представлены источники финансирования ____________ (<strong>инвестиционный</strong>) проектов.</h4></legend>
+<input type="text" placeholder name="answer_14675">
+<input type="submit" value="проверить">
+<div id="result_14675"></div>
+</fieldset>
+</form>
+<script>function validate_form_14675() {var x, text; var x = document.forms['form_14675']['answer_14675'].value;if (x == 'инвестиционных'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_14675').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_21679" onclick="return show_hint_21679()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_21679" onclick="return show_hint_21679()"></div>
+<script>function show_hint_21679(){var x = document.getElementById('result_21679').innerHTML; if(!x){document.getElementById('result_21679').innerHTML = 'инвестиционных';} else {document.getElementById('result_21679').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_54189" onsubmit="return validate_form_54189()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Люди следуют за популярными ____________ (<strong>инвестиционный, стратегия</strong>), обещающими быструю возможность разбогатеть.</h4></legend>
+<input type="text" placeholder name="answer_54189">
+<input type="submit" value="проверить">
+<div id="result_54189"></div>
+</fieldset>
+</form>
+<script>function validate_form_54189() {var x, text; var x = document.forms['form_54189']['answer_54189'].value;if (x == 'инвестиционными стратегиями'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_54189').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_572" onclick="return show_hint_572()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_572" onclick="return show_hint_572()"></div>
+<script>function show_hint_572(){var x = document.getElementById('result_572').innerHTML; if(!x){document.getElementById('result_572').innerHTML = 'инвестиционными стратегиями';} else {document.getElementById('result_572').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_21803" onsubmit="return validate_form_21803()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Деньги поступают от операционной (производственной) деятельности, от ____________ (<strong>инвестиционный</strong>) деятельности и от финансовой деятельности.</h4></legend>
+<input type="text" placeholder name="answer_21803">
+<input type="submit" value="проверить">
+<div id="result_21803"></div>
+</fieldset>
+</form>
+<script>function validate_form_21803() {var x, text; var x = document.forms['form_21803']['answer_21803'].value;if (x == 'инвестиционной'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_21803').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_55221" onclick="return show_hint_55221()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_55221" onclick="return show_hint_55221()"></div>
+<script>function show_hint_55221(){var x = document.getElementById('result_55221').innerHTML; if(!x){document.getElementById('result_55221').innerHTML = 'инвестиционной';} else {document.getElementById('result_55221').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_67554" onsubmit="return validate_form_67554()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Порядок осуществления ____________ (<strong>инвестиционный, деятельность</strong>) в стране, порядок привлечения отечественных и иностранных инвестиций определяет специальное инвестиционное законодательство.</h4></legend>
+<input type="text" placeholder name="answer_67554">
+<input type="submit" value="проверить">
+<div id="result_67554"></div>
+</fieldset>
+</form>
+<script>function validate_form_67554() {var x, text; var x = document.forms['form_67554']['answer_67554'].value;if (x == 'инвестиционной деятельности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_67554').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_96201" onclick="return show_hint_96201()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_96201" onclick="return show_hint_96201()"></div>
+<script>function show_hint_96201(){var x = document.getElementById('result_96201').innerHTML; if(!x){document.getElementById('result_96201').innerHTML = 'инвестиционной деятельности';} else {document.getElementById('result_96201').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_96483" onsubmit="return validate_form_96483()" method="post">
+<fieldset>
+<legend><h4 id="1990" class="anchored">В 1990-е гг. на развитых рынках был проведен ряд исследований зависимости доходности акций и ____________ (<strong>инвестиционный</strong>) активности компаний.</h4></legend>
+<input type="text" placeholder name="answer_96483">
+<input type="submit" value="проверить">
+<div id="result_96483"></div>
+</fieldset>
+</form>
+<script>function validate_form_96483() {var x, text; var x = document.forms['form_96483']['answer_96483'].value;if (x == 'инвестиционной'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_96483').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_71137" onclick="return show_hint_71137()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_71137" onclick="return show_hint_71137()"></div>
+<script>function show_hint_71137(){var x = document.getElementById('result_71137').innerHTML; if(!x){document.getElementById('result_71137').innerHTML = 'инвестиционной';} else {document.getElementById('result_71137').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_85503" onsubmit="return validate_form_85503()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Проанализированы показатели, отражающие эффективность и ____________ (<strong>инвестиционный</strong>) политику компаний.</h4></legend>
+<input type="text" placeholder name="answer_85503">
+<input type="submit" value="проверить">
+<div id="result_85503"></div>
+</fieldset>
+</form>
+<script>function validate_form_85503() {var x, text; var x = document.forms['form_85503']['answer_85503'].value;if (x == 'инвестиционную'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_85503').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_93032" onclick="return show_hint_93032()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_93032" onclick="return show_hint_93032()"></div>
+<script>function show_hint_93032(){var x = document.getElementById('result_93032').innerHTML; if(!x){document.getElementById('result_93032').innerHTML = 'инвестиционную';} else {document.getElementById('result_93032').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_5049" onsubmit="return validate_form_5049()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Следует минимизировать риски ____________ (<strong>инвестиционный, деятельность</strong>).</h4></legend>
+<input type="text" placeholder name="answer_5049">
+<input type="submit" value="проверить">
+<div id="result_5049"></div>
+</fieldset>
+</form>
+<script>function validate_form_5049() {var x, text; var x = document.forms['form_5049']['answer_5049'].value;if (x == 'инвестиционной деятельности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_5049').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_45667" onclick="return show_hint_45667()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_45667" onclick="return show_hint_45667()"></div>
+<script>function show_hint_45667(){var x = document.getElementById('result_45667').innerHTML; if(!x){document.getElementById('result_45667').innerHTML = 'инвестиционной деятельности';} else {document.getElementById('result_45667').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_72494" onsubmit="return validate_form_72494()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Основной тенденцией мирового ____________ (<strong>инвестиционный, рынок</strong>) является сильный интерес инвесторов к развивающимся рынкам.</h4></legend>
+<input type="text" placeholder name="answer_72494">
+<input type="submit" value="проверить">
+<div id="result_72494"></div>
+</fieldset>
+</form>
+<script>function validate_form_72494() {var x, text; var x = document.forms['form_72494']['answer_72494'].value;if (x == 'инвестиционного рынка'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_72494').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_46238" onclick="return show_hint_46238()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_46238" onclick="return show_hint_46238()"></div>
+<script>function show_hint_46238(){var x = document.getElementById('result_46238').innerHTML; if(!x){document.getElementById('result_46238').innerHTML = 'инвестиционного рынка';} else {document.getElementById('result_46238').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_96776" onsubmit="return validate_form_96776()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Компания получила лицензию на деятельность альтернативных ____________ (<strong>инвестиционный, фонд</strong>) в стране.</h4></legend>
+<input type="text" placeholder name="answer_96776">
+<input type="submit" value="проверить">
+<div id="result_96776"></div>
+</fieldset>
+</form>
+<script>function validate_form_96776() {var x, text; var x = document.forms['form_96776']['answer_96776'].value;if (x == 'инвестиционных фондов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_96776').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_23656" onclick="return show_hint_23656()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_23656" onclick="return show_hint_23656()"></div>
+<script>function show_hint_23656(){var x = document.getElementById('result_23656').innerHTML; if(!x){document.getElementById('result_23656').innerHTML = 'инвестиционных фондов';} else {document.getElementById('result_23656').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_71347" onsubmit="return validate_form_71347()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Финансово-экономическая оценка ____________ (<strong>инвестиционный, проект</strong>) занимает важное место в процессе обоснования и выбора возможных вариантов вложения денежных средств в реальный сектор экономики.</h4></legend>
+<input type="text" placeholder name="answer_71347">
+<input type="submit" value="проверить">
+<div id="result_71347"></div>
+</fieldset>
+</form>
+<script>function validate_form_71347() {var x, text; var x = document.forms['form_71347']['answer_71347'].value;if (x == 'инвестиционных проектов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_71347').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_27502" onclick="return show_hint_27502()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_27502" onclick="return show_hint_27502()"></div>
+<script>function show_hint_27502(){var x = document.getElementById('result_27502').innerHTML; if(!x){document.getElementById('result_27502').innerHTML = 'инвестиционных проектов';} else {document.getElementById('result_27502').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_82824" onsubmit="return validate_form_82824()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Росту цен также способствует ____________ (<strong>инвестиционный</strong>) привлекательность жилья.</h4></legend>
+<input type="text" placeholder name="answer_82824">
+<input type="submit" value="проверить">
+<div id="result_82824"></div>
+</fieldset>
+</form>
+<script>function validate_form_82824() {var x, text; var x = document.forms['form_82824']['answer_82824'].value;if (x == 'инвестиционная'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_82824').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_95639" onclick="return show_hint_95639()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_95639" onclick="return show_hint_95639()"></div>
+<script>function show_hint_95639(){var x = document.getElementById('result_95639').innerHTML; if(!x){document.getElementById('result_95639').innerHTML = 'инвестиционная';} else {document.getElementById('result_95639').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_86873" onsubmit="return validate_form_86873()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Марк Мобиус известен на ____________ (<strong>инвестиционный, рынок</strong>) как первоклассный аналитик, способный отыскивать компании с большим потенциалом роста.</h4></legend>
+<input type="text" placeholder name="answer_86873">
+<input type="submit" value="проверить">
+<div id="result_86873"></div>
+</fieldset>
+</form>
+<script>function validate_form_86873() {var x, text; var x = document.forms['form_86873']['answer_86873'].value;if (x == 'инвестиционном рынке'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_86873').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_66582" onclick="return show_hint_66582()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_66582" onclick="return show_hint_66582()"></div>
+<script>function show_hint_66582(){var x = document.getElementById('result_66582').innerHTML; if(!x){document.getElementById('result_66582').innerHTML = 'инвестиционном рынке';} else {document.getElementById('result_66582').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_61596" onsubmit="return validate_form_61596()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Какие финансовые инструменты используются при прямых методах государственного регулирования ____________ (<strong>инвестиционный, деятельность</strong>)?</h4></legend>
+<input type="text" placeholder name="answer_61596">
+<input type="submit" value="проверить">
+<div id="result_61596"></div>
+</fieldset>
+</form>
+<script>function validate_form_61596() {var x, text; var x = document.forms['form_61596']['answer_61596'].value;if (x == 'инвестиционной деятельности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_61596').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_68702" onclick="return show_hint_68702()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_68702" onclick="return show_hint_68702()"></div>
+<script>function show_hint_68702(){var x = document.getElementById('result_68702').innerHTML; if(!x){document.getElementById('result_68702').innerHTML = 'инвестиционной деятельности';} else {document.getElementById('result_68702').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_48292" onsubmit="return validate_form_48292()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Не существует единой стратегии формирования ____________ (<strong>инвестиционный, портфель</strong>), которая подходила бы абсолютно всем.</h4></legend>
+<input type="text" placeholder name="answer_48292">
+<input type="submit" value="проверить">
+<div id="result_48292"></div>
+</fieldset>
+</form>
+<script>function validate_form_48292() {var x, text; var x = document.forms['form_48292']['answer_48292'].value;if (x == 'инвестиционного портфеля'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_48292').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_51017" onclick="return show_hint_51017()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_51017" onclick="return show_hint_51017()"></div>
+<script>function show_hint_51017(){var x = document.getElementById('result_51017').innerHTML; if(!x){document.getElementById('result_51017').innerHTML = 'инвестиционного портфеля';} else {document.getElementById('result_51017').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_90407" onsubmit="return validate_form_90407()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Инвестиционная политика, проводимая государством, направлена на создание благоприятного ____________ (<strong>инвестиционный</strong>) климата в стране.</h4></legend>
+<input type="text" placeholder name="answer_90407">
+<input type="submit" value="проверить">
+<div id="result_90407"></div>
+</fieldset>
+</form>
+<script>function validate_form_90407() {var x, text; var x = document.forms['form_90407']['answer_90407'].value;if (x == 'инвестиционного'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_90407').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_89299" onclick="return show_hint_89299()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_89299" onclick="return show_hint_89299()"></div>
+<script>function show_hint_89299(){var x = document.getElementById('result_89299').innerHTML; if(!x){document.getElementById('result_89299').innerHTML = 'инвестиционного';} else {document.getElementById('result_89299').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_85385" onsubmit="return validate_form_85385()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Инвесторы, заказчики, подрядчики, пользователи объектов капитальных вложений являются субъектами ____________ (<strong>инвестиционный, деятельность</strong>).</h4></legend>
+<input type="text" placeholder name="answer_85385">
+<input type="submit" value="проверить">
+<div id="result_85385"></div>
+</fieldset>
+</form>
+<script>function validate_form_85385() {var x, text; var x = document.forms['form_85385']['answer_85385'].value;if (x == 'инвестиционной деятельности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_85385').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_28591" onclick="return show_hint_28591()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_28591" onclick="return show_hint_28591()"></div>
+<script>function show_hint_28591(){var x = document.getElementById('result_28591').innerHTML; if(!x){document.getElementById('result_28591').innerHTML = 'инвестиционной деятельности';} else {document.getElementById('result_28591').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_61906" onsubmit="return validate_form_61906()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Личные характеристики человека могут влиять на ____________ (<strong>инвестиционный, стратегия</strong>), особенно склонность к риску.</h4></legend>
+<input type="text" placeholder name="answer_61906">
+<input type="submit" value="проверить">
+<div id="result_61906"></div>
+</fieldset>
+</form>
+<script>function validate_form_61906() {var x, text; var x = document.forms['form_61906']['answer_61906'].value;if (x == 'инвестиционные стратегии'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_61906').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_24351" onclick="return show_hint_24351()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_24351" onclick="return show_hint_24351()"></div>
+<script>function show_hint_24351(){var x = document.getElementById('result_24351').innerHTML; if(!x){document.getElementById('result_24351').innerHTML = 'инвестиционные стратегии';} else {document.getElementById('result_24351').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_37855" onsubmit="return validate_form_37855()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Не стоит рассчитывать на интуицию в принятии ____________ (<strong>инвестиционный, решение</strong>).</h4></legend>
+<input type="text" placeholder name="answer_37855">
+<input type="submit" value="проверить">
+<div id="result_37855"></div>
+</fieldset>
+</form>
+<script>function validate_form_37855() {var x, text; var x = document.forms['form_37855']['answer_37855'].value;if (x == 'инвестиционных решений'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_37855').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_80130" onclick="return show_hint_80130()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_80130" onclick="return show_hint_80130()"></div>
+<script>function show_hint_80130(){var x = document.getElementById('result_80130').innerHTML; if(!x){document.getElementById('result_80130').innerHTML = 'инвестиционных решений';} else {document.getElementById('result_80130').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_63153" onsubmit="return validate_form_63153()" method="post">
+<fieldset>
+<legend><h4 id="5" class="anchored">В кризисный период фактические оттоки среди открытых паевых ____________ (<strong>инвестиционный, фонд</strong>) не превышали 5% от стоимости их чистых активов.</h4></legend>
+<input type="text" placeholder name="answer_63153">
+<input type="submit" value="проверить">
+<div id="result_63153"></div>
+</fieldset>
+</form>
+<script>function validate_form_63153() {var x, text; var x = document.forms['form_63153']['answer_63153'].value;if (x == 'инвестиционных фондов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_63153').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_80621" onclick="return show_hint_80621()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_80621" onclick="return show_hint_80621()"></div>
+<script>function show_hint_80621(){var x = document.getElementById('result_80621').innerHTML; if(!x){document.getElementById('result_80621').innerHTML = 'инвестиционных фондов';} else {document.getElementById('result_80621').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_22710" onsubmit="return validate_form_22710()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">В результате реализации ____________ (<strong>инвестиционный, проект</strong>) произойдет частичное импортозамещение технологий и производств.</h4></legend>
+<input type="text" placeholder name="answer_22710">
+<input type="submit" value="проверить">
+<div id="result_22710"></div>
+</fieldset>
+</form>
+<script>function validate_form_22710() {var x, text; var x = document.forms['form_22710']['answer_22710'].value;if (x == 'инвестиционных проектов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_22710').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_40680" onclick="return show_hint_40680()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_40680" onclick="return show_hint_40680()"></div>
+<script>function show_hint_40680(){var x = document.getElementById('result_40680').innerHTML; if(!x){document.getElementById('result_40680').innerHTML = 'инвестиционных проектов';} else {document.getElementById('result_40680').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_24097" onsubmit="return validate_form_24097()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Несмотря на благоприятный ____________ (<strong>инвестиционный</strong>) климат, в период кризиса все-таки произошел отток инвестиций из региона.</h4></legend>
+<input type="text" placeholder name="answer_24097">
+<input type="submit" value="проверить">
+<div id="result_24097"></div>
+</fieldset>
+</form>
+<script>function validate_form_24097() {var x, text; var x = document.forms['form_24097']['answer_24097'].value;if (x == 'инвестиционный'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_24097').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_25759" onclick="return show_hint_25759()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_25759" onclick="return show_hint_25759()"></div>
+<script>function show_hint_25759(){var x = document.getElementById('result_25759').innerHTML; if(!x){document.getElementById('result_25759').innerHTML = 'инвестиционный';} else {document.getElementById('result_25759').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_65553" onsubmit="return validate_form_65553()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Результаты анализа показывают низкую корреляцию ____________ (<strong>инвестиционный, активность</strong>) и совокупной факторной продуктивности.</h4></legend>
+<input type="text" placeholder name="answer_65553">
+<input type="submit" value="проверить">
+<div id="result_65553"></div>
+</fieldset>
+</form>
+<script>function validate_form_65553() {var x, text; var x = document.forms['form_65553']['answer_65553'].value;if (x == 'инвестиционной активности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_65553').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_35405" onclick="return show_hint_35405()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_35405" onclick="return show_hint_35405()"></div>
+<script>function show_hint_35405(){var x = document.getElementById('result_35405').innerHTML; if(!x){document.getElementById('result_35405').innerHTML = 'инвестиционной активности';} else {document.getElementById('result_35405').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_41437" onsubmit="return validate_form_41437()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Около половины инвесторов на рынке обладают ____________ (<strong>инвестиционный, портфель</strong>) среднего размера.</h4></legend>
+<input type="text" placeholder name="answer_41437">
+<input type="submit" value="проверить">
+<div id="result_41437"></div>
+</fieldset>
+</form>
+<script>function validate_form_41437() {var x, text; var x = document.forms['form_41437']['answer_41437'].value;if (x == 'инвестиционными портфелями'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_41437').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_97492" onclick="return show_hint_97492()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_97492" onclick="return show_hint_97492()"></div>
+<script>function show_hint_97492(){var x = document.getElementById('result_97492').innerHTML; if(!x){document.getElementById('result_97492').innerHTML = 'инвестиционными портфелями';} else {document.getElementById('result_97492').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_33520" onsubmit="return validate_form_33520()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Крупным ____________ (<strong>инвестиционный, проект</strong>) предоставят налоговые льготы.</h4></legend>
+<input type="text" placeholder name="answer_33520">
+<input type="submit" value="проверить">
+<div id="result_33520"></div>
+</fieldset>
+</form>
+<script>function validate_form_33520() {var x, text; var x = document.forms['form_33520']['answer_33520'].value;if (x == 'инвестиционным проектам'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_33520').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_66936" onclick="return show_hint_66936()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_66936" onclick="return show_hint_66936()"></div>
+<script>function show_hint_66936(){var x = document.getElementById('result_66936').innerHTML; if(!x){document.getElementById('result_66936').innerHTML = 'инвестиционным проектам';} else {document.getElementById('result_66936').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_34050" onsubmit="return validate_form_34050()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Геополитика находится в центре внимания при принятии ____________ (<strong>инвестиционный</strong>) решений.</h4></legend>
+<input type="text" placeholder name="answer_34050">
+<input type="submit" value="проверить">
+<div id="result_34050"></div>
+</fieldset>
+</form>
+<script>function validate_form_34050() {var x, text; var x = document.forms['form_34050']['answer_34050'].value;if (x == 'инвестиционных'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_34050').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_95867" onclick="return show_hint_95867()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_95867" onclick="return show_hint_95867()"></div>
+<script>function show_hint_95867(){var x = document.getElementById('result_95867').innerHTML; if(!x){document.getElementById('result_95867').innerHTML = 'инвестиционных';} else {document.getElementById('result_95867').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_31431" onsubmit="return validate_form_31431()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Обычно ____________ (<strong>инвестиционный, проект</strong>) долгосрочны, а вкладчики ценят краткосрочную ликвидность, то есть возможность при необходимости изъять свои сбережения для немедленного потребления.</h4></legend>
+<input type="text" placeholder name="answer_31431">
+<input type="submit" value="проверить">
+<div id="result_31431"></div>
+</fieldset>
+</form>
+<script>function validate_form_31431() {var x, text; var x = document.forms['form_31431']['answer_31431'].value;if (x == 'инвестиционные проекты'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_31431').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_41462" onclick="return show_hint_41462()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_41462" onclick="return show_hint_41462()"></div>
+<script>function show_hint_41462(){var x = document.getElementById('result_41462').innerHTML; if(!x){document.getElementById('result_41462').innerHTML = 'инвестиционные проекты';} else {document.getElementById('result_41462').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_17892" onsubmit="return validate_form_17892()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Процесс анализа рисков ____________ (<strong>инвестиционный</strong>) проекта во многом определяется экспертом.</h4></legend>
+<input type="text" placeholder name="answer_17892">
+<input type="submit" value="проверить">
+<div id="result_17892"></div>
+</fieldset>
+</form>
+<script>function validate_form_17892() {var x, text; var x = document.forms['form_17892']['answer_17892'].value;if (x == 'инвестиционного'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_17892').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_26059" onclick="return show_hint_26059()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_26059" onclick="return show_hint_26059()"></div>
+<script>function show_hint_26059(){var x = document.getElementById('result_26059').innerHTML; if(!x){document.getElementById('result_26059').innerHTML = 'инвестиционного';} else {document.getElementById('result_26059').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_41161" onsubmit="return validate_form_41161()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Изменилась ставка налогообложения доходов, полученных от ____________ (<strong>инвестиционный, деятельность</strong>).</h4></legend>
+<input type="text" placeholder name="answer_41161">
+<input type="submit" value="проверить">
+<div id="result_41161"></div>
+</fieldset>
+</form>
+<script>function validate_form_41161() {var x, text; var x = document.forms['form_41161']['answer_41161'].value;if (x == 'инвестиционной деятельности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_41161').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_7495" onclick="return show_hint_7495()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_7495" onclick="return show_hint_7495()"></div>
+<script>function show_hint_7495(){var x = document.getElementById('result_7495').innerHTML; if(!x){document.getElementById('result_7495').innerHTML = 'инвестиционной деятельности';} else {document.getElementById('result_7495').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_42598" onsubmit="return validate_form_42598()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Дружественные страны договорились о реализации крупных ____________ (<strong>инвестиционный, проект</strong>).</h4></legend>
+<input type="text" placeholder name="answer_42598">
+<input type="submit" value="проверить">
+<div id="result_42598"></div>
+</fieldset>
+</form>
+<script>function validate_form_42598() {var x, text; var x = document.forms['form_42598']['answer_42598'].value;if (x == 'инвестиционных проектов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_42598').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_26932" onclick="return show_hint_26932()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_26932" onclick="return show_hint_26932()"></div>
+<script>function show_hint_26932(){var x = document.getElementById('result_26932').innerHTML; if(!x){document.getElementById('result_26932').innerHTML = 'инвестиционных проектов';} else {document.getElementById('result_26932').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_780" onsubmit="return validate_form_780()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Фирмы приобретают ____________ (<strong>инвестиционный, товар</strong>) и сдают их в аренду.</h4></legend>
+<input type="text" placeholder name="answer_780">
+<input type="submit" value="проверить">
+<div id="result_780"></div>
+</fieldset>
+</form>
+<script>function validate_form_780() {var x, text; var x = document.forms['form_780']['answer_780'].value;if (x == 'инвестиционные товары'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_780').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_57616" onclick="return show_hint_57616()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_57616" onclick="return show_hint_57616()"></div>
+<script>function show_hint_57616(){var x = document.getElementById('result_57616').innerHTML; if(!x){document.getElementById('result_57616').innerHTML = 'инвестиционные товары';} else {document.getElementById('result_57616').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_82108" onsubmit="return validate_form_82108()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Мировой финансовый кризис существенно повлиял на возможности реализации крупных ____________ (<strong>инвестиционный, проект</strong>).</h4></legend>
+<input type="text" placeholder name="answer_82108">
+<input type="submit" value="проверить">
+<div id="result_82108"></div>
+</fieldset>
+</form>
+<script>function validate_form_82108() {var x, text; var x = document.forms['form_82108']['answer_82108'].value;if (x == 'инвестиционных проектов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_82108').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_96829" onclick="return show_hint_96829()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_96829" onclick="return show_hint_96829()"></div>
+<script>function show_hint_96829(){var x = document.getElementById('result_96829').innerHTML; if(!x){document.getElementById('result_96829').innerHTML = 'инвестиционных проектов';} else {document.getElementById('result_96829').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_6131" onsubmit="return validate_form_6131()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Банк может потребовать независимую оценку ____________ (<strong>инвестиционный, проект</strong>) для подтверждения их прибыльности.</h4></legend>
+<input type="text" placeholder name="answer_6131">
+<input type="submit" value="проверить">
+<div id="result_6131"></div>
+</fieldset>
+</form>
+<script>function validate_form_6131() {var x, text; var x = document.forms['form_6131']['answer_6131'].value;if (x == 'инвестиционных проектов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_6131').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_51148" onclick="return show_hint_51148()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_51148" onclick="return show_hint_51148()"></div>
+<script>function show_hint_51148(){var x = document.getElementById('result_51148').innerHTML; if(!x){document.getElementById('result_51148').innerHTML = 'инвестиционных проектов';} else {document.getElementById('result_51148').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_65908" onsubmit="return validate_form_65908()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Дана оценка ____________ (<strong>инвестиционный, привлекательность</strong>) регионов.</h4></legend>
+<input type="text" placeholder name="answer_65908">
+<input type="submit" value="проверить">
+<div id="result_65908"></div>
+</fieldset>
+</form>
+<script>function validate_form_65908() {var x, text; var x = document.forms['form_65908']['answer_65908'].value;if (x == 'инвестиционной привлекательности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_65908').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_71063" onclick="return show_hint_71063()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_71063" onclick="return show_hint_71063()"></div>
+<script>function show_hint_71063(){var x = document.getElementById('result_71063').innerHTML; if(!x){document.getElementById('result_71063').innerHTML = 'инвестиционной привлекательности';} else {document.getElementById('result_71063').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_48643" onsubmit="return validate_form_48643()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Благодаря изменениям в законодательстве ожидается улучшение ____________ (<strong>инвестиционный, климат</strong>) и появление новых рабочих мест, а соответственно, и рост качества жизни населения.</h4></legend>
+<input type="text" placeholder name="answer_48643">
+<input type="submit" value="проверить">
+<div id="result_48643"></div>
+</fieldset>
+</form>
+<script>function validate_form_48643() {var x, text; var x = document.forms['form_48643']['answer_48643'].value;if (x == 'инвестиционного климата'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_48643').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_58644" onclick="return show_hint_58644()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_58644" onclick="return show_hint_58644()"></div>
+<script>function show_hint_58644(){var x = document.getElementById('result_58644').innerHTML; if(!x){document.getElementById('result_58644').innerHTML = 'инвестиционного климата';} else {document.getElementById('result_58644').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_68408" onsubmit="return validate_form_68408()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Необходимо поддерживать эффективность налоговой, бюджетной и ____________ (<strong>инвестиционный, политика</strong>): всегда есть желание закрыть проблемы деньгами, а не заниматься налоговыми стимулами, повышением эффективности госрасходов и инвестиционным климатом.</h4></legend>
+<input type="text" placeholder name="answer_68408">
+<input type="submit" value="проверить">
+<div id="result_68408"></div>
+</fieldset>
+</form>
+<script>function validate_form_68408() {var x, text; var x = document.forms['form_68408']['answer_68408'].value;if (x == 'инвестиционной политики'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_68408').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_81036" onclick="return show_hint_81036()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_81036" onclick="return show_hint_81036()"></div>
+<script>function show_hint_81036(){var x = document.getElementById('result_81036').innerHTML; if(!x){document.getElementById('result_81036').innerHTML = 'инвестиционной политики';} else {document.getElementById('result_81036').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_68356" onsubmit="return validate_form_68356()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">К формированию и реализации ____________ (<strong>инвестиционный, политика</strong>) акционерам и менеджменту компании стоит подходить максимально ответственно.</h4></legend>
+<input type="text" placeholder name="answer_68356">
+<input type="submit" value="проверить">
+<div id="result_68356"></div>
+</fieldset>
+</form>
+<script>function validate_form_68356() {var x, text; var x = document.forms['form_68356']['answer_68356'].value;if (x == 'инвестиционной политики'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_68356').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_15712" onclick="return show_hint_15712()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_15712" onclick="return show_hint_15712()"></div>
+<script>function show_hint_15712(){var x = document.getElementById('result_15712').innerHTML; if(!x){document.getElementById('result_15712').innerHTML = 'инвестиционной политики';} else {document.getElementById('result_15712').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_86833" onsubmit="return validate_form_86833()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Более низкая процентная ставка увеличивает и потребительские расходы (потому что сокращается сбережение), и ____________ (<strong>инвестиционный, расход</strong>).</h4></legend>
+<input type="text" placeholder name="answer_86833">
+<input type="submit" value="проверить">
+<div id="result_86833"></div>
+</fieldset>
+</form>
+<script>function validate_form_86833() {var x, text; var x = document.forms['form_86833']['answer_86833'].value;if (x == 'инвестиционные расходы'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_86833').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_26079" onclick="return show_hint_26079()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_26079" onclick="return show_hint_26079()"></div>
+<script>function show_hint_26079(){var x = document.getElementById('result_26079').innerHTML; if(!x){document.getElementById('result_26079').innerHTML = 'инвестиционные расходы';} else {document.getElementById('result_26079').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_43831" onsubmit="return validate_form_43831()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Можно сказать, что ____________ (<strong>инвестиционный</strong>) ресурсы формировались и использовались не эффективно.</h4></legend>
+<input type="text" placeholder name="answer_43831">
+<input type="submit" value="проверить">
+<div id="result_43831"></div>
+</fieldset>
+</form>
+<script>function validate_form_43831() {var x, text; var x = document.forms['form_43831']['answer_43831'].value;if (x == 'инвестиционные'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_43831').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_73544" onclick="return show_hint_73544()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_73544" onclick="return show_hint_73544()"></div>
+<script>function show_hint_73544(){var x = document.getElementById('result_73544').innerHTML; if(!x){document.getElementById('result_73544').innerHTML = 'инвестиционные';} else {document.getElementById('result_73544').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_86845" onsubmit="return validate_form_86845()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Региональные органы власти прилагают больше усилий к улучшению ____________ (<strong>инвестиционный</strong>) климата, чем несколько лет назад.</h4></legend>
+<input type="text" placeholder name="answer_86845">
+<input type="submit" value="проверить">
+<div id="result_86845"></div>
+</fieldset>
+</form>
+<script>function validate_form_86845() {var x, text; var x = document.forms['form_86845']['answer_86845'].value;if (x == 'инвестиционного'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_86845').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_17136" onclick="return show_hint_17136()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_17136" onclick="return show_hint_17136()"></div>
+<script>function show_hint_17136(){var x = document.getElementById('result_17136').innerHTML; if(!x){document.getElementById('result_17136').innerHTML = 'инвестиционного';} else {document.getElementById('result_17136').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_48361" onsubmit="return validate_form_48361()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Ставка процента измеряет стоимость финансирования ____________ (<strong>инвестиционный, проект</strong>).</h4></legend>
+<input type="text" placeholder name="answer_48361">
+<input type="submit" value="проверить">
+<div id="result_48361"></div>
+</fieldset>
+</form>
+<script>function validate_form_48361() {var x, text; var x = document.forms['form_48361']['answer_48361'].value;if (x == 'инвестиционных проектов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_48361').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_30203" onclick="return show_hint_30203()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_30203" onclick="return show_hint_30203()"></div>
+<script>function show_hint_30203(){var x = document.getElementById('result_30203').innerHTML; if(!x){document.getElementById('result_30203').innerHTML = 'инвестиционных проектов';} else {document.getElementById('result_30203').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_37456" onsubmit="return validate_form_37456()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Высокий уровень ____________ (<strong>инвестиционный, привлекательность</strong>) региона снижает инвестиционный риск.</h4></legend>
+<input type="text" placeholder name="answer_37456">
+<input type="submit" value="проверить">
+<div id="result_37456"></div>
+</fieldset>
+</form>
+<script>function validate_form_37456() {var x, text; var x = document.forms['form_37456']['answer_37456'].value;if (x == 'инвестиционной привлекательности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_37456').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_81931" onclick="return show_hint_81931()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_81931" onclick="return show_hint_81931()"></div>
+<script>function show_hint_81931(){var x = document.getElementById('result_81931').innerHTML; if(!x){document.getElementById('result_81931').innerHTML = 'инвестиционной привлекательности';} else {document.getElementById('result_81931').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_1042" onsubmit="return validate_form_1042()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">В правительстве разрабатываются направления финансово-кредитной и ____________ (<strong>инвестиционный, поддержка</strong>) предпринимательства.</h4></legend>
+<input type="text" placeholder name="answer_1042">
+<input type="submit" value="проверить">
+<div id="result_1042"></div>
+</fieldset>
+</form>
+<script>function validate_form_1042() {var x, text; var x = document.forms['form_1042']['answer_1042'].value;if (x == 'инвестиционной поддержки'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_1042').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_263" onclick="return show_hint_263()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_263" onclick="return show_hint_263()"></div>
+<script>function show_hint_263(){var x = document.getElementById('result_263').innerHTML; if(!x){document.getElementById('result_263').innerHTML = 'инвестиционной поддержки';} else {document.getElementById('result_263').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_76252" onsubmit="return validate_form_76252()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Траст, чьи паи торгуются на фондовой бирже по рыночным ценам, называется паевым ____________ (<strong>инвестиционный</strong>) фондом.</h4></legend>
+<input type="text" placeholder name="answer_76252">
+<input type="submit" value="проверить">
+<div id="result_76252"></div>
+</fieldset>
+</form>
+<script>function validate_form_76252() {var x, text; var x = document.forms['form_76252']['answer_76252'].value;if (x == 'инвестиционным'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_76252').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_27306" onclick="return show_hint_27306()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_27306" onclick="return show_hint_27306()"></div>
+<script>function show_hint_27306(){var x = document.getElementById('result_27306').innerHTML; if(!x){document.getElementById('result_27306').innerHTML = 'инвестиционным';} else {document.getElementById('result_27306').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_54134" onsubmit="return validate_form_54134()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Повысился рост ____________ (<strong>инвестиционный, активность</strong>) в сфере услуг.</h4></legend>
+<input type="text" placeholder name="answer_54134">
+<input type="submit" value="проверить">
+<div id="result_54134"></div>
+</fieldset>
+</form>
+<script>function validate_form_54134() {var x, text; var x = document.forms['form_54134']['answer_54134'].value;if (x == 'инвестиционной активности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_54134').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_60722" onclick="return show_hint_60722()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_60722" onclick="return show_hint_60722()"></div>
+<script>function show_hint_60722(){var x = document.getElementById('result_60722').innerHTML; if(!x){document.getElementById('result_60722').innerHTML = 'инвестиционной активности';} else {document.getElementById('result_60722').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_96738" onsubmit="return validate_form_96738()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">В секторах производственного и ____________ (<strong>инвестиционный</strong>) спроса наблюдалось сокращение прибыли по сравнению с отраслями потребительского спроса и торговли.</h4></legend>
+<input type="text" placeholder name="answer_96738">
+<input type="submit" value="проверить">
+<div id="result_96738"></div>
+</fieldset>
+</form>
+<script>function validate_form_96738() {var x, text; var x = document.forms['form_96738']['answer_96738'].value;if (x == 'инвестиционного'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_96738').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_43589" onclick="return show_hint_43589()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_43589" onclick="return show_hint_43589()"></div>
+<script>function show_hint_43589(){var x = document.getElementById('result_43589').innerHTML; if(!x){document.getElementById('result_43589').innerHTML = 'инвестиционного';} else {document.getElementById('result_43589').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_34308" onsubmit="return validate_form_34308()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">У инвестора пропадает стимул к увеличению инвестиций, и ____________ (<strong>инвестиционный</strong>) спрос снижается.</h4></legend>
+<input type="text" placeholder name="answer_34308">
+<input type="submit" value="проверить">
+<div id="result_34308"></div>
+</fieldset>
+</form>
+<script>function validate_form_34308() {var x, text; var x = document.forms['form_34308']['answer_34308'].value;if (x == 'инвестиционный'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_34308').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_16623" onclick="return show_hint_16623()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_16623" onclick="return show_hint_16623()"></div>
+<script>function show_hint_16623(){var x = document.getElementById('result_16623').innerHTML; if(!x){document.getElementById('result_16623').innerHTML = 'инвестиционный';} else {document.getElementById('result_16623').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_94941" onsubmit="return validate_form_94941()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Повышение уровня неопределенности в экономике становится причиной отказа от новых ____________ (<strong>инвестиционный, проект</strong>).</h4></legend>
+<input type="text" placeholder name="answer_94941">
+<input type="submit" value="проверить">
+<div id="result_94941"></div>
+</fieldset>
+</form>
+<script>function validate_form_94941() {var x, text; var x = document.forms['form_94941']['answer_94941'].value;if (x == 'инвестиционных проектов'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_94941').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_27910" onclick="return show_hint_27910()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_27910" onclick="return show_hint_27910()"></div>
+<script>function show_hint_27910(){var x = document.getElementById('result_27910').innerHTML; if(!x){document.getElementById('result_27910').innerHTML = 'инвестиционных проектов';} else {document.getElementById('result_27910').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_13731" onsubmit="return validate_form_13731()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Произойдет рост цен на ____________ (<strong>инвестиционный, товар</strong>) относительно цен на труд (заработных плат, доходов).</h4></legend>
+<input type="text" placeholder name="answer_13731">
+<input type="submit" value="проверить">
+<div id="result_13731"></div>
+</fieldset>
+</form>
+<script>function validate_form_13731() {var x, text; var x = document.forms['form_13731']['answer_13731'].value;if (x == 'инвестиционные товары'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_13731').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_68836" onclick="return show_hint_68836()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_68836" onclick="return show_hint_68836()"></div>
+<script>function show_hint_68836(){var x = document.getElementById('result_68836').innerHTML; if(!x){document.getElementById('result_68836').innerHTML = 'инвестиционные товары';} else {document.getElementById('result_68836').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_15610" onsubmit="return validate_form_15610()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Государственная программа способствует росту торговых и ____________ (<strong>инвестиционный, поток</strong>).</h4></legend>
+<input type="text" placeholder name="answer_15610">
+<input type="submit" value="проверить">
+<div id="result_15610"></div>
+</fieldset>
+</form>
+<script>function validate_form_15610() {var x, text; var x = document.forms['form_15610']['answer_15610'].value;if (x == 'инвестиционных потоков'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_15610').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_74148" onclick="return show_hint_74148()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_74148" onclick="return show_hint_74148()"></div>
+<script>function show_hint_74148(){var x = document.getElementById('result_74148').innerHTML; if(!x){document.getElementById('result_74148').innerHTML = 'инвестиционных потоков';} else {document.getElementById('result_74148').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_41595" onsubmit="return validate_form_41595()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Мотивом повышения ____________ (<strong>инвестиционный, привлекательность</strong>) является устойчивый рост дивидендных выплат российских компаний.</h4></legend>
+<input type="text" placeholder name="answer_41595">
+<input type="submit" value="проверить">
+<div id="result_41595"></div>
+</fieldset>
+</form>
+<script>function validate_form_41595() {var x, text; var x = document.forms['form_41595']['answer_41595'].value;if (x == 'инвестиционной привлекательности'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_41595').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_62273" onclick="return show_hint_62273()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_62273" onclick="return show_hint_62273()"></div>
+<script>function show_hint_62273(){var x = document.getElementById('result_62273').innerHTML; if(!x){document.getElementById('result_62273').innerHTML = 'инвестиционной привлекательности';} else {document.getElementById('result_62273').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_51488" onsubmit="return validate_form_51488()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Были получены значения показателей, подтверждающие эффективность ____________ (<strong>инвестиционный, проект</strong>).</h4></legend>
+<input type="text" placeholder name="answer_51488">
+<input type="submit" value="проверить">
+<div id="result_51488"></div>
+</fieldset>
+</form>
+<script>function validate_form_51488() {var x, text; var x = document.forms['form_51488']['answer_51488'].value;if (x == 'инвестиционного проекта'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_51488').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_93827" onclick="return show_hint_93827()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_93827" onclick="return show_hint_93827()"></div>
+<script>function show_hint_93827(){var x = document.getElementById('result_93827').innerHTML; if(!x){document.getElementById('result_93827').innerHTML = 'инвестиционного проекта';} else {document.getElementById('result_93827').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_74151" onsubmit="return validate_form_74151()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Индексы, отвечающие за ____________ (<strong>инвестиционный, климат</strong>) и инновационную инфраструктуру, продолжили снижаться.</h4></legend>
+<input type="text" placeholder name="answer_74151">
+<input type="submit" value="проверить">
+<div id="result_74151"></div>
+</fieldset>
+</form>
+<script>function validate_form_74151() {var x, text; var x = document.forms['form_74151']['answer_74151'].value;if (x == 'инвестиционный климат'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_74151').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_79931" onclick="return show_hint_79931()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_79931" onclick="return show_hint_79931()"></div>
+<script>function show_hint_79931(){var x = document.getElementById('result_79931').innerHTML; if(!x){document.getElementById('result_79931').innerHTML = 'инвестиционный климат';} else {document.getElementById('result_79931').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_92086" onsubmit="return validate_form_92086()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Инвесторы чаще проверяли стоимость своих ____________ (<strong>инвестиционный</strong>) портфелей на растущих рынках, чем на стабильных или падающих.</h4></legend>
+<input type="text" placeholder name="answer_92086">
+<input type="submit" value="проверить">
+<div id="result_92086"></div>
+</fieldset>
+</form>
+<script>function validate_form_92086() {var x, text; var x = document.forms['form_92086']['answer_92086'].value;if (x == 'инвестиционных'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_92086').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_88639" onclick="return show_hint_88639()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_88639" onclick="return show_hint_88639()"></div>
+<script>function show_hint_88639(){var x = document.getElementById('result_88639').innerHTML; if(!x){document.getElementById('result_88639').innerHTML = 'инвестиционных';} else {document.getElementById('result_88639').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_9028" onsubmit="return validate_form_9028()" method="post">
+<fieldset>
+<legend><h4 id="400" class="anchored">Вкладчики готовы вложить в ____________ (<strong>инвестиционный, фонд</strong>) $400 млн.</h4></legend>
+<input type="text" placeholder name="answer_9028">
+<input type="submit" value="проверить">
+<div id="result_9028"></div>
+</fieldset>
+</form>
+<script>function validate_form_9028() {var x, text; var x = document.forms['form_9028']['answer_9028'].value;if (x == 'инвестиционный фонд'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_9028').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_28544" onclick="return show_hint_28544()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_28544" onclick="return show_hint_28544()"></div>
+<script>function show_hint_28544(){var x = document.getElementById('result_28544').innerHTML; if(!x){document.getElementById('result_28544').innerHTML = 'инвестиционный фонд';} else {document.getElementById('result_28544').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_61580" onsubmit="return validate_form_61580()" method="post">
+<fieldset>
+<legend><h4 id="5-10" class="anchored">Для других отраслей влияние ____________ (<strong>инвестиционный, стратегия</strong>) на уровень инвестиций не наблюдается, либо статистически не значимо (на 5-10% уровне).</h4></legend>
+<input type="text" placeholder name="answer_61580">
+<input type="submit" value="проверить">
+<div id="result_61580"></div>
+</fieldset>
+</form>
+<script>function validate_form_61580() {var x, text; var x = document.forms['form_61580']['answer_61580'].value;if (x == 'инвестиционных стратегий'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_61580').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_70330" onclick="return show_hint_70330()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_70330" onclick="return show_hint_70330()"></div>
+<script>function show_hint_70330(){var x = document.getElementById('result_70330').innerHTML; if(!x){document.getElementById('result_70330').innerHTML = 'инвестиционных стратегий';} else {document.getElementById('result_70330').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_5116" onsubmit="return validate_form_5116()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Розничные инвесторы могут держать актив или выходить из него по причинам, никак не связанным с ____________ (<strong>инвестиционный, стратегия</strong>).</h4></legend>
+<input type="text" placeholder name="answer_5116">
+<input type="submit" value="проверить">
+<div id="result_5116"></div>
+</fieldset>
+</form>
+<script>function validate_form_5116() {var x, text; var x = document.forms['form_5116']['answer_5116'].value;if (x == 'инвестиционной стратегией'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_5116').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_4015" onclick="return show_hint_4015()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_4015" onclick="return show_hint_4015()"></div>
+<script>function show_hint_4015(){var x = document.getElementById('result_4015').innerHTML; if(!x){document.getElementById('result_4015').innerHTML = 'инвестиционной стратегией';} else {document.getElementById('result_4015').innerHTML = '';}}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_41241" onsubmit="return validate_form_41241()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Устойчивость к ____________ (<strong>инвестиционный, риск</strong>) может меняться в зависимости от рыночных условий.</h4></legend>
+<input type="text" placeholder name="answer_41241">
+<input type="submit" value="проверить">
+<div id="result_41241"></div>
+</fieldset>
+</form>
+<script>function validate_form_41241() {var x, text; var x = document.forms['form_41241']['answer_41241'].value;if (x == 'инвестиционным рискам'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_41241').innerHTML = text; return false;}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_49041" onclick="return show_hint_49041()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_49041" onclick="return show_hint_49041()"></div>
+<script>function show_hint_49041(){var x = document.getElementById('result_49041').innerHTML; if(!x){document.getElementById('result_49041').innerHTML = 'инвестиционным рискам';} else {document.getElementById('result_49041').innerHTML = '';}}</script>
+</div>
+</div>
 </div>
 </div>
 </div>

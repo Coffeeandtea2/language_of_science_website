@@ -5851,7 +5851,9 @@ HTMLWidgets.widget({
               $input.parent().hide(); $x.show().trigger('show'); filter[0].selectize.focus();
             },
             input: function() {
-              if ($input.val() === '') filter[0].selectize.setValue([]);
+              var v1 = JSON.stringify(filter[0].selectize.getValue()), v2 = $input.val();
+              if (v1 === '[]') v1 = '';
+              if (v1 !== v2) filter[0].selectize.setValue(v2 === '' ? [] : JSON.parse(v2));
             }
           });
           var $input2 = $x.children('select');
@@ -6756,7 +6758,7 @@ HTMLWidgets.widget({
           console.log('The search keyword for column ' + i + ' is undefined')
           return;
         }
-        $(td).find('input').first().val(v);
+        $(td).find('input').first().val(v).trigger('input');
         searchColumn(i, v);
       });
       table.draw();
@@ -7664,8 +7666,8 @@ b&&(b.preventDefault(),b.stopPropagation())}else(l.isFocused||"single"===l.setti
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-cfa786d78e0ce0757c50" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-cfa786d78e0ce0757c50">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["как показывает","показан","показано, что","показать, что","показаться","показывать (что? №4)","показывать, что"],["• как показывает анализ<br>• как показывает опыт<br>• как показывает практика<br>• как показывают данные<br>• как показывают результаты<br>• как показывают исследования","• как показано в<br>• это показано на","• было показано, что","• исследование показало, что<br>• анализ показал, что<br>• расчеты показали, что<br>• практика показала, что","• может показаться","• показывает взаимодействие между","• исследование показывает, что<br>• анализ показывает, что<br>• проведенный анализ показывает, что<br>• анализ показывает, что<br>• расчеты показывают, что<br>• опыт показывает, что<br>• мировой опыт показывает, что<br>• практика показывает, что<br>• мировая практика показывает, что<br>• данные показывают, что<br>• результаты показывают, что<br>• полученные результаты показывают, что<br>• результаты исследования показывают, что<br>• уравнение показывает, что<br>• пример показывает, что<br>• рисунок показывает, что<br>• кривая безразличия показывает, что<br>• кривая Филлипса показывает, что"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2b8b139b066847b9b122" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2b8b139b066847b9b122">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["как показывает","показан","показано, что","показать, что","показаться","показывать (что? №4)","показывать, что"],["• как показывает анализ<br>• как показывает опыт<br>• как показывает практика<br>• как показывают данные<br>• как показывают результаты<br>• как показывают исследования","• как показано в<br>• это показано на","• было показано, что","• исследование показало, что<br>• анализ показал, что<br>• расчеты показали, что<br>• практика показала, что","• может показаться","• показывает взаимодействие между","• исследование показывает, что<br>• анализ показывает, что<br>• проведенный анализ показывает, что<br>• анализ показывает, что<br>• расчеты показывают, что<br>• опыт показывает, что<br>• мировой опыт показывает, что<br>• практика показывает, что<br>• мировая практика показывает, что<br>• данные показывают, что<br>• результаты показывают, что<br>• полученные результаты показывают, что<br>• результаты исследования показывают, что<br>• уравнение показывает, что<br>• пример показывает, что<br>• рисунок показывает, что<br>• кривая безразличия показывает, что<br>• кривая Филлипса показывает, что"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
