@@ -46,7 +46,10 @@ phrase_to_delete |>
 phrase_to_delete |> 
   cbind(to_delete_phrase_df) |> 
   filter(lemmata != "NA") |> 
-  mutate(query = str_replace(query, to_delete, str_c("____________ (**", lemmata, "**)"))) |> 
+  mutate(lemmata = ifelse(please_be_careful_in_plural == "pl",
+                          str_replace_all(phrase, " ", ", "),
+                          lemmata),
+         query = str_replace(query, to_delete, str_c("____________ (**", lemmata, "**)"))) |> 
   select(stimulus, target, to_delete, query) |> 
   mutate(task_type = "Поставить слово в правильную форму",
          fragment = str_extract(to_delete, "^.."),
@@ -94,8 +97,25 @@ stimulus_to_delete |>
   to_delete_stimulus_df
 
 stimulus_to_delete |> 
-  cbind(to_delete_stimulus_df) |> 
-  mutate(query = str_replace(query, to_delete, str_c("____________ (**", stimulus, "**)"))) |> 
+  rename(text = phrase) |> 
+  mutate(doc_id = 1:n()) |> 
+  filter(please_be_careful_in_plural == "pl") |> 
+  select(doc_id, text) |> 
+  udpipe(ru) |> 
+  select(doc_id, token, lemma)  |> 
+  left_join(stimulus_udpiped) |> 
+  na.omit() |> 
+  rename(change = token,
+         stimulus = lemma) |> 
+  select(doc_id, change, stimulus) |> 
+  mutate(doc_id = as.double(doc_id)) ->
+  change_df
+
+stimulus_to_delete |> 
+  cbind(to_delete_stimulus_df)  |> 
+  left_join(change_df) |> 
+  mutate(change = ifelse(is.na(change), stimulus, change),
+         query = str_replace(query, to_delete, str_c("____________ (**", change, "**)"))) |> 
   select(stimulus, target, to_delete, query) |> 
   mutate(task_type = "Поставить слово в правильную форму",
          fragment = str_extract(to_delete, "^.."),
@@ -199,7 +219,7 @@ if(-2 %in% extract_to_delete$step){
 read_xlsx("../data/sentences.xlsx") |> 
   mutate(query = str_remove_all(query, "\\|\\|\\|")) |> 
   filter(str_detect(target, "[а-я]")) |> 
-  select(stimulus, phrase, n_gram, query, target) ->
+  select(stimulus, phrase, n_gram, query, target, please_be_careful_in_plural) ->
   direct_extract
 
 direct_extract |> 
@@ -216,9 +236,12 @@ direct_extract |>
 
 direct_extract |> 
   bind_cols(direct_extract_brackets) |> 
-  mutate(query = str_replace(query, 
+  mutate(change = ifelse(please_be_careful_in_plural == "pl",
+                         str_replace_all(phrase, " ", ", "),
+                         brackets),
+         query = str_replace(query, 
                              target, 
-                             str_c("____________ (**", brackets, "**)")),
+                             str_c("____________ (**", change, "**)")),
          to_delete = target) |> 
   select(stimulus, target, to_delete, query) |> 
   mutate(task_type = "Поставить слово в правильную форму") |> 
@@ -331,7 +354,6 @@ map(seq_along(make_tasks$task), function(i){
   list_rbind() ->
   pictures
  
-
 # create mixed word tasks -------------------------------------------------
 
 read_xlsx("../data/word_profiles.xlsx") |> 
@@ -351,7 +373,8 @@ read_xlsx("../data/word_profiles.xlsx") |>
   
 # create mixed word tasks -------------------------------------------------
 
-read_xlsx("../data/sentences.xlsx") |> 
+read_xlsx("../data/sentences.xlsx", guess_max = 3000) |> 
+  filter(is.na(not_in_sentence_in_order)) |> 
   distinct(stimulus, query) |> 
   filter(str_count(query, "[\\.\\?]") == 1) |> 
   na.omit() |>
