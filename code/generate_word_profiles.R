@@ -148,7 +148,8 @@ tasks_dataset |>
   filter(upos %in% c("ADJ", "NOUN"),
          !(task_type %in% c("Упорядочить слова",
                             "Упорядочить фрагменты предложений"))) |> 
-  slice_sample(prop = 1) ->
+  slice_sample(prop = 1) |> 
+  slice_sample(n = 700) ->
   generate_declension_tasks
 
 map2(generate_declension_tasks$task, 
@@ -174,7 +175,8 @@ tasks_dataset |>
   filter(upos %in% c("VERB"),
          !(task_type %in% c("Упорядочить слова",
                             "Упорядочить фрагменты предложений"))) |> 
-  slice_sample(prop = 1) ->
+  slice_sample(prop = 1) |> 
+  slice_sample(n = 700) ->
   generate_government_tasks
 
 map2(generate_government_tasks$task, 

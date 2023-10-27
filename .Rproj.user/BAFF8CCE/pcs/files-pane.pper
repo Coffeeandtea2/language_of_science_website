@@ -1,13 +1,13 @@
 {
     "sortOrder": [
         {
-            "columnIndex": 1,
-            "ascending": false
-        },
-        {
             "columnIndex": 2,
             "ascending": true
+        },
+        {
+            "columnIndex": 1,
+            "ascending": false
         }
     ],
-    "path": "~/work/other_projects/language_of_science_website/make_tasks_from_sentences"
+    "path": "~/work/other_projects/language_of_science_website/code"
 }

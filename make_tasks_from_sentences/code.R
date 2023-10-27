@@ -5,6 +5,7 @@ library(udpipe)
 ru <- udpipe_load_model("/home/agricolamz/work/databases/spoken_corpora/russian-syntagrus-ud-2.5-191206.udpipe")
 
 read_xlsx("../data/sentences.xlsx") |> 
+  filter(!is.na(query)) |> 
   mutate(query = str_remove_all(query, "\\|\\|\\|")) ->
   df
 
@@ -20,6 +21,87 @@ read_xlsx("../data/sentences.xlsx") |>
 #   separate(feats, into = c("feature", "value"), sep = "=") |> 
 #   pivot_wider(names_from = feature, values_from = value) |> 
 #   writexl::write_xlsx("udpiped_sentences.xlsx")
+
+# udipiped_corpora <- read_xlsx("udpiped_sentences.xlsx")
+# 
+# read_xlsx("../data/word_profiles.xlsx") |> 
+#   # filter(str_count(phrase, " ") > 2) |> select(phrase)
+#   pull(phrase) |> 
+#   unique() |> 
+#   udpipe(ru) |> 
+#   filter(upos != "PUNCT") |> 
+#   group_by(doc_id) |> 
+#   mutate(term_id = 1:n()) |> 
+#   select(doc_id, sentence, term_id, lemma) |> 
+#   ungroup() ->
+#   find_me
+# 
+# map(unique(find_me$doc_id), .progress = TRUE, function(i){
+#   
+#   find_me |> 
+#     filter(doc_id == i) |> 
+#     select(sentence, lemma) ->
+#     lemmata
+# 
+#   if(nrow(lemmata) == 1){
+#     udipiped_corpora |> 
+#       arrange(doc_id, term_id) |> 
+#       filter(upos != "PUNCT") |> 
+#       filter(lemma == lemmata$lemma[1]) |> 
+#       select(sentence) |> 
+#       distinct() |> 
+#       mutate(phrase = lemmata$sentence[1]) ->
+#       search_result
+#   } else if(nrow(lemmata) == 2){
+#     udipiped_corpora |> 
+#       arrange(doc_id, term_id) |> 
+#       filter(upos != "PUNCT") |> 
+#       filter(lemma == lemmata$lemma[1],
+#              lead(lemma, n = 1) == lemmata$lemma[2]) |> 
+#       select(sentence) |> 
+#       distinct() |> 
+#       mutate(phrase = lemmata$sentence[1]) ->
+#       search_result
+#   } else if(nrow(lemmata) == 3){
+#     udipiped_corpora |> 
+#       arrange(doc_id, term_id) |> 
+#       filter(upos != "PUNCT") |> 
+#       filter(lemma == lemmata$lemma[1],
+#              lead(lemma, n = 1) == lemmata$lemma[2],
+#              lead(lemma, n = 2) == lemmata$lemma[3]) |> 
+#       select(sentence) |> 
+#       distinct() |> 
+#       mutate(phrase = lemmata$sentence[1]) ->
+#       search_result
+#   } else if(nrow(lemmata) == 4){
+#     udipiped_corpora |> 
+#       arrange(doc_id, term_id) |> 
+#       filter(upos != "PUNCT") |> 
+#       filter(lemma == lemmata$lemma[1],
+#              lead(lemma, n = 1) == lemmata$lemma[2],
+#              lead(lemma, n = 2) == lemmata$lemma[3],
+#              lead(lemma, n = 3) == lemmata$lemma[4]) |> 
+#       select(sentence) |> 
+#       distinct() |> 
+#       mutate(phrase = lemmata$sentence[1]) ->
+#       search_result
+#   } else if(nrow(lemmata) == 5){
+#     udipiped_corpora |> 
+#       arrange(doc_id, term_id) |> 
+#       filter(upos != "PUNCT") |> 
+#       filter(lemma == lemmata$lemma[1],
+#              lead(lemma, n = 1) == lemmata$lemma[2],
+#              lead(lemma, n = 2) == lemmata$lemma[3],
+#              lead(lemma, n = 3) == lemmata$lemma[4],
+#              lead(lemma, n = 4) == lemmata$lemma[5]) |> 
+#       select(sentence) |> 
+#       distinct() |> 
+#       mutate(phrase = lemmata$sentence[1]) ->
+#       search_result
+#   }
+# }) |> 
+#   list_rbind() |> 
+#   writexl::write_xlsx("search_phrases_in_sentences.xlsx")
 
 # create tasks from phrase ------------------------------------------------
 
@@ -57,9 +139,9 @@ phrase_to_delete |>
   to_delete_phrase_df
 
 phrase_to_delete |> 
-  cbind(to_delete_phrase_df) |> 
+  cbind(to_delete_phrase_df) |>
   filter(lemmata != "NA") |> 
-  mutate(lemmata = ifelse(please_be_careful_in_plural == "pl",
+  mutate(lemmata = ifelse(!is.na(please_be_careful_in_plural),
                           str_replace_all(phrase, " ", ", "),
                           lemmata),
          query = str_replace(query, to_delete, str_c("____________ (**", lemmata, "**)"))) |> 
@@ -112,7 +194,7 @@ stimulus_to_delete |>
 stimulus_to_delete |> 
   rename(text = phrase) |> 
   mutate(doc_id = 1:n()) |> 
-  filter(please_be_careful_in_plural == "pl") |> 
+  filter(!is.na(please_be_careful_in_plural)) |> 
   select(doc_id, text) |> 
   udpipe(ru) |> 
   select(doc_id, token, lemma)  |> 
@@ -249,7 +331,7 @@ direct_extract |>
 
 direct_extract |> 
   bind_cols(direct_extract_brackets) |> 
-  mutate(change = ifelse(please_be_careful_in_plural == "pl",
+  mutate(change = ifelse(!is.na(please_be_careful_in_plural),
                          str_replace_all(phrase, " ", ", "),
                          brackets),
          query = str_replace(query, 

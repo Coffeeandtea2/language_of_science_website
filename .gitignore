@@ -4,3 +4,5 @@
 .Ruserdata
 /.quarto/
 make_tasks_from_sentences/udpiped_sentences.xlsx
+make_tasks_from_sentences/search_phrases_in_sentences.xlsx
+*.~lock.*
