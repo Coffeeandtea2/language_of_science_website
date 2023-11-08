@@ -92,16 +92,16 @@ readxl::read_xlsx("data/word_profiles.xlsx") |>
   filter(!is.na(lemma_for_site)) |> 
   left_join(readxl::read_xlsx("data/tasks.xlsx"), 
             by = join_by("lemma" == "stimulus"),
-            relationship = "many-to-many") |>
+            relationship = "many-to-many") |> 
   filter(!(task %in% c("Поставьте части предложения в правильном порядке:", 
                         "Поставьте слова в правильном порядке:"))) |> 
   mutate(lemma = str_extract(lemma_for_site, "^.*?(?=( -))"),
          lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
          lemma = str_remove_all(lemma, "\\(.*?\\)")) |> 
   distinct(lemma, answer, task) |> 
-  na.omit() -> # |> 
-  # group_by(lemma) |> 
-  # slice_sample(n = 5) ->
+  na.omit() |>  # |> 
+  group_by(lemma) |> 
+  slice_sample(n = 5) ->
   generate_tasks
 
 walk(unique(generate_tasks$lemma), function(i){
@@ -279,7 +279,7 @@ checkdown::check_hint(hint_text = '{answer}',
   write_lines("sentence_in_order.qmd")
 
 rm(generate_declension_tasks, generate_government_tasks, generate_tasks, 
-   tasks_dataset, ru, generate_word_in_order_tasks)
+   tasks_dataset, ru, generate_word_in_order_tasks, generate_pictures_tasks)
 
 # cleaning ----------------------------------------------------------------
 

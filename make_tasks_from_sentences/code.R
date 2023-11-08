@@ -4,7 +4,7 @@ library(readxl)
 library(udpipe)
 ru <- udpipe_load_model("/home/agricolamz/work/databases/spoken_corpora/russian-syntagrus-ud-2.5-191206.udpipe")
 
-read_xlsx("../data/sentences.xlsx") |> 
+read_xlsx("../data/sentences.xlsx", guess_max = 2000) |> 
   filter(!is.na(query)) |> 
   mutate(query = str_remove_all(query, "\\|\\|\\|")) ->
   df
