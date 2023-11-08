@@ -18,7 +18,7 @@ readxl::read_xlsx("data/word_profiles.xlsx") |>
 
 ```{r}
 #| results: asis
-#| layout-ncol: 3
+#| layout-ncol: 4
 
 df |> 
   filter(wl_type == "NOUN") |> 
@@ -49,7 +49,7 @@ walk2(nouns$lemma,
 
 ```{r}
 #| results: asis
-#| layout-ncol: 3
+#| layout-ncol: 4
 
 df |> 
   filter(wl_type == "ADJ") |> 

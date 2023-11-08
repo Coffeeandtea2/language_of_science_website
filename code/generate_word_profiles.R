@@ -20,12 +20,12 @@ read_xlsx("data/word_profiles.xlsx") |>
   mutate(lemma_for_site = str_remove_all(lemma_for_site, "\\(.*?\\)")) |>
   filter(!(lemma_for_site %in% already_present)) |> 
   pull(lemma_for_site) |>
-  sort() |>  
-  walk(function(i){
+  sort() |> 
+  walk(safely(function(i){
     read_html(glue("https://ru.wiktionary.org/wiki/{i}")) |>
       html_element(".morfotable") |>
       write_lines(glue("data/{i}.html"))
-
+    
     read_lines(glue("data/{i}.html")) |>
       str_remove("float:right; ") |>
       str_remove_all('<a href.*?>') |>
@@ -34,6 +34,20 @@ read_xlsx("data/word_profiles.xlsx") |>
       append("<summary>парадигма</summary>", after = 1) |>
       append("</details>") |>
       write_lines(glue("data/{i}.html"))
+  }))
+
+
+read_xlsx("data/word_profiles.xlsx") |>
+  filter(!is.na(lemma_for_site)) |>
+  distinct(lemma_for_site) |>
+  mutate(lemma_for_site = str_split(lemma_for_site, " - ")) |>
+  unnest_longer(lemma_for_site) |>
+  mutate(lemma_for_site = str_remove_all(lemma_for_site, "\\(.*?\\)")) |>
+  filter(!(lemma_for_site %in% already_present)) |> 
+  pull(lemma_for_site) |>
+  sort() |> 
+  walk(function(i){
+    write_lines("", glue("data/{i}.html"))
   })
 
 # merge 2 paradimes of verbs with different aspects
@@ -81,7 +95,8 @@ readxl::read_xlsx("data/word_profiles.xlsx") |>
          lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
          lemma = str_remove_all(lemma, "\\(.*?\\)")) |> 
   pull(lemma) |> 
-  unique() ->
+  unique() |> 
+  sort() ->
   files
 
 walk(files, function(i){
@@ -99,7 +114,7 @@ readxl::read_xlsx("data/word_profiles.xlsx") |>
          lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
          lemma = str_remove_all(lemma, "\\(.*?\\)")) |> 
   distinct(lemma, answer, task) |> 
-  na.omit() |>  # |> 
+  na.omit() |>
   group_by(lemma) |> 
   slice_sample(n = 5) ->
   generate_tasks
@@ -257,7 +272,7 @@ checkdown::check_hint(hint_text = '{answer}',
 
 tasks_dataset_full |> 
   filter(task_type == "Упорядочить фрагменты предложений") |> 
-  slice_sample(prop = 1) |> 
+  slice_sample(n = 300) |> 
   pull(answer) |> 
   map(function(answer) {
     

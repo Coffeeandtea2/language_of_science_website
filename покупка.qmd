@@ -1,0 +1,52 @@
+---
+title: покупка
+---
+
+[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/покупка)
+[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=покупка)
+
+
+```{r, child='data/покупка.html'}
+```
+::: {.panel-tabset}
+
+## примеры
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+library(checkdown)
+readxl::read_xlsx('data/word_profiles.xlsx') |> 
+  mutate(lemma = str_extract(lemma_for_site, '^.*?(?=( -))'),
+         lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
+         lemma = str_remove_all(lemma, '\\(.*?\\)')) |> 
+  filter(lemma == 'покупка') |> 
+  mutate(example = ifelse(is.na(example), '', str_c('• ', example))) |> 
+  select(phrase_for_site, example) |> 
+  group_by(phrase_for_site) |> 
+  summarize(example = str_c(example, collapse = '<br>')) |> 
+  rename(выражение = phrase_for_site, 
+         пример = example) ->
+  result
+
+if(sum(is.na(result$пример)) == nrow(result)){
+  result |> 
+    select(выражение) ->
+    result
+}
+
+DT::datatable(result, 
+              filter = 'top', 
+              escape = FALSE, 
+              rownames = FALSE,
+              options = list(pageLength = 15, dom = 'tp'))
+```
+
+## упражнения
+
+```{r, child='tasks/покупка.qmd'}
+```
+
+:::
+

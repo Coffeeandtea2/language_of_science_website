@@ -311,7 +311,7 @@ if(-2 %in% extract_to_delete$step){
 }
 
 # direct extract ----------------------------------------------------------
-read_xlsx("../data/sentences.xlsx") |> 
+read_xlsx("../data/sentences.xlsx", guess_max = 2000) |> 
   mutate(query = str_remove_all(query, "\\|\\|\\|")) |> 
   filter(str_detect(target, "[а-я]")) |> 
   select(stimulus, phrase, n_gram, query, target, please_be_careful_in_plural) ->
@@ -432,7 +432,6 @@ read_xlsx("../data/sentences.xlsx", sheet = "Какой график") |>
   filter(task %in% files) ->
   make_tasks
 
-
 map(seq_along(make_tasks$task), function(i){
   read_xlsx("../data/sentences.xlsx", sheet = "Какой график") |> 
     filter(target != make_tasks$target[i]) |> 
@@ -502,7 +501,6 @@ generate_sentence_in_order_tasks$query <-
 })
 
 generate_sentence_in_order_tasks |> 
-  slice_sample(n = 200) |> 
   mutate(target = NA,
          task = "Поставьте части предложения в правильном порядке:",
          task_type = "Упорядочить фрагменты предложений") |> 
