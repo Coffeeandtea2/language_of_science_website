@@ -23,7 +23,8 @@ readxl::read_xlsx("data/word_profiles.xlsx") |>
 df |> 
   filter(wl_type == "NOUN") |> 
   distinct(lemma, lemma_for_site) |> 
-  arrange(lemma) ->
+  arrange(lemma) |> 
+  filter(!is.na(lemma)) ->
   nouns
 
 if(nrow(nouns) %% 3 == 2){
@@ -53,7 +54,8 @@ walk2(nouns$lemma,
 df |> 
   filter(wl_type == "ADJ") |> 
   distinct(lemma, lemma_for_site) |> 
-  arrange(lemma) ->
+  arrange(lemma) |> 
+  filter(!is.na(lemma))->
   adjs
 
 if(nrow(adjs) %% 3 == 2){
@@ -84,7 +86,8 @@ walk2(adjs$lemma,
 df |> 
   filter(wl_type == "VERB") |> 
   distinct(lemma, lemma_for_site) |> 
-  arrange(lemma) ->
+  arrange(lemma) |> 
+  filter(!is.na(lemma))->
   verbs
 
 if(nrow(verbs) %% 3 == 2){
