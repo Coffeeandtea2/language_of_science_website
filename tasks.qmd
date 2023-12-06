@@ -7,13 +7,11 @@ library(htmltools)
 
 tribble(
   ~title, ~href,
-  "Какой падеж?",          "declension.html",
+  "Какое слово?",          "declension.html",
   "Какая конструкция?",    "government.html",
   "Какой график?",         "plots.html",
   "Какая фраза?",          "word_in_order.html",
-  "Какое предложение?",    "sentence_in_order.html",
-  "...",                   "government.html"
-) ->
+  "Какое предложение?",    "sentence_in_order.html") ->
   df
 
 walk2(df$title, df$href, function(title, href){

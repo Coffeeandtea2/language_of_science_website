@@ -88,7 +88,7 @@ read_xlsx("data/word_profiles.xlsx") |>
 # 
 # 
 # generate tasks ----------------------------------------------------------
-
+# make tasks for words ----------------------------------------------------
 readxl::read_xlsx("data/word_profiles.xlsx") |> 
   filter(!is.na(lemma_for_site))  |> 
   mutate(lemma = str_extract(lemma_for_site, "^.*?(?=( -))"),
@@ -99,37 +99,77 @@ readxl::read_xlsx("data/word_profiles.xlsx") |>
   sort() ->
   files
 
+readxl::read_xlsx("data/tasks.xlsx") |> 
+  filter(!is.na(answer)) ->
+  tasks_dataset_full
+
+
 walk(files, function(i){
-  write_lines("", file = str_c("tasks/", i, ".qmd"))
-})
-
-readxl::read_xlsx("data/word_profiles.xlsx") |> 
-  filter(!is.na(lemma_for_site)) |> 
-  left_join(readxl::read_xlsx("data/tasks.xlsx"), 
-            by = join_by("lemma" == "stimulus"),
-            relationship = "many-to-many") |> 
-  filter(!(task %in% c("Поставьте части предложения в правильном порядке:", 
-                        "Поставьте слова в правильном порядке:"))) |> 
-  mutate(lemma = str_extract(lemma_for_site, "^.*?(?=( -))"),
-         lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
-         lemma = str_remove_all(lemma, "\\(.*?\\)")) |> 
-  distinct(lemma, answer, task) |> 
-  na.omit() |>
-  group_by(lemma) |> 
-  slice_sample(n = 5) ->
-  generate_tasks
-
-walk(unique(generate_tasks$lemma), function(i){
-  generate_tasks |> 
-    filter(lemma == i) |> 
-    slice_sample(prop = 1) ->
-    generate_tasks_by_lemma
   
-  map2(generate_tasks_by_lemma$task, 
-       generate_tasks_by_lemma$answer,
-       function(task, answer) {
-         
-         glue("
+# phrase
+
+tasks_dataset_full |> 
+  filter(stimulus == i) |> 
+  filter(task_type == "Упорядочить слова") |> 
+  slice_sample(n = 5) |> 
+  pull(answer) |> 
+  map(function(answer) {
+    glue("
+
+```{{r}}
+checkdown::check_question(answer = stringr::str_split('{answer}', '; ') |> unlist(), 
+                          type = 'in_order',
+                          right = 'все верно!',
+                          title = '#### Поставьте слова в правильном порядке:',
+                          wrong = 'к сожалению нет, попробуйте еще раз...',
+                          button_label = 'проверить')
+checkdown::check_hint(hint_text = '{answer}',
+           hint_title = '🔎 Нажмите, чтобы посмотреть ответ')
+```
+
+") }) -> 
+  individual_phrases
+
+# sentences  
+  
+tasks_dataset_full |> 
+  filter(stimulus == i) |> 
+  filter(task_type == "Упорядочить фрагменты предложений") |> 
+  slice_sample(n = 5) |> 
+  pull(answer) |> 
+  map(function(answer) {
+    glue("
+
+```{{r}}
+checkdown::check_question(answer = stringr::str_split('{answer}', '; ') |> unlist(), 
+                          type = 'in_order',
+                          alignment = 'vertical',
+                          right = 'все верно!',
+                          title = '#### Поставьте фрагменты предложений в правильном порядке:',
+                          wrong = 'к сожалению нет, попробуйте еще раз...',
+                          button_label = 'проверить')
+checkdown::check_hint(hint_text = '{answer}',
+           hint_title = '🔎 Нажмите, чтобы посмотреть ответ')
+```
+
+") }) ->
+  individual_sentences
+
+# government and declension
+
+tasks_dataset_full |>
+  filter(stimulus == i) |> 
+  filter(!(task_type %in% c("Упорядочить слова",
+                            "Упорядочить фрагменты предложений"))) |> 
+  slice_sample(n = 5) ->
+  generate_dec_gov_tasks
+
+map2(generate_dec_gov_tasks$task, 
+     generate_dec_gov_tasks$answer,
+     function(task, answer) {
+       
+       glue("
+
 ```{{r}}
 checkdown::check_question(answer = '{answer}', 
                           title = '#### {task}',
@@ -137,13 +177,60 @@ checkdown::check_question(answer = '{answer}',
                           wrong = 'к сожалению нет, попробуйте еще раз...',
                           button_label = 'проверить')
 checkdown::check_hint(hint_text = '{answer}',
-                      hint_title = '🔎 Нажмите, чтобы посмотреть ответ')
+           hint_title = '🔎 Нажмите, чтобы посмотреть ответ')                          
 ```
 
-") }) |> 
-    write_lines(str_c("tasks/", i, ".qmd"))
-  
+") }) ->
+  dec_gov_tasks
+
+c(individual_phrases, individual_sentences, dec_gov_tasks) |> 
+  unlist() |> 
+  write_lines("", file = str_c("tasks/", i, ".qmd"))
 })
+
+# readxl::read_xlsx("data/word_profiles.xlsx") |> 
+#   filter(!is.na(lemma_for_site)) |> 
+#   left_join(readxl::read_xlsx("data/tasks.xlsx"), 
+#             by = join_by("lemma" == "stimulus"),
+#             relationship = "many-to-many") |> 
+#   filter(!(task %in% c("Поставьте части предложения в правильном порядке:", 
+#                         "Поставьте слова в правильном порядке:"))) |> 
+#   mutate(lemma = str_extract(lemma_for_site, "^.*?(?=( -))"),
+#          lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
+#          lemma = str_remove_all(lemma, "\\(.*?\\)")) |> 
+#   distinct(lemma, answer, task) |> 
+#   na.omit() |>
+#   group_by(lemma) |> 
+#   slice_sample(n = 5) ->
+#   generate_tasks
+# 
+# walk(unique(generate_tasks$lemma), function(i){
+#   generate_tasks |> 
+#     filter(lemma == i) |> 
+#     slice_sample(prop = 1) ->
+#     generate_tasks_by_lemma
+#   
+#   map2(generate_tasks_by_lemma$task, 
+#        generate_tasks_by_lemma$answer,
+#        function(task, answer) {
+#          
+#          glue("
+# ```{{r}}
+# checkdown::check_question(answer = '{answer}', 
+#                           title = '#### {task}',
+#                           right = 'все верно!', 
+#                           wrong = 'к сожалению нет, попробуйте еще раз...',
+#                           button_label = 'проверить')
+# checkdown::check_hint(hint_text = '{answer}',
+#                       hint_title = '🔎 Нажмите, чтобы посмотреть ответ')
+# ```
+# 
+# ") }) |> 
+#     write_lines(str_c("tasks/", i, ".qmd"))
+#   
+# })
+
+# make tasks for tasks section --------------------------------------------
 
 readxl::read_xlsx("data/tasks.xlsx") |> 
   filter(!is.na(answer)) ->

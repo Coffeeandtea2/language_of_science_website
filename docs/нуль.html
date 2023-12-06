@@ -7462,13 +7462,51 @@ b&&(b.preventDefault(),b.stopPropagation())}else(l.isFocused||"single"===l.setti
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item" id="htmlwidget-b6d1516be74fe1ced00c" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-b6d1516be74fe1ced00c">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["близка к нулю","нулевой","равен нулю","стремиться к нулю"],["","• нулевой купон<br>• нулевая экономическая прибыль<br>• нулевая цена","• ставка процента равна нулю<br>• издержки равны нулю<br>• доход равен нулю<br>• прибыль равна нулю",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-32275fb67573b6497549" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-32275fb67573b6497549">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["близка к нулю","нулевой","равен нулю","стремиться к нулю"],["","• нулевой купон<br>• нулевая экономическая прибыль<br>• нулевая цена","• ставка процента равна нулю<br>• издержки равны нулю<br>• доход равен нулю<br>• прибыль равна нулю",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>выражение<\/th>\n      <th>пример<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":15,"dom":"tp","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output-display">
 
+<form name="form_43064" onsubmit="return validate_form_43064()" method="post">
+<fieldset>
+<legend><h4 id="section" class="anchored">Поставьте слова в правильном порядке:</h4></legend>
+<table data-quarto-disable-processing="true">
+<tbody><tr id="task_43064">
+<td id="answer_43064_4" style="padding:5px; border:1px solid #ccc;">нулю</td>
+<td style="padding:5px">
+<button type="button" onclick="swapElementsH(this);">⇆</button>
+</td>
+<td id="answer_43064_1" style="padding:5px; border:1px solid #ccc;">ставка</td>
+<td style="padding:5px">
+<button type="button" onclick="swapElementsH(this);">⇆</button>
+</td>
+<td id="answer_43064_2" style="padding:5px; border:1px solid #ccc;">процента</td>
+<td style="padding:5px">
+<button type="button" onclick="swapElementsH(this);">⇆</button>
+</td>
+<td id="answer_43064_3" style="padding:5px; border:1px solid #ccc;">равна</td>
+</tr>
+</tbody></table>
+<input type="submit" value="проверить">
+<div id="result_43064"></div>
+</fieldset>
+</form>
+<script>function validate_form_43064() {var text;var ch = document.getElementById('task_43064').children; if(ch[0].id == 'answer_43064_1'&ch[2].id == 'answer_43064_2'&ch[4].id == 'answer_43064_3'&ch[6].id == 'answer_43064_4'){text = 'все верно!';} else {text = 'к сожалению нет, попробуйте еще раз…';} document.getElementById('result_43064').innerHTML = text; evaluate_final_score(); return false;}function swapElementsH(element) {const parent = element.parentNode; const afterNode = parent.nextElementSibling; const beforeNode = parent.previousElementSibling; parent.insertAdjacentElement('beforebegin', afterNode); parent.insertAdjacentElement('afterend', beforeNode);}function evaluate_final_score(){
+         element = document.getElementById('checkdown_final_score');
+         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_43064').innerText == 'все верно!';text = res1;element.innerHTML = text;
+         return false;
+         }}</script>
+</div>
+<div class="cell-output-display">
+<div id="hint_84906" onclick="return show_hint_84906()">🔎 Нажмите, чтобы посмотреть ответ</div>
+<div id="result_84906" onclick="return show_hint_84906()"></div>
+<script>function show_hint_84906(){var x = document.getElementById('result_84906').innerHTML; if(!x){document.getElementById('result_84906').innerHTML = 'ставка; процента; равна; нулю';} else {document.getElementById('result_84906').innerHTML = '';}}</script>
+</div>
+</div>
 </div>
 </div>
 </div>
