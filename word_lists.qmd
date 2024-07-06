@@ -1,8 +1,12 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 ```{r}
 #| include: false
 
 library(tidyverse)
-library(htmltools)
 readxl::read_xlsx("data/word_profiles.xlsx") |> 
   filter(!is.na(lemma)) |> 
   mutate(lemma = str_extract(lemma_for_site, "^.*?(?=( -))"),
@@ -10,7 +14,6 @@ readxl::read_xlsx("data/word_profiles.xlsx") |>
          lemma = str_remove_all(lemma, "\\(.*?\\)")) ->
   df
 ```
-
 
 ::: {.panel-tabset}
 
@@ -27,12 +30,23 @@ df |>
   filter(!is.na(lemma)) ->
   nouns
 
-if(nrow(nouns) %% 3 == 2){
+if(nrow(nouns) %% 4 != 0){
   nouns |> 
-    bind_rows(tibble(lemma = "", 
-                     lemma_for_site = "")) ->
+    bind_rows(tibble(lemma = rep("", nrow(nouns) %% 4), 
+                     lemma_for_site = rep("", nrow(nouns) %% 4))) ->
     nouns
 }
+
+map(1:4-1, function(i){
+  seq(1, nrow(nouns), by = 4) + i
+}) |> 
+  unlist() ->
+  index
+
+nouns |> 
+  mutate(id = index) |> 
+  arrange(id) ->
+  nouns
 
 walk2(nouns$lemma, 
       nouns$lemma_for_site,
@@ -43,7 +57,6 @@ walk2(nouns$lemma,
   }
 )
 ```
-
 
 ## Прилагательные
 
@@ -58,13 +71,23 @@ df |>
   filter(!is.na(lemma))->
   adjs
 
-if(nrow(adjs) %% 3 == 2){
+if(nrow(adjs) %% 4 != 0){
   adjs |> 
-    bind_rows(tibble(lemma = "", 
-                     lemma_for_site = "")) ->
+    bind_rows(tibble(lemma = rep("", nrow(adjs) %% 4), 
+                     lemma_for_site = rep("", nrow(adjs) %% 4))) ->
     adjs
 }
 
+map(1:4-1, function(i){
+  seq(1, nrow(adjs), by = 4) + i
+}) |> 
+  unlist() ->
+  index
+
+adjs |> 
+  mutate(id = index) |> 
+  arrange(id) ->
+  adjs
 
 walk2(adjs$lemma, 
       adjs$lemma_for_site,
@@ -90,12 +113,24 @@ df |>
   filter(!is.na(lemma))->
   verbs
 
-if(nrow(verbs) %% 3 == 2){
+if(nrow(verbs) %% 4 != 0){
   verbs |> 
-    bind_rows(tibble(lemma = "", 
-                     lemma_for_site = "")) ->
+    bind_rows(tibble(lemma = rep("", nrow(verbs) %% 4), 
+                     lemma_for_site = rep("", nrow(verbs) %% 4))) ->
     verbs
 }
+
+map(1:4-1, function(i){
+  seq(1, nrow(verbs), by = 4) + i
+}) |> 
+  unlist() ->
+  index
+
+verbs |> 
+  mutate(id = index) |> 
+  arrange(id) ->
+  verbs
+
 
 walk2(verbs$lemma, 
       verbs$lemma_for_site,
