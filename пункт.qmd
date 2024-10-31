@@ -2,15 +2,15 @@
 title: пункт
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/пункт)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=пункт)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/пункт)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=пункт)
 
 
 ```{r, child='data/пункт.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

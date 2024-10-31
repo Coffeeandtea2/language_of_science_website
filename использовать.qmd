@@ -2,15 +2,15 @@
 title: использовать
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/использовать)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=использовать)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/использовать)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=использовать)
 
 
 ```{r, child='data/использовать.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

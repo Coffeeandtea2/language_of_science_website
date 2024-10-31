@@ -2,15 +2,15 @@
 title: ставка
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/ставка)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=ставка)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/ставка)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=ставка)
 
 
 ```{r, child='data/ставка.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

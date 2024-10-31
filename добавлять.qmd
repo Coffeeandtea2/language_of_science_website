@@ -2,15 +2,15 @@
 title: добавлять
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/добавлять)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=добавлять)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/добавлять)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=добавлять)
 
 
 ```{r, child='data/добавлять.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

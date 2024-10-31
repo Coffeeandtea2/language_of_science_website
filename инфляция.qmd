@@ -2,15 +2,15 @@
 title: инфляция
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/инфляция)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=инфляция)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/инфляция)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=инфляция)
 
 
 ```{r, child='data/инфляция.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

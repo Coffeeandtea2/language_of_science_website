@@ -2,15 +2,15 @@
 title: показывать
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/показывать)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=показывать)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/показывать)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=показывать)
 
 
 ```{r, child='data/показывать.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

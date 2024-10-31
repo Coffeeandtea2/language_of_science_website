@@ -2,15 +2,15 @@
 title: процентный
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/процентный)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=процентный)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/процентный)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=процентный)
 
 
 ```{r, child='data/процентный.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

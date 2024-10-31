@@ -2,15 +2,15 @@
 title: дивиденды
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/дивиденды)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=дивиденды)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/дивиденды)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=дивиденды)
 
 
 ```{r, child='data/дивиденды.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

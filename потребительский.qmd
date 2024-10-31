@@ -2,15 +2,15 @@
 title: потребительский
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/потребительский)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=потребительский)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/потребительский)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=потребительский)
 
 
 ```{r, child='data/потребительский.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

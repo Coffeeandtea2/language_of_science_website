@@ -2,15 +2,15 @@
 title: предельный
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/предельный)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=предельный)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/предельный)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=предельный)
 
 
 ```{r, child='data/предельный.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

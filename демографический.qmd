@@ -2,15 +2,15 @@
 title: демографический
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/демографический)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=демографический)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/демографический)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=демографический)
 
 
 ```{r, child='data/демографический.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

@@ -417,15 +417,15 @@ w_profiles |>
   walk(function(i){
     options(ymlthis.rmd_body = glue::glue("
 
-[![](images/wiktionary.png){{height=7mm}}](https://ru.wiktionary.org/wiki/{i})
-[![](images/ruscorpora.png){{height=7mm}}](https://ruscorpora.ru/word/main?req={i})
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){{height=7mm}}](https://ru.wiktionary.org/wiki/{i})
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){{height=7mm}}](https://ruscorpora.ru/word/main?req={i})
 
 
 ```{{r, child='data/{i}.html'}}
 ```
 ::: {{.panel-tabset}}
 
-## примеры
+## конструкции
 
 ```{{r}}
 #| echo: false

@@ -2,15 +2,15 @@
 title: распределение
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/распределение)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=распределение)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/распределение)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=распределение)
 
 
 ```{r, child='data/распределение.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

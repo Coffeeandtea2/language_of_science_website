@@ -2,15 +2,15 @@
 title: безразличие
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/безразличие)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=безразличие)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/безразличие)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=безразличие)
 
 
 ```{r, child='data/безразличие.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

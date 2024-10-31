@@ -2,7 +2,7 @@ setwd("/home/agricolamz/work/other_projects/language_of_science_website/make_tas
 library(tidyverse)
 library(readxl)
 library(udpipe)
-ru <- udpipe_load_model("/home/agricolamz/work/databases/spoken_corpora/russian-syntagrus-ud-2.5-191206.udpipe")
+ru <- udpipe_load_model("/home/agricolamz/work/databases/russian_ud_model/russian_model.udpipe")
 
 read_xlsx("../data/sentences.xlsx", guess_max = 2000) |> 
   filter(!is.na(query)) |> 

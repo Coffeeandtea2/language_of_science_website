@@ -2,15 +2,15 @@
 title: депозит
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/депозит)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=депозит)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/депозит)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=депозит)
 
 
 ```{r, child='data/депозит.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

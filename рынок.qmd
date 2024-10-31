@@ -2,15 +2,15 @@
 title: рынок
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/рынок)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=рынок)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/рынок)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=рынок)
 
 
 ```{r, child='data/рынок.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

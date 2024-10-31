@@ -2,15 +2,15 @@
 title: монополистический
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/монополистический)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=монополистический)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/монополистический)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=монополистический)
 
 
 ```{r, child='data/монополистический.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false

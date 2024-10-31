@@ -2,15 +2,15 @@
 title: резервный
 ---
 
-[![](images/wiktionary.png){height=7mm}](https://ru.wiktionary.org/wiki/резервный)
-[![](images/ruscorpora.png){height=7mm}](https://ruscorpora.ru/word/main?req=резервный)
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/резервный)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=резервный)
 
 
 ```{r, child='data/резервный.html'}
 ```
 ::: {.panel-tabset}
 
-## примеры
+## конструкции
 
 ```{r}
 #| echo: false
