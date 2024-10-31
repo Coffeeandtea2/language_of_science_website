@@ -4,7 +4,7 @@ editor_options:
   chunk_output_type: console
 ---
 ```{r}
-#| include: false
+#| echo: false
 
 library(tidyverse)
 readxl::read_xlsx("data/word_profiles.xlsx") |> 
@@ -32,8 +32,8 @@ df |>
 
 if(nrow(nouns) %% 4 != 0){
   nouns |> 
-    bind_rows(tibble(lemma = rep("", nrow(nouns) %% 4), 
-                     lemma_for_site = rep("", nrow(nouns) %% 4))) ->
+    bind_rows(tibble(lemma = rep("", 4 - nrow(nouns) %% 4), 
+                     lemma_for_site = rep("", 4 - nrow(nouns) %% 4))) ->
     nouns
 }
 
@@ -73,8 +73,8 @@ df |>
 
 if(nrow(adjs) %% 4 != 0){
   adjs |> 
-    bind_rows(tibble(lemma = rep("", nrow(adjs) %% 4), 
-                     lemma_for_site = rep("", nrow(adjs) %% 4))) ->
+    bind_rows(tibble(lemma = rep("", 4- nrow(adjs) %% 4), 
+                     lemma_for_site = rep("", 4 - nrow(adjs) %% 4))) ->
     adjs
 }
 
@@ -115,8 +115,8 @@ df |>
 
 if(nrow(verbs) %% 4 != 0){
   verbs |> 
-    bind_rows(tibble(lemma = rep("", nrow(verbs) %% 4), 
-                     lemma_for_site = rep("", nrow(verbs) %% 4))) ->
+    bind_rows(tibble(lemma = rep("", 4 - nrow(verbs) %% 4), 
+                     lemma_for_site = rep("", 4 - nrow(verbs) %% 4))) ->
     verbs
 }
 

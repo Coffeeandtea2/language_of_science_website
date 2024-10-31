@@ -4,7 +4,7 @@ library(glue)
 library(rvest)
 library(readxl)
 library(udpipe)
-ru <- udpipe_load_model("/home/agricolamz/work/databases/spoken_corpora/russian-syntagrus-ud-2.5-191206.udpipe")
+ru <- udpipe_load_model("/home/agricolamz/work/databases/russian_ud_model/russian_model.udpipe")
 
 # extract paradigms -------------------------------------------------------
 
