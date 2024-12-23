@@ -1,9 +1,23 @@
----
-title: "Академический русский: экономика"
----
+::: {.content-visible when-profile="english"} 
+
+# Academic Russian: Economics
+
+We have collected for you the most frequent terms and phrases that appear in educational materials on economics. On the site you can:
+
+- view the profiles of economic words and find out the contexts in which they are used most often;
+- choose for yourself which phrases you want to practice in the exercises;
+- revise Russian grammar on topical material that you will study in your lectures and seminars in economics.
+
+:::
+
+::: {.content-visible when-profile="russian"} 
+
+# Академический русский: экономика
 
 Мы собрали для вас самые частотные термины и фразы, которые встречаются в учебных материалах по экономике. На сайте вы сможете:
 
 - Посмотреть [«портрет» экономических слов](word_lists.html), узнать, в каком контексте они используются чаще всего;
 - Самостоятельно выбрать, какие фразы вы хотите потренировать в упражнениях;
 - Повторять грамматику русского языка на актуальном материале, которые вы будете изучать на лекциях и семинарах по экономике.
+
+:::

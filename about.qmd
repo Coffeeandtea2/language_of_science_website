@@ -1,5 +1,19 @@
+::: {.content-visible when-profile="english"}
+
+The project is devoted to the methodology of creating corpus-based digital training platforms for learning Russian as a foreign language for academic and professional purposes. The platfrom generates different types of grammatical and lexical exercises based on a list of the most frequent terms and collocations that foreign students encounter when reading professional texts. The first part of the project develops digital platform in Russian as a foreign language for economists.
+
+The project involves the staff of the School of Linguistics and the International Laboratory of Language Convergence of the National Research University Higher School of Economics: E. V. Rakhilina, N. I. Kikilo, K. K. Kashleva, G. A. Moroz, A. A. Ivanenko, O. S. Eremina.
+
+The project "Academic Russian to Foreigners: Methodology of Corpus-Based Digital Training Platforms" was implemented under grant #075-15-2023-363 within the Strategic Project "Digital Transformation: Technologies, Effects and Efficiency" of the Priority-2030 program.
+
+:::
+
+::: {.content-visible when-profile="russian"}
+
 Проект посвящен методологии создания корпусно-ориентированных цифровых тренажеров для изучения русского языка как иностранного в академических и профессиональных целях. Тренажеры генерируют разные типы грамматических и лексических упражнений на базе списка самых частотных терминов и коллокаций, с которыми сталкиваются студенты-иностранцы, знакомясь с текстами по специальности на русском языке. Первая часть проекта разрабатывает цифровые тренажеры по русскому как иностранному для экономистов.
 
 В проекте участвуют сотрудники Школы лингвистики и Международная лаборатория языковой конвергенции НИУ ВШЭ: Е. В. Рахилина, Н. И. Кикило, К. К. Кашлева, Г. А. Мороз, А. А. Иваненко, О. С. Еремина.
 
 Проект «Академический русский иностранцам: методология корпусно-ориентированных цифровых тренажеров» выполнен за счет гранта №075-15-2023-363 в рамках Стратегического проекта «Цифровая трансформация: технологии, эффекты и эффективность» программы «Приоритет-2030».
+
+:::

@@ -1,0 +1,23 @@
+project:
+  output-dir: ./docs/ru
+  render:
+    - "*.qmd"
+    - "!tasks/"
+
+website:
+  title: "Академический русский: экономика"
+  navbar:
+    left:
+      - href: index.qmd
+        text: главная
+      - href: word_lists.qmd
+        text: портрет слова
+      - href: tasks.qmd
+        text: упражнения
+      - href: about.qmd
+        text: о проекте
+    right:
+      - text: "en"
+        href: ./../index.html
+
+lang: ru

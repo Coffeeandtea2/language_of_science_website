@@ -31,7 +31,7 @@ read_xlsx("data/word_profiles.xlsx") |>
       str_remove_all('<a href.*?>') |>
       str_remove_all('</a>') |>
       append("<details>", after = 0) |>
-      append("<summary>парадигма</summary>", after = 1) |>
+      append("<summary>формы слова</summary>", after = 1) |>
       append("</details>") |>
       write_lines(glue("data/{i}.html"))
   }))
@@ -417,13 +417,65 @@ w_profiles |>
   walk(function(i){
     options(ymlthis.rmd_body = glue::glue("
 
-[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){{height=7mm}}](https://ru.wiktionary.org/wiki/{i})
-[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){{height=7mm}}](https://ruscorpora.ru/word/main?req={i})
-
+::: {{.content-visible when-profile='english'}}
+[![](images/wiktionary.png 'see in Wiktionary'){{height=7mm}}](https://ru.wiktionary.org/wiki/{i})
+[![](images/ruscorpora.png 'see in RNC'){{height=7mm}}](https://ruscorpora.ru/word/main?req={i})
 
 ```{{r, child='data/{i}.html'}}
 ```
-::: {{.panel-tabset}}
+
+:::::: {{.panel-tabset}}
+
+## constructions
+
+```{{r}}
+#| echo: false
+
+library(tidyverse)
+library(checkdown)
+readxl::read_xlsx('data/word_profiles.xlsx') |> 
+  mutate(lemma = str_extract(lemma_for_site, '^.*?(?=( -))'),
+         lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
+         lemma = str_remove_all(lemma, '\\\\(.*?\\\\)')) |> 
+  filter(lemma == '{i}') |> 
+  mutate(example = ifelse(is.na(example), '', str_c('• ', example))) |> 
+  select(phrase_for_site, example) |> 
+  group_by(phrase_for_site) |> 
+  summarize(example = str_c(example, collapse = '<br>')) |> 
+  rename(выражение = phrase_for_site, 
+         пример = example) ->
+  result
+
+if(sum(is.na(result$пример)) == nrow(result)){{
+  result |> 
+    select(выражение) ->
+    result
+}}
+
+DT::datatable(result, 
+              filter = 'top', 
+              escape = FALSE, 
+              rownames = FALSE,
+              options = list(pageLength = 15, dom = 'tp'))
+```
+
+## exercises
+
+```{{r, child='tasks/{i}.qmd'}}
+```
+
+::::::
+:::
+
+::: {{.content-visible when-profile='russian'}}
+
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){{height=7mm}}](https://ru.wiktionary.org/wiki/{i})
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){{height=7mm}}](https://ruscorpora.ru/word/main?req={i})
+
+```{{r, child='data/{i}.html'}}
+```
+
+:::::: {{.panel-tabset}}
 
 ## конструкции
 
@@ -460,9 +512,11 @@ DT::datatable(result,
 
 ## упражнения
 
+
 ```{{r, child='tasks/{i}.qmd'}}
 ```
 
+::::::
 :::
 
 "))
@@ -480,4 +534,7 @@ rm(w_profiles)
 
 # render site -------------------------------------------------------------
 
-quarto::quarto_render()
+library(quarto)
+quarto_render(profile = "english")
+quarto_render(profile = "russian")
+

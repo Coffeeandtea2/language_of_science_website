@@ -1,3 +1,34 @@
+::: {.content-visible when-profile="english"}
+
+```{r}
+#| results: asis
+#| layout-ncol: 3
+
+library(tidyverse)
+library(htmltools)
+
+tribble(
+  ~title, ~href,
+  "Which word?",           "declension.html",
+  "Which construction?",   "government.html",
+  "Which graph?",          "plots.html",
+  "Which phrase?",         "word_in_order.html",
+  "Which sentence?",       "sentence_in_order.html") ->
+  df
+
+walk2(df$title, df$href, function(title, href){
+  h3(title) |> 
+    a(href = href) |> 
+    div(class = "col") |>
+    print()
+})
+
+```
+
+:::
+
+::: {.content-visible when-profile="russian"}
+
 ```{r}
 #| results: asis
 #| layout-ncol: 3
@@ -23,3 +54,4 @@ walk2(df$title, df$href, function(title, href){
 
 ```
 
+:::

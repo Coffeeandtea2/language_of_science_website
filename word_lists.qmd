@@ -15,7 +15,141 @@ readxl::read_xlsx("data/word_profiles.xlsx") |>
   df
 ```
 
-::: {.panel-tabset}
+::: {.content-visible when-profile="english"}
+
+:::::: {.panel-tabset}
+
+## Nouns
+
+```{r}
+#| results: asis
+#| layout-ncol: 4
+
+df |> 
+  filter(wl_type == "NOUN") |> 
+  distinct(lemma, lemma_for_site) |> 
+  arrange(lemma) |> 
+  filter(!is.na(lemma)) ->
+  nouns
+
+if(nrow(nouns) %% 4 != 0){
+  nouns |> 
+    bind_rows(tibble(lemma = rep("", 4 - nrow(nouns) %% 4), 
+                     lemma_for_site = rep("", 4 - nrow(nouns) %% 4))) ->
+    nouns
+}
+
+map(1:4-1, function(i){
+  seq(1, nrow(nouns), by = 4) + i
+}) |> 
+  unlist() ->
+  index
+
+nouns |> 
+  mutate(id = index) |> 
+  arrange(id) ->
+  nouns
+
+walk2(nouns$lemma, 
+      nouns$lemma_for_site,
+      function(lemma, lemma_for_site) {
+        htmltools::a(lemma_for_site, href = str_c(lemma, ".html")) |>
+          htmltools::div(class = "col") |>
+          print()
+  }
+)
+```
+
+## Adjectives
+
+```{r}
+#| results: asis
+#| layout-ncol: 4
+
+df |> 
+  filter(wl_type == "ADJ") |> 
+  distinct(lemma, lemma_for_site) |> 
+  arrange(lemma) |> 
+  filter(!is.na(lemma))->
+  adjs
+
+if(nrow(adjs) %% 4 != 0){
+  adjs |> 
+    bind_rows(tibble(lemma = rep("", 4- nrow(adjs) %% 4), 
+                     lemma_for_site = rep("", 4 - nrow(adjs) %% 4))) ->
+    adjs
+}
+
+map(1:4-1, function(i){
+  seq(1, nrow(adjs), by = 4) + i
+}) |> 
+  unlist() ->
+  index
+
+adjs |> 
+  mutate(id = index) |> 
+  arrange(id) ->
+  adjs
+
+walk2(adjs$lemma, 
+      adjs$lemma_for_site,
+      function(lemma, lemma_for_site) {
+        htmltools::a(lemma_for_site, href = str_c(lemma, ".html")) |>
+          htmltools::div(class = "col") |>
+          print()
+  }
+)
+```
+
+## Verbs
+
+```{r}
+#| results: asis
+#| layout-ncol: 3
+
+df |> 
+  filter(wl_type == "VERB") |> 
+  distinct(lemma, lemma_for_site) |> 
+  arrange(lemma) |> 
+  filter(!is.na(lemma))->
+  verbs
+
+if(nrow(verbs) %% 4 != 0){
+  verbs |> 
+    bind_rows(tibble(lemma = rep("", 4 - nrow(verbs) %% 4), 
+                     lemma_for_site = rep("", 4 - nrow(verbs) %% 4))) ->
+    verbs
+}
+
+map(1:4-1, function(i){
+  seq(1, nrow(verbs), by = 4) + i
+}) |> 
+  unlist() ->
+  index
+
+verbs |> 
+  mutate(id = index) |> 
+  arrange(id) ->
+  verbs
+
+
+walk2(verbs$lemma, 
+      verbs$lemma_for_site,
+      function(lemma, lemma_for_site) {
+        htmltools::a(lemma_for_site, href = str_c(lemma, ".html")) |>
+          htmltools::div(class = "col") |>
+          print()
+  }
+)
+```
+
+::::::
+
+:::
+
+::: {.content-visible when-profile="russian"}
+
+:::::: {.panel-tabset}
 
 ## Существительные
 
@@ -99,7 +233,6 @@ walk2(adjs$lemma,
 )
 ```
 
-
 ## Глаголы
 
 ```{r}
@@ -141,5 +274,7 @@ walk2(verbs$lemma,
   }
 )
 ```
+
+::::::
 
 :::

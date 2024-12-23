@@ -2,13 +2,65 @@
 title: финансы
 ---
 
-[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/финансы)
-[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=финансы)
-
+::: {.content-visible when-profile='english'}
+[![](images/wiktionary.png 'see in Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/финансы)
+[![](images/ruscorpora.png 'see in RNC'){height=7mm}](https://ruscorpora.ru/word/main?req=финансы)
 
 ```{r, child='data/финансы.html'}
 ```
-::: {.panel-tabset}
+
+:::::: {.panel-tabset}
+
+## constructions
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+library(checkdown)
+readxl::read_xlsx('data/word_profiles.xlsx') |> 
+  mutate(lemma = str_extract(lemma_for_site, '^.*?(?=( -))'),
+         lemma = ifelse(is.na(lemma), lemma_for_site, lemma),
+         lemma = str_remove_all(lemma, '\\(.*?\\)')) |> 
+  filter(lemma == 'финансы') |> 
+  mutate(example = ifelse(is.na(example), '', str_c('• ', example))) |> 
+  select(phrase_for_site, example) |> 
+  group_by(phrase_for_site) |> 
+  summarize(example = str_c(example, collapse = '<br>')) |> 
+  rename(выражение = phrase_for_site, 
+         пример = example) ->
+  result
+
+if(sum(is.na(result$пример)) == nrow(result)){
+  result |> 
+    select(выражение) ->
+    result
+}
+
+DT::datatable(result, 
+              filter = 'top', 
+              escape = FALSE, 
+              rownames = FALSE,
+              options = list(pageLength = 15, dom = 'tp'))
+```
+
+## exercises
+
+```{r, child='tasks/финансы.qmd'}
+```
+
+::::::
+:::
+
+::: {.content-visible when-profile='russian'}
+
+[![](images/wiktionary.png 'смотреть в словаре Wiktionary'){height=7mm}](https://ru.wiktionary.org/wiki/финансы)
+[![](images/ruscorpora.png 'смотреть в Национальном корпусе Русского языка'){height=7mm}](https://ruscorpora.ru/word/main?req=финансы)
+
+```{r, child='data/финансы.html'}
+```
+
+:::::: {.panel-tabset}
 
 ## конструкции
 
@@ -45,8 +97,10 @@ DT::datatable(result,
 
 ## упражнения
 
+
 ```{r, child='tasks/финансы.qmd'}
 ```
 
+::::::
 :::
 
