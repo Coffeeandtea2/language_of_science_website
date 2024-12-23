@@ -442,8 +442,8 @@ readxl::read_xlsx('data/word_profiles.xlsx') |>
   select(phrase_for_site, example) |> 
   group_by(phrase_for_site) |> 
   summarize(example = str_c(example, collapse = '<br>')) |> 
-  rename(выражение = phrase_for_site, 
-         пример = example) ->
+  rename(phrase = phrase_for_site, 
+         example = example) ->
   result
 
 if(sum(is.na(result$пример)) == nrow(result)){{
